@@ -100,7 +100,9 @@
     <Compile Include="Interop\Core\Flags\PluginLoadConfig.cs" />
     <Compile Include="Interop\Core\Flags\PointerConfigureType.cs" />
     <Compile Include="Interop\Core\Flags\PositionConfig.cs" />
+    <Compile Include="Interop\Core\Flags\SampleConfig.cs" />
     <Compile Include="Interop\Core\Flags\SampleDataType.cs" />
+    <Compile Include="Interop\Core\Flags\SampleLoadConfig.cs" />
     <Compile Include="Interop\Core\Flags\StreamCreateUrlConfig.cs" />
     <Compile Include="Interop\Core\Flags\StreamCreateConfig.cs" />
     <Compile Include="Interop\Core\Flags\StreamCreateFileConfig.cs" />
@@ -115,6 +117,8 @@
     <Compile Include="Interop\Core\Plugin.cs" />
     <Compile Include="Interop\Core\PluginFormat.cs" />
     <Compile Include="Interop\Core\PluginInfo.cs" />
+    <Compile Include="Interop\Core\Sample.cs" />
+    <Compile Include="Interop\Core\SampleInfo.cs" />
     <Compile Include="Interop\Core\Stream.cs" />
     <Compile Include="Interop\Core\Flags\Internal\StreamConfig.cs" />
     <Compile Include="Interop\Core\TagApeBinary.cs" />
@@ -125,9 +129,6 @@
     <Compile Include="Interop\Core\TagID3.cs" />
     <Compile Include="Interop\Core\Vector3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

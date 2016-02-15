@@ -15,42 +15,42 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     The channel's resolution is 8-bit. If neither this or the <see cref="Float" /> flags are present, then the
         ///     channel's resolution is 16-bit.
         /// </summary>
-        _8Bit = SampleConfig._8Bits,
+        _8Bit = Internal.SampleConfig._8Bits,
 
         /// <summary>
         ///     The channel's resolution is 32-bit floating-point.
         /// </summary>
-        Float = SampleConfig.Float,
+        Float = Internal.SampleConfig.Float,
 
         /// <summary>
         ///     The channel is looped.
         /// </summary>
-        Loop = SampleConfig.Loop,
+        Loop = Internal.SampleConfig.Loop,
 
         /// <summary>
         ///     The channel has 3D functionality enabled.
         /// </summary>
-        _3D = SampleConfig._3D,
+        _3D = Internal.SampleConfig._3D,
 
         /// <summary>
         ///     The channel is NOT using hardware mixing.
         /// </summary>
-        Software = SampleConfig.Software,
+        Software = Internal.SampleConfig.Software,
 
         /// <summary>
         ///     The channel is using the DX7 voice allocation and management features. (HCHANNEL only)
         /// </summary>
-        Vam = SampleConfig.Vam,
+        Vam = Internal.SampleConfig.Vam,
 
         /// <summary>
         ///     The channel is muted when at (or beyond) its max distance. (HCHANNEL)
         /// </summary>
-        Mutemax = SampleConfig.Mutemax,
+        Mutemax = Internal.SampleConfig.Mutemax,
 
         /// <summary>
         ///     The channel has the "with FX flag" DX8 effect implementation enabled. (HSTREAM/HMUSIC)
         /// </summary>
-        Fx = SampleConfig.Fx,
+        Fx = Internal.SampleConfig.Fx,
 
         /// <summary>
         ///     The Internet file download rate is restricted. (HSTREAM)
