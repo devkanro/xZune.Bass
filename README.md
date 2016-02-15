@@ -12,8 +12,8 @@ xZune.Bass is a Bass library wrapper for .NET
 - [x] Config module.
 - [x] Channel module.
 - [x] Sample module.
-- [ ] Recording module (processing).
-- [ ] MOD/MP3 music module.
+- [x] Recording module.
+- [ ] MOD/MP3 music module (processing).
 - [ ] 3D & EAX module.
 - [ ] Effect module.
 

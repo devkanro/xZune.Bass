@@ -16,7 +16,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="max">Maximum number of simultaneous playbacks... 1 (min) - 65535 (max)... use one of the BASS_SAMPLE_OVER flags to choose the override decider, in the case of there being no free channel available for playback (ie. the sample is already playing max times). </param>
     /// <param name="config">Configure of sample. </param>
     /// <returns>
-    /// If successful, the new sample's handle is returned, else 0 is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, the new sample's handle is returned, else 0 is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// The sample's initial content is undefined. BASS_SampleSetData should be used to set the sample's data.
@@ -43,7 +43,7 @@ namespace xZune.Bass.Interop.Core
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <returns>
-    /// If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     [BassFuction("BASS_SampleFree")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
@@ -56,7 +56,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">Handle of the sample to play. </param>
     /// <param name="onlynew">Do not recycle/override one of the sample's existing channels? </param>
     /// <returns>
-    /// If successful, the handle of the new channel is returned, else NULL is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, the handle of the new channel is returned, else NULL is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// Use BASS_SampleGetInfo and BASS_SampleSetInfo to set a sample's default attributes, which are used when creating a channel. After creation, a channel's attributes can be changed via BASS_ChannelSetAttribute, BASS_ChannelSet3DAttributes and BASS_ChannelSet3DPosition. BASS_Apply3D should be called before starting playback of a 3D sample, even if you just want to use the default settings.
@@ -84,7 +84,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The sample handle. </param>
     /// <param name="channels">An array to put the sample's channel handles in. The array should be the same size as the sample's max setting when the sample was created, which can be retrieved using BASS_SampleGetInfo. NULL can be used to just check how many channels exist. </param>
     /// <returns>
-    /// If successful, the number of existing channels is returned, else -1 is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, the number of existing channels is returned, else -1 is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// To determine whether a particular sample channel still exists, it is simplest to just try it in a function call.
@@ -100,7 +100,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The sample handle. </param>
     /// <param name="buffer">Pointer to a buffer to receive the data. </param>
     /// <returns>
-    /// If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// The buffer must be big enough to receive the sample's data, the size of which can be retrieved via BASS_SampleGetInfo.
@@ -117,7 +117,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The sample handle. </param>
     /// <param name="info">Pointer to a structure to receive the sample information. </param>
     /// <returns>
-    /// If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// Use this function and <see cref="SampleSetInfo"/> to edit a sample's default attributes.
@@ -137,7 +137,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="max">Maximum number of simultaneous playbacks... 1 (min) - 65535 (max). Use one of the BASS_SAMPLE_OVER flags to choose the override decider, in the case of there being no free channel available for playback (ie. the sample is already playing max times). </param>
     /// <param name="config">Configure of load sample. </param>
     /// <returns>
-    /// If successful, the loaded sample's handle is returned, else 0 is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, the loaded sample's handle is returned, else 0 is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// This function supports the same file formats as BASS_StreamCreateFile does, including those supported via the plug-in system.
@@ -170,7 +170,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The sample handle. </param>
     /// <param name="buffer">Pointer to the data. </param>
     /// <returns>
-    /// If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// The required length and format of the data can be retrieved via BASS_SampleGetInfo.
@@ -189,7 +189,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The sample handle. </param>
     /// <param name="info">Pointer to the sample information structure. </param>
     /// <returns>
-    /// If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// Use this function and BASS_SampleGetInfo to edit a sample's default attributes. Changing a sample's default attributes does not affect any existing channels, it only affects channels subsequently created via BASS_SampleGetChannel. The exception is the VAM settings, changes to that apply to all the sample's channels at their next playback (BASS_ChannelPlay). Use BASS_ChannelSetAttribute and BASS_ChannelSet3DAttributes to change the attributes of an existing sample channel.
@@ -209,7 +209,7 @@ namespace xZune.Bass.Interop.Core
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <returns>
-    /// If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     /// If a sample is playing simultaneously multiple times, calling this function will stop them all, which is obviously simpler than calling BASS_ChannelStop multiple times.

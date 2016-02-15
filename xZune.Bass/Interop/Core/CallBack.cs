@@ -150,7 +150,7 @@ namespace xZune.Bass.Interop.Core
     ///     actually be outside this range).
     /// </param>
     /// <param name="length">The number of bytes to process. </param>
-    /// <param name="user">The user instance data given when <see cref="ChannelSetdisplay" /> was called. </param>
+    /// <param name="user">The user instance data given when <see cref="ChannelSetDSP" /> was called. </param>
     /// <remarks>
     ///     A display function should be as quick as possible; playing streams and MOD musics, and other display functions
     ///     cannot be processed until it has finished.

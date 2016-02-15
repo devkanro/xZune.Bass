@@ -89,6 +89,9 @@
     <Compile Include="Interop\Core\Flags\Internal\MusicConfig.cs" />
     <Compile Include="Interop\Core\Flags\Internal\PointerConfigureType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\PositionConfig.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\RecordConfig.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\RecordInputStatus.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\RecordInputType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\SampleConfig.cs" />
     <Compile Include="Interop\Core\Flags\Internal\SampleDataType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\SpeakerType.cs" />
@@ -96,10 +99,15 @@
     <Compile Include="Interop\Core\Flags\Internal\StreamFileSystemType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\SyncHandlerType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\TagType.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\WaveForamt.cs" />
     <Compile Include="Interop\Core\Flags\LevelConfig.cs" />
     <Compile Include="Interop\Core\Flags\PluginLoadConfig.cs" />
     <Compile Include="Interop\Core\Flags\PointerConfigureType.cs" />
     <Compile Include="Interop\Core\Flags\PositionConfig.cs" />
+    <Compile Include="Interop\Core\Flags\RecordDeviceCapabilities.cs" />
+    <Compile Include="Interop\Core\Flags\RecordInitializationConfig.cs" />
+    <Compile Include="Interop\Core\Flags\RecordInputStatus.cs" />
+    <Compile Include="Interop\Core\Flags\RecordInputType.cs" />
     <Compile Include="Interop\Core\Flags\SampleConfig.cs" />
     <Compile Include="Interop\Core\Flags\SampleDataType.cs" />
     <Compile Include="Interop\Core\Flags\SampleLoadConfig.cs" />
@@ -110,6 +118,7 @@
     <Compile Include="Interop\Core\Flags\StreamFileSystemType.cs" />
     <Compile Include="Interop\Core\Flags\SyncHandlerType.cs" />
     <Compile Include="Interop\Core\Flags\TagType.cs" />
+    <Compile Include="Interop\Core\Flags\WaveForamt.cs" />
     <Compile Include="Interop\Core\Guid.cs" />
     <Compile Include="Interop\Core\Info.cs" />
     <Compile Include="Interop\Core\Infomation.cs" />
@@ -117,6 +126,8 @@
     <Compile Include="Interop\Core\Plugin.cs" />
     <Compile Include="Interop\Core\PluginFormat.cs" />
     <Compile Include="Interop\Core\PluginInfo.cs" />
+    <Compile Include="Interop\Core\RecordInfo.cs" />
+    <Compile Include="Interop\Core\Recording.cs" />
     <Compile Include="Interop\Core\Sample.cs" />
     <Compile Include="Interop\Core\SampleInfo.cs" />
     <Compile Include="Interop\Core\Stream.cs" />

@@ -239,7 +239,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="mode">How to retrieve the length. One of the following. </param>
     /// <param name="other">modes may be supported by add-ons, see the documentation. </param>
     /// <returns>
-    ///     If successful, then the channel's length is returned, else -1 is returned. Use BASS_ErrorGetCode to get the error
+    ///     If successful, then the channel's length is returned, else -1 is returned. Use <see cref="GetErrorCode"/> to get the error
     ///     code.
     /// </returns>
     /// <remarks>
@@ -268,7 +268,7 @@ namespace xZune.Bass.Interop.Core
     /// </summary>
     /// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM, or HRECORD. </param>
     /// <returns>
-    ///     If an error occurs, -1 is returned, use BASS_ErrorGetCode to get the error code. If successful, the level of the
+    ///     If an error occurs, -1 is returned, Use <see cref="GetErrorCode"/> to get the error code. If successful, the level of the
     ///     left channel is returned in the low word (low 16 bits), and the level of the right channel is returned in the high
     ///     word (high 16 bits). If the channel is mono, then the low word is duplicated in the high word. The level ranges
     ///     linearly from 0 (silent) to 32768 (max). 0 will be returned when a channel is stalled.
@@ -311,7 +311,7 @@ namespace xZune.Bass.Interop.Core
     /// </param>
     /// <param name="flags">A combination of these flags. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     This function operates in the same way as BASS_ChannelGetLevel but has greater flexibility on how the level is
@@ -333,7 +333,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM, or HRECORD. </param>
     /// <param name="mode">How to retrieve the position. One of the following, with optional flags. </param>
     /// <returns>
-    ///     If successful, then the channel's position is returned, else -1 is returned. Use BASS_ErrorGetCode to get the error
+    ///     If successful, then the channel's position is returned, else -1 is returned. Use <see cref="GetErrorCode"/> to get the error
     ///     code.
     /// </returns>
     [BassFuction("BASS_ChannelGetPosition")]
@@ -349,7 +349,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HMUSIC or HSTREAM. </param>
     /// <param name="tags">The tags/headers wanted... one of the following. </param>
     /// <returns>
-    ///     If successful, the requested tags are returned, else NULL is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, the requested tags are returned, else NULL is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Some tags (eg. ID3v1) are located at the end of the file, so when streaming a file from the Internet, the tags will
@@ -412,7 +412,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HMUSIC, HSTREAM or HRECORD. </param>
     /// <param name="@lock">If FALSE, unlock the channel, else lock it. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Locking a channel prevents other threads from performing most functions on it, including buffer updates. Other
@@ -429,7 +429,7 @@ namespace xZune.Bass.Interop.Core
     /// </summary>
     /// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM, or HRECORD. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Use BASS_ChannelPlay to resume a paused channel. BASS_ChannelStop can be used to stop a paused channel.
@@ -450,7 +450,7 @@ namespace xZune.Bass.Interop.Core
     ///     its current buffer contents are cleared. If it is a MOD music, its BPM/etc are reset to their initial values.
     /// </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     When streaming in blocks (BASS_STREAM_BLOCK), the restart parameter is ignored as it is not possible to go back to
@@ -476,7 +476,7 @@ namespace xZune.Bass.Interop.Core
     ///     effect.
     /// </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     [BassFuction("BASS_ChannelRemoveDSP")]
     [BassError(ErrorCode.BadHandle, "At least one of handle and dsp is not valid.")]
@@ -489,7 +489,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HSTREAM, HMUSIC, or HRECORD. </param>
     /// <param name="fx">Handle of the effect to remove from the channel. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Depending on the DX8 effect implementation being used by the channel, the channel may have to be stopped before
@@ -508,7 +508,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HMUSIC or HSTREAM. </param>
     /// <param name="chan">The handle of the channel to have unlinked with it... a HMUSIC or HSTREAM. </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     [BassFuction("BASS_ChannelRemoveLink")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
@@ -522,7 +522,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HMUSIC, HSTREAM or HRECORD. </param>
     /// <param name="sync">Handle of the synchronizer to remove. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     [BassFuction("BASS_ChannelRemoveSync")]
     [BassError(ErrorCode.BadHandle, "At least one of handle and sync is not valid.")]
@@ -535,7 +535,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM, or HRECORD. HSAMPLE handles may also be used. </param>
     /// <param name="pos">The position to translate. </param>
     /// <returns>
-    ///     If successful, then the translated length is returned, else -1 is returned. Use BASS_ErrorGetCode to get the error
+    ///     If successful, then the translated length is returned, else -1 is returned. Use <see cref="GetErrorCode"/> to get the error
     ///     code.
     /// </returns>
     /// <remarks>
@@ -574,7 +574,7 @@ namespace xZune.Bass.Interop.Core
     ///     less than 0 = leave current.
     /// </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     The iangle and oangle parameters must both be set in a single call to this function; one cannot be set without the
@@ -604,7 +604,7 @@ namespace xZune.Bass.Interop.Core
     ///     has no effect on the sound's position.
     /// </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     As with all 3D functions, <see cref="Apply3D" /> must be called to apply the changes made.
@@ -622,7 +622,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="attribute">The attribute to set the value of... one of the following. </param>
     /// <param name="value">The new attribute value. See the attribute's documentation for details on the possible values. </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     The actual attribute value may not be exactly the same as requested, due to precision differences. For example, an
@@ -644,7 +644,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="value">The new attribute data. </param>
     /// <param name="size">The size of the attribute data. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     This function also supports the floating-point attributes supported by BASS_ChannelGetAttribute.
@@ -698,7 +698,7 @@ namespace xZune.Bass.Interop.Core
     ///     priority are called before those with lower.
     /// </param>
     /// <returns>
-    ///     If successful, then the new DSP's handle is returned, else 0 is returned. Use BASS_ErrorGetCode to get the error
+    ///     If successful, then the new DSP's handle is returned, else 0 is returned. Use <see cref="GetErrorCode"/> to get the error
     ///     code.
     /// </returns>
     /// <remarks>
@@ -727,7 +727,7 @@ namespace xZune.Bass.Interop.Core
     ///     DX8 effect implementation is used.
     /// </param>
     /// <returns>
-    ///     If successful, then the new effect's handle is returned, else 0 is returned. Use BASS_ErrorGetCode to get the error
+    ///     If successful, then the new effect's handle is returned, else 0 is returned. Use <see cref="GetErrorCode"/> to get the error
     ///     code.
     /// </returns>
     /// <remarks>
@@ -756,7 +756,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="handle">The channel handle... a HMUSIC or HSTREAM. </param>
     /// <param name="chan">The handle of the channel to have linked with it... a HMUSIC or HSTREAM. </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Linked channels are started/stopped/paused/resumed together. Links are one-way; for example, channel chan will be
@@ -782,7 +782,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="pos">The position, in units determined by the mode. </param>
     /// <param name="mode">How to set the position. One of the following, with optional flags. </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Setting the position of a MOD music in bytes (other than 0) requires that the BASS_MUSIC_PRESCAN flag was used in
@@ -843,7 +843,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="user">User instance data to pass to the callback function. </param>
     /// <param name="Sync">types, with param and SYNCPROC data definitions. </param>
     /// <returns>
-    ///     If successful, then the new synchronizer's handle is returned, else 0 is returned. Use BASS_ErrorGetCode to get the
+    ///     If successful, then the new synchronizer's handle is returned, else 0 is returned. Use <see cref="GetErrorCode"/> to get the
     ///     error code.
     /// </returns>
     /// <remarks>
@@ -880,7 +880,7 @@ namespace xZune.Bass.Interop.Core
     /// <param name="value">The new attribute value. See the attribute's documentation for details on the possible values. </param>
     /// <param name="time">The length of time (in milliseconds) that it should take for the attribute to reach the value. </param>
     /// <returns>
-    ///     If successful, then TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     This function is similar to BASS_ChannelSetAttribute, except that the attribute is ramped to the value over the
@@ -906,7 +906,7 @@ namespace xZune.Bass.Interop.Core
     /// </summary>
     /// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM, or HRECORD. </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     Stopping a user stream (created with BASS_StreamCreate) will clear its buffer contents, and stopping a sample
@@ -932,7 +932,7 @@ namespace xZune.Bass.Interop.Core
     ///     at the space available in the buffer.
     /// </param>
     /// <returns>
-    ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
+    ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
     /// <remarks>
     ///     When starting playback of a stream or MOD music, after creating it or changing its position, there will be a slight
