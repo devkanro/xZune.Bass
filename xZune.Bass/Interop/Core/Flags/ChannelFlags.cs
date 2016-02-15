@@ -62,7 +62,7 @@ namespace xZune.Bass.Interop.Core.Flags
         /// <summary>
         /// Stop all notes and reset BPM/etc when seeking. (HMUSIC) 
         /// </summary>
-        PosResetEX = Internal.MusicConfig.PosResetEX,
+        PosResetEX = Internal.MusicConfig.PosResetEx,
         /// <summary>
         /// Stop when a backward jump effect is played. (HMUSIC) 
         /// </summary>

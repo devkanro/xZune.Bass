@@ -1,88 +1,136 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
-// Filename: StreamCreateFileConfig.cs
-// Version: 20160216
+// Filename: ChannelConfig.cs
+// Version: 20160215
+
+using xZune.Bass.Interop.Core.Flags.Internal;
 
 namespace xZune.Bass.Interop.Core.Flags
 {
     /// <summary>
-    ///     Some configures use in <see cref="StreamCreateFile" />.
+    ///     Some configure used in <see cref="ChannelInfo" />.
     /// </summary>
-    public enum StreamCreateFileConfig : uint
+    public enum ChannelConfig : uint
     {
         /// <summary>
-        ///     Decode/play the stream (MP3/MP2/MP1 only) in mono, reducing the CPU usage (if it was originally stereo). This flag
-        ///     is automatically applied if <see cref="InitializationConfig.Mono" /> was specified when calling
-        ///     <see cref="Initialize" />.
+        ///     The channel's resolution is 8-bit. If neither this or the <see cref="Float" /> flags are present, then the
+        ///     channel's resolution is 16-bit.
         /// </summary>
-        Mono = Internal.SampleConfig.Mono,
+        _8Bit = SampleConfig._8Bits,
 
         /// <summary>
-        ///     Use 32-bit floating-point sample data. See Floating-point channels for info.
+        ///     The channel's resolution is 32-bit floating-point.
         /// </summary>
-        Float = Internal.SampleConfig.Float,
+        Float = SampleConfig.Float,
 
         /// <summary>
-        ///     Enable 3D functionality. This requires that the <see cref="InitializationConfig._3D" /> flag was specified when
-        ///     calling <see cref="Initialize" />, and the
-        ///     stream must be mono (chans=1). The SPEAKER flags cannot be used together with this flag.
+        ///     The channel is looped.
         /// </summary>
-        _3D = Internal.SampleConfig._3D,
+        Loop = SampleConfig.Loop,
 
         /// <summary>
-        ///     Force the stream to not use hardware mixing.
+        ///     The channel has 3D functionality enabled.
         /// </summary>
-        Software = Internal.SampleConfig.Software,
+        _3D = SampleConfig._3D,
 
         /// <summary>
-        ///     Enable the old implementation of DirectX 8 effects. See the DX8 effect implementations section for details. Use
-        ///     <see cref="ChannelSetFX" /> to add effects to the stream.
+        ///     The channel is NOT using hardware mixing.
         /// </summary>
-        Fx = Internal.SampleConfig.Fx,
+        Software = SampleConfig.Software,
 
         /// <summary>
-        ///     Loop the file. This flag can be toggled at any time using BASS_ChannelFlags.
+        ///     The channel is using the DX7 voice allocation and management features. (HCHANNEL only)
         /// </summary>
-        Loop = Internal.SampleConfig.Loop,
+        Vam = SampleConfig.Vam,
 
         /// <summary>
-        ///     Pre-scan the file for accurate seek points and length reading in MP3/MP2/MP1 files and chained OGG files (has no
-        ///     effect on normal OGG files). This can significantly increase the time taken to create the stream, particularly with
-        ///     a large file and/or slow storage media. <see cref="ChannelSetPosition" /> can be used to scan the file after stream
-        ///     creation instead.
+        ///     The channel is muted when at (or beyond) its max distance. (HCHANNEL)
         /// </summary>
-        Prescan = Internal.StreamConfig.Prescan,
+        Mutemax = SampleConfig.Mutemax,
 
         /// <summary>
-        ///     Automatically free the stream when playback ends.
+        ///     The channel has the "with FX flag" DX8 effect implementation enabled. (HSTREAM/HMUSIC)
         /// </summary>
-        AutoFree = Internal.StreamConfig.AutoFree,
+        Fx = SampleConfig.Fx,
 
         /// <summary>
-        ///     Decode the sample data, without playing it. Use <see cref="ChannelGetData" /> to retrieve decoded sample data. The
-        ///     <see cref="_3D" />, <see cref="AutoFree" /> and SPEAKER flags cannot be used together with this flag. The
-        ///     <see cref="Software" /> and <see cref="Fx" /> flags are also ignored.
+        ///     The Internet file download rate is restricted. (HSTREAM)
         /// </summary>
-        Decode = Internal.StreamConfig.Decode,
+        RestRate = StreamConfig.RestRate,
+
+        /// <summary>
+        ///     The Internet file (or "buffered" user file) is streamed in small blocks. (HSTREAM)
+        /// </summary>
+        Block = StreamConfig.Block,
+
+        /// <summary>
+        ///     The channel will automatically be freed when it ends. (HSTREAM/HMUSIC)
+        /// </summary>
+        AutoFree = StreamConfig.AutoFree,
+
+        /// <summary>
+        ///     The channel is a "decoding channel". (HSTREAM/HMUSIC/HRECORD)
+        /// </summary>
+        Decode = StreamConfig.Decode,
+
+        /// <summary>
+        ///     The MOD music is using "normal" ramping. (HMUSIC)
+        /// </summary>
+        Ramp = MusicConfig.Ramp,
+
+        /// <summary>
+        ///     The MOD music is using "sensitive" ramping. (HMUSIC)
+        /// </summary>
+        Ramps = MusicConfig.Ramps,
+
+        /// <summary>
+        ///     The MOD music is using surround sound. (HMUSIC)
+        /// </summary>
+        Surround = MusicConfig.Surround,
+
+        /// <summary>
+        ///     The MOD music is using surround sound mode 2. (HMUSIC)
+        /// </summary>
+        Surround2 = MusicConfig.Surround2,
+
+        /// <summary>
+        ///     The MOD music is using non-interpolated mixing. (HMUSIC)
+        /// </summary>
+        NonInter = MusicConfig.NonInter,
+
+        /// <summary>
+        ///     The MOD music is using FastTracker 2 .MOD playback. (HMUSIC)
+        /// </summary>
+        Ft2Mod = MusicConfig.Ft2Mod,
+
+        /// <summary>
+        ///     The MOD music is using ProTracker 1 .MOD playback. (HMUSIC)
+        /// </summary>
+        Pt1Mod = MusicConfig.Pt1Mod,
+
+        /// <summary>
+        ///     The MOD music will be stopped when a backward jump effect is played. (HMUSIC)
+        /// </summary>
+        Stopback = MusicConfig.Stopback,
 
         /// <summary>
         ///     The front speakers.
         /// </summary>
-        SpeakerFront = Internal.SpeakerType.SpeakerFront,
+        SpeakerFront = SpeakerType.SpeakerFront,
 
         /// <summary>
         ///     The rear/side speakers.
         /// </summary>
-        SpeakerRear = Internal.SpeakerType.SpeakerRear,
+        SpeakerRear = SpeakerType.SpeakerRear,
 
         /// <summary>
         ///     The center and LFE (subwoofer) speakers in a 5.1 setup.
         /// </summary>
-        SpeakerCenterLEF = Internal.SpeakerType.SpeakerCenterLEF,
+        SpeakerCenterLEF = SpeakerType.SpeakerCenterLEF,
 
         /// <summary>
         ///     The rear center speakers in a 7.1 setup.
         /// </summary>
-        SpeakerRear2 = Internal.SpeakerType.SpeakerRear2,
+        SpeakerRear2 = SpeakerType.SpeakerRear2,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -90,7 +138,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker05 = Internal.SpeakerType.Speaker05,
+        Speaker05 = SpeakerType.Speaker05,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -98,7 +146,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker06 = Internal.SpeakerType.Speaker06,
+        Speaker06 = SpeakerType.Speaker06,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -106,7 +154,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker07 = Internal.SpeakerType.Speaker07,
+        Speaker07 = SpeakerType.Speaker07,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -114,7 +162,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker08 = Internal.SpeakerType.Speaker08,
+        Speaker08 = SpeakerType.Speaker08,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -122,7 +170,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker09 = Internal.SpeakerType.Speaker09,
+        Speaker09 = SpeakerType.Speaker09,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -130,7 +178,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker10 = Internal.SpeakerType.Speaker10,
+        Speaker10 = SpeakerType.Speaker10,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -138,7 +186,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker11 = Internal.SpeakerType.Speaker11,
+        Speaker11 = SpeakerType.Speaker11,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -146,7 +194,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker12 = Internal.SpeakerType.Speaker12,
+        Speaker12 = SpeakerType.Speaker12,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -154,7 +202,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker13 = Internal.SpeakerType.Speaker13,
+        Speaker13 = SpeakerType.Speaker13,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -162,7 +210,7 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker14 = Internal.SpeakerType.Speaker14,
+        Speaker14 = SpeakerType.Speaker14,
 
         /// <summary>
         ///     SpeakerN macro that can be used to access the extra speakers of soundcards that have more than 8 speakers, where N
@@ -170,62 +218,54 @@ namespace xZune.Bass.Interop.Core.Flags
         ///     or
         ///     <see cref="SpeakerRight" /> flags.
         /// </summary>
-        Speaker15 = Internal.SpeakerType.Speaker15,
+        Speaker15 = SpeakerType.Speaker15,
 
-        SpeakerLeft = Internal.SpeakerType.SpeakerLeft,
-        SpeakerRight = Internal.SpeakerType.SpeakerRight,
+        SpeakerLeft = SpeakerType.SpeakerLeft,
+        SpeakerRight = SpeakerType.SpeakerRight,
 
         /// <summary>
         ///     The left-front speaker.
         /// </summary>
-        SpeakerFrontLeft = Internal.SpeakerType.SpeakerFrontLeft,
+        SpeakerFrontLeft = SpeakerType.SpeakerFrontLeft,
 
         /// <summary>
         ///     The right-front speaker.
         /// </summary>
-        SpeakerFrontRight = Internal.SpeakerType.SpeakerFrontRight,
+        SpeakerFrontRight = SpeakerType.SpeakerFrontRight,
 
         /// <summary>
         ///     The left-rear/side speaker.
         /// </summary>
-        SpeakerRearLeft = Internal.SpeakerType.SpeakerRearLeft,
+        SpeakerRearLeft = SpeakerType.SpeakerRearLeft,
 
         /// <summary>
         ///     The right-rear/side speaker.
         /// </summary>
-        SpeakerRearRight = Internal.SpeakerType.SpeakerRearRight,
+        SpeakerRearRight = SpeakerType.SpeakerRearRight,
 
         /// <summary>
         ///     The center speaker in a 5.1 speaker setup.
         /// </summary>
-        SpeakerCenter = Internal.SpeakerType.SpeakerCenter,
+        SpeakerCenter = SpeakerType.SpeakerCenter,
 
         /// <summary>
         ///     The LFE (subwoofer) speaker in a 5.1 setup.
         /// </summary>
-        SpeakerLFE = Internal.SpeakerType.SpeakerLFE,
+        SpeakerLFE = SpeakerType.SpeakerLFE,
 
         /// <summary>
         ///     The left-rear center speaker in a 7.1 setup.
         /// </summary>
-        SpeakerRear2Left = Internal.SpeakerType.SpeakerRear2Left,
+        SpeakerRear2Left = SpeakerType.SpeakerRear2Left,
 
         /// <summary>
         ///     The right-rear center speaker in a 7.1 setup.
         /// </summary>
-        SpeakerRear2Right = Internal.SpeakerType.SpeakerRearRight,
+        SpeakerRear2Right = SpeakerType.SpeakerRearRight,
 
         /// <summary>
-        ///     file is in UTF-16 format. Otherwise it is ANSI on Windows or Windows CE, and UTF-8 on other platforms.
+        ///     filename is in UTF-16 format.
         /// </summary>
-        Unicode = Internal.BassConfig.Unicode,
-
-        /// <summary>
-        ///     Read the file asynchronously. When enabled, the file is read and buffered in parallel with the decoding, to reduce
-        ///     the chances of the decoder being affected by I/O delays. This can be particularly useful with slow storage media
-        ///     and/or low latency output. The size of the file buffer is determined by the BASS_CONFIG_ASYNCFILE_BUFFER configure
-        ///     option. This flag is ignored when streaming from memory (memory = TRUE).
-        /// </summary>
-        AsyncFile = Internal.BassConfig.AsyncFile
+        Unicode = BassConfig.Unicode
     }
 }

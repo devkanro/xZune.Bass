@@ -45,17 +45,36 @@
     <Compile Include="Interop\BassVerificationAttribute.cs" />
     <Compile Include="Interop\Core\CallBack.cs" />
     <Compile Include="Interop\Core\Channel.cs" />
+    <Compile Include="Interop\Core\ChannelInfo.cs" />
     <Compile Include="Interop\Core\Configure.cs" />
+    <Compile Include="Interop\Core\Dx8Chorus.cs" />
+    <Compile Include="Interop\Core\Dx8Compression.cs" />
+    <Compile Include="Interop\Core\Dx8Distortion.cs" />
+    <Compile Include="Interop\Core\Dx8Echo.cs" />
+    <Compile Include="Interop\Core\Dx8Flanger.cs" />
+    <Compile Include="Interop\Core\Dx8Gargle.cs" />
+    <Compile Include="Interop\Core\Dx8I3Dl2.cs" />
+    <Compile Include="Interop\Core\Dx8ParametricEqualizer.cs" />
+    <Compile Include="Interop\Core\Dx8Reverb.cs" />
     <Compile Include="Interop\Core\FileHandlers.cs" />
+    <Compile Include="Interop\Core\Flags\Channel3DMode.cs" />
     <Compile Include="Interop\Core\Flags\ChannelAttribute.cs" />
+    <Compile Include="Interop\Core\Flags\ChannelConfig.cs" />
     <Compile Include="Interop\Core\Flags\ChannelFlags.cs" />
+    <Compile Include="Interop\Core\Flags\ChannelStatus.cs" />
+    <Compile Include="Interop\Core\Flags\ChannelType.cs" />
     <Compile Include="Interop\Core\Flags\ConfigureType.cs" />
     <Compile Include="Interop\Core\Flags\DeviceCapabilities.cs" />
     <Compile Include="Interop\Core\Flags\DeviceStatus.cs" />
     <Compile Include="Interop\Core\Flags\DSoundObjectType.cs" />
+    <Compile Include="Interop\Core\Flags\Dx8PhaseType.cs" />
     <Compile Include="Interop\Core\Flags\FilePositionMode.cs" />
+    <Compile Include="Interop\Core\Flags\FxType.cs" />
     <Compile Include="Interop\Core\Flags\InitializationConfig.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\Channel3DMode.cs" />
     <Compile Include="Interop\Core\Flags\Internal\ChannelAttribute.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\ChannelStatus.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\ChannelType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\ConfigureType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\DeviceCapabilities.cs" />
     <Compile Include="Interop\Core\Flags\Internal\DeviceStatus.cs" />
@@ -63,7 +82,9 @@
     <Compile Include="Interop\Core\Flags\Internal\DSoundObjectType.cs" />
     <Compile Include="Interop\Core\ErrorCode.cs" />
     <Compile Include="Interop\Core\Flags\Internal\DeviceType.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\Dx8PhaseType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\FilePositionMode.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\FxType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\LevelConfig.cs" />
     <Compile Include="Interop\Core\Flags\Internal\MusicConfig.cs" />
     <Compile Include="Interop\Core\Flags\Internal\PointerConfigureType.cs" />
@@ -73,6 +94,7 @@
     <Compile Include="Interop\Core\Flags\Internal\SpeakerType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\BassConfig.cs" />
     <Compile Include="Interop\Core\Flags\Internal\StreamFileSystemType.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\SyncHandlerType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\TagType.cs" />
     <Compile Include="Interop\Core\Flags\LevelConfig.cs" />
     <Compile Include="Interop\Core\Flags\PluginLoadConfig.cs" />
@@ -84,6 +106,7 @@
     <Compile Include="Interop\Core\Flags\StreamCreateFileConfig.cs" />
     <Compile Include="Interop\Core\Flags\StreamCreateFileUserConfig.cs" />
     <Compile Include="Interop\Core\Flags\StreamFileSystemType.cs" />
+    <Compile Include="Interop\Core\Flags\SyncHandlerType.cs" />
     <Compile Include="Interop\Core\Flags\TagType.cs" />
     <Compile Include="Interop\Core\Guid.cs" />
     <Compile Include="Interop\Core\Info.cs" />
@@ -103,7 +126,9 @@
     <Compile Include="Interop\Core\Vector3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

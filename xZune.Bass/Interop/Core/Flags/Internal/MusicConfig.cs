@@ -23,7 +23,7 @@ namespace xZune.Bass.Interop.Core.Flags.Internal
         NonInter = 0x10000,
         SincInter = 0x800000,
         PosReset = 0x8000,
-        PosResetEX = 0x400000,
+        PosResetEx = 0x400000,
         Stopback = 0x80000,
         NoSample = 0x100000
     }

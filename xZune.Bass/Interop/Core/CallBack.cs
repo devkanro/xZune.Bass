@@ -33,7 +33,7 @@ namespace xZune.Bass.Interop.Core
     ///     triggered upon playback stalling or resuming. If you do return less than the requested amount of data, the number
     ///     of bytes should still equate to a whole number of samples.
     ///     <para />
-    ///     Some functions can cause problems if called from within a stream (or DSP) function. Do not call BASS_Stop or
+    ///     Some functions can cause problems if called from within a stream (or display) function. Do not call BASS_Stop or
     ///     BASS_Free from within a stream callback, and do not call BASS_ChannelStop or BASS_StreamFree with the same handle
     ///     as received by the callback.
     ///     <para />
@@ -121,4 +121,70 @@ namespace xZune.Bass.Interop.Core
     ///     <see cref="ChannelSetSync" /> to save individual tracks to disk from a Shoutcast stream.
     /// </remarks>
     public delegate void DownloadHandler(IntPtr buffer, uint length, IntPtr user);
+
+    /// <summary>
+    ///     User defined callback function to process recorded sample data.
+    /// </summary>
+    /// <param name="handle">The recording that the data is from. </param>
+    /// <param name="buffer">
+    ///     Pointer to the recorded sample data. The sample data is in standard Windows PCM format, that is
+    ///     8-bit samples are unsigned, 16-bit samples are signed, 32-bit floating-point samples range from -1 to +1.
+    /// </param>
+    /// <param name="length">The number of bytes in the buffer. </param>
+    /// <param name="user">The user instance data given when <see cref="RecordStart" /> was called. </param>
+    /// <returns>Return FALSE to stop recording, and anything else to continue recording. </returns>
+    /// <remarks>
+    ///     <see cref="RecordFree" /> should not be used to free the recording device within a recording callback function. Nor
+    ///     should <see cref="ChannelStop" /> be used to stop the recording; return FALSE to do that instead.
+    /// </remarks>
+    public delegate bool RecordHandler(IntPtr handle, IntPtr buffer, uint length, IntPtr user);
+
+    /// <summary>
+    ///     User defined display callback function.
+    /// </summary>
+    /// <param name="displayHandle">The display handle. </param>
+    /// <param name="channel">Channel that the display is being applied to. </param>
+    /// <param name="buffer">
+    ///     Pointer to the sample data to apply the display to. The data is as follows: 8-bit samples are
+    ///     unsigned, 16-bit samples are signed, 32-bit floating-point samples range from -1 to +1 (not clipped, so can
+    ///     actually be outside this range).
+    /// </param>
+    /// <param name="length">The number of bytes to process. </param>
+    /// <param name="user">The user instance data given when <see cref="ChannelSetdisplay" /> was called. </param>
+    /// <remarks>
+    ///     A display function should be as quick as possible; playing streams and MOD musics, and other display functions
+    ///     cannot be processed until it has finished.
+    ///     <para />
+    ///     Some functions can cause problems if called from within a display (or stream) function. Do not call
+    ///     <see cref="Stop" /> or <see cref="Free" /> from within a display callback, and do not call
+    ///     <see cref="ChannelStop" />, <see cref="MusicFree" /> or <see cref="StreamFree" /> with the same channel handle as
+    ///     received by the callback.
+    ///     <para />
+    ///     If the <see cref="ConfigureType.Floatdsp" /> configure option is set, then display callback functions will always
+    ///     be passed 32-bit floating-point sample data, regardless of what the channels' actual sample format is.
+    /// </remarks>
+    public delegate void DisplayHandler(IntPtr displayHandle, uint channel, IntPtr buffer, uint length, IntPtr user);
+
+    /// <summary>
+    ///     User defined synchronizer callback function.
+    /// </summary>
+    /// <param name="syncHandle">The sync that has occurred. </param>
+    /// <param name="channel">The channel that the sync occurred on. </param>
+    /// <param name="data">Additional data associated with the sync's occurrence. </param>
+    /// <param name="user">The user instance data given when <see cref="ChannelSetSync" /> was called. </param>
+    /// <remarks>
+    ///     BASS creates a single thread dedicated to executing sync callback functions, so a callback function should be quick
+    ///     as other syncs cannot be processed until it has finished. Attribute slides (<see cref="ChannelSlideAttribute" />)
+    ///     are also performed by the sync thread, so are also affected if a sync callback takes a long time.
+    ///     <para />
+    ///     "Mixtime" syncs are not executed in the sync thread, but immediately in whichever thread triggers them. In most
+    ///     cases that will be an update thread, and so the same restrictions that apply to stream callbacks (
+    ///     <see cref="SteamProcessHandler" />) also apply here, except that <see cref="ChannelStop" /> can be used in a
+    ///     <see cref="SyncHandlerType.Pos" /> sync's callback to stop a channel at a particular position.
+    ///     <para />
+    ///     <see cref="ChannelSetPosition" /> can be used in a mixtime sync to implement custom looping, eg. set a
+    ///     <see cref="SyncHandlerType.Pos" /> sync at the loop end position and seek to the loop start position in the
+    ///     callback.
+    /// </remarks>
+    public delegate void SyncHandler(IntPtr syncHandle, uint channel, uint data, IntPtr user);
 }
