@@ -279,3 +279,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# xZune.Bass.FuncGen
+xZune.Bass.FuncGen/
+
+# Bass Library
+Bass/
