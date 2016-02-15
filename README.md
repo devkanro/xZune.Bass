@@ -1,5 +1,5 @@
 # xZune.Bass
-xZune.Bass is a Bass library wapper for .NET    
+xZune.Bass is a Bass library wrapper for .NET    
   
 **This project is on processing!**
 
@@ -10,8 +10,8 @@ xZune.Bass is a Bass library wapper for .NET
 - [x] Plug-in module.
 - [x] Stream module.
 - [x] Config module.
-- [ ] Channel module (processing).
-- [ ] Sample module.
+- [x] Channel module.
+- [ ] Sample module (processing).
 - [ ] Recording module.
 - [ ] MOD/MP3 music module.
 - [ ] 3D & EAX module.
