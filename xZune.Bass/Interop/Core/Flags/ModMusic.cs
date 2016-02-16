@@ -13,7 +13,7 @@ namespace xZune.Bass.Interop.Core.Flags
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use BASS_ErrorGetCode to get the error code.
     /// </returns>
-    [BassFuction("BASS_MusicFree")]
+    [BassFunction("BASS_MusicFree")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassBooleanVerification]
     public delegate bool MusicFree(IntPtr handle);
@@ -57,7 +57,7 @@ namespace xZune.Bass.Interop.Core.Flags
     ///     After loading a MOD music from memory (mem = TRUE), the memory can safely be discarded.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_MusicLoad")]
+    [BassFunction("BASS_MusicLoad")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "The BASS_MUSIC_AUTOFREE flag is unavailable to decoding channels.")]
     [BassError(ErrorCode.FileOpenFail, "The file could not be opened.")]

@@ -19,7 +19,7 @@ namespace xZune.Bass.Interop.Core
     ///     freed too. Samples loaded by the plug-in are unaffected as the plug-in has nothing to do with them once they are
     ///     loaded; the sample data is already fully decoded.
     /// </remarks>
-    [BassFuction("BASS_plug-inFree")]
+    [BassFunction("BASS_plug-inFree")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassBooleanVerification]
     public delegate bool PluginFree(IntPtr handle);
@@ -37,7 +37,7 @@ namespace xZune.Bass.Interop.Core
     ///     The plug-in information does not change, so the returned pointer remains valid for as long as the plug-in is
     ///     loaded.
     /// </remarks>
-    [BassFuction("BASS_plug-inGetInfo")]
+    [BassFunction("BASS_plug-inGetInfo")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     public delegate IntPtr PluginGetInfo(IntPtr handle);
 
@@ -71,7 +71,7 @@ namespace xZune.Bass.Interop.Core
     ///     instance (the reference count will just be incremented); there will not be 2 copies of the add-on in memory.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_PluginLoad")]
+    [BassFunction("BASS_PluginLoad")]
     [BassError(ErrorCode.FileOpenFail, "The file could not be opened.")]
     [BassError(ErrorCode.IncorrectFileFromat, "The file is not a plug-in.")]
     [BassError(ErrorCode.VersionError,

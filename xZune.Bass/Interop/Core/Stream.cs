@@ -27,7 +27,7 @@ namespace xZune.Bass.Interop.Core
     ///     HTTP and FTP servers, using BASS_StreamCreateURL. BASS_StreamCreateFileUser allows streaming from other sources
     ///     too.
     /// </remarks>
-    [BassFuction("BASS_StreamCreate")]
+    [BassFunction("BASS_StreamCreate")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable,
         "Only decoding channels (BASS_STREAM_DECODE) are allowed when using the \"no sound\" device. The BASS_STREAM_AUTOFREE flag is also unavailable to decoding channels."
@@ -89,7 +89,7 @@ namespace xZune.Bass.Interop.Core
     ///     <see cref="StreamCreateFileUser" />.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_StreamCreateFile")]
+    [BassFunction("BASS_StreamCreateFile")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable,
         "Only decoding channels (BASS_STREAM_DECODE) are allowed when using the \"no sound\" device. The BASS_STREAM_AUTOFREE flag is also unavailable to decoding channels."
@@ -148,7 +148,7 @@ namespace xZune.Bass.Interop.Core
     ///     A copy is made of the procs callback function table, so it does not need to persist beyond this function call.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_StreamCreateFileUser")]
+    [BassFunction("BASS_StreamCreateFileUser")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable,
         "Only decoding channels (BASS_STREAM_DECODE) are allowed when using the \"no sound\" device. The BASS_STREAM_AUTOFREE flag is also unavailable to decoding channels."
@@ -214,7 +214,7 @@ namespace xZune.Bass.Interop.Core
     ///     Custom HTTP request headers may be ignored by some plug-ins, notably BASSWMA.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_StreamCreateURL")]
+    [BassFunction("BASS_StreamCreateURL")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable,
         "Only decoding channels (BASS_STREAM_DECODE) are allowed when using the \"no sound\" device. The BASS_STREAM_AUTOFREE flag is also unavailable to decoding channels."
@@ -250,7 +250,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode" /> to get the error code.
     /// </returns>
-    [BassFuction("BASS_StreamFree")]
+    [BassFunction("BASS_StreamFree")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassBooleanVerification]
     public delegate bool StreamFree(IntPtr handle);
@@ -278,7 +278,7 @@ namespace xZune.Bass.Interop.Core
     ///     instead.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_StreamGetFilePosition")]
+    [BassFunction("BASS_StreamGetFilePosition")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.NotFile, "The stream is not a file stream.")]
     [BassError(ErrorCode.NotAvailable, "The requested file position/status is not available.")]
@@ -319,7 +319,7 @@ namespace xZune.Bass.Interop.Core
     ///     resuming.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_StreamPutData")]
+    [BassFunction("BASS_StreamPutData")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.NotAvailable, "The stream is not using the push system.")]
     [BassError(ErrorCode.IllegalParam, "length is not valid, it must equate to a whole number of samples.")]
@@ -347,7 +347,7 @@ namespace xZune.Bass.Interop.Core
     ///     resuming.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_StreamPutFileData")]
+    [BassFunction("BASS_StreamPutFileData")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.NotAvailable, "The stream is not using the BufferPut file system.")]
     [BassError(ErrorCode.Ended, "The file has ended.")]

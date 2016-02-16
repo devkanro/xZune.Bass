@@ -15,7 +15,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, the value of the requested configure option is returned, else -1 is returned. Use
     ///     <see cref="GetErrorCode" /> to get the error code.
     /// </returns>
-    [BassFuction("BASS_GetConfig")]
+    [BassFunction("BASS_GetConfig")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
     [BassInt32Verification]
     public delegate int GetConfig(ConfigureType option);
@@ -29,7 +29,7 @@ namespace xZune.Bass.Interop.Core
     ///     valid setting with some configure options, in which case the error code should be used to confirm whether it's an
     ///     error. Use <see cref="GetErrorCode" /> to get the error code.
     /// </returns>
-    [BassFuction("BASS_GetConfigPtr")]
+    [BassFunction("BASS_GetConfigPtr")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
     [BassPointerVerification]
     public delegate IntPtr GetConfigPtr(int option);
@@ -52,7 +52,7 @@ namespace xZune.Bass.Interop.Core
     ///     taken to be "TRUE".
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_SetConfig")]
+    [BassFunction("BASS_SetConfig")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
     [BassBooleanVerification]
     public delegate bool SetConfig(int option, int value);
@@ -69,7 +69,7 @@ namespace xZune.Bass.Interop.Core
     ///     Configure options can be used at any time and are independent of initialization, ie. BASS_Init does not need to
     ///     have been called beforehand.
     /// </remarks>
-    [BassFuction("BASS_SetConfigPtr")]
+    [BassFunction("BASS_SetConfigPtr")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
     [BassBooleanVerification]
     public delegate bool SetConfigPtr(int option, IntPtr value);

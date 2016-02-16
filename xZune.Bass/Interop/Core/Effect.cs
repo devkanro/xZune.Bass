@@ -14,7 +14,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
-    [BassFuction("BASS_FXGetParameters")]
+    [BassFunction("BASS_FXGetParameters")]
     [BassError(ErrorCode.BadHandle, "handle is invalid.")]
     [BassBooleanVerification]
     public delegate bool FXGetParameters(IntPtr handle, IntPtr param);
@@ -30,7 +30,7 @@ namespace xZune.Bass.Interop.Core
     ///     This function flushes the internal buffers of the effect(s). Effects are automatically reset by
     ///     <see cref="ChannelSetPosition"/>, except when called from a "mixtime" <see cref="SyncHandler"/>.
     /// </remarks>
-    [BassFuction("BASS_FXReset")]
+    [BassFunction("BASS_FXReset")]
     [BassError(ErrorCode.BadHandle, "handle is invalid.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassBooleanVerification]
@@ -44,7 +44,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
-    [BassFuction("BASS_FXSetParameters")]
+    [BassFunction("BASS_FXSetParameters")]
     [BassError(ErrorCode.BadHandle, "handle is invalid.")]
     [BassError(ErrorCode.IllegalParam,
         "One or more of the parameters are invalid, make sure all the values are within the valid ranges.")]

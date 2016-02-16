@@ -14,7 +14,7 @@ namespace xZune.Bass.Interop.Core
     ///     If no error occurred during the last BASS function call then BASS_OK is returned, else one of the BASS_ERROR
     ///     values is returned.
     /// </returns>
-    [BassFuction("BASS_ErrorGetCode")]
+    [BassFunction("BASS_ErrorGetCode")]
     public delegate ErrorCode GetErrorCode();
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace xZune.Bass.Interop.Core
     ///     device this function call applies to.
     /// </remarks>
     /// <seealso cref="Initialize" />
-    [BassFuction("BASS_Free")]
+    [BassFunction("BASS_Free")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool Free();
@@ -55,7 +55,7 @@ namespace xZune.Bass.Interop.Core
     ///     BASS_Update. BASS_ChannelUpdate usage is not included. The CPU usage of an individual channel is available via the
     ///     BASS_ATTRIB_CPU attribute.
     /// </remarks>
-    [BassFuction("BASS_GetCPU")]
+    [BassFunction("BASS_GetCPU")]
     public delegate float GetCpuUsage();
 
     /// <summary>
@@ -65,7 +65,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, the device number is returned, else -1 is returned. Use <see cref="GetErrorCode" /> to get the
     ///     error code.
     /// </returns>
-    [BassFuction("BASS_GetDevice")]
+    [BassFunction("BASS_GetDevice")]
     [BassError(ErrorCode.InitializeFail,
         "Initialize() has not been successfully called; there are no initialized devices.")]
     [BassInt32Verification]
@@ -84,7 +84,7 @@ namespace xZune.Bass.Interop.Core
     ///     This function can be used to enumerate the available devices for a setup dialog. Device 0 is always the "no sound"
     ///     device, so you should start at device 1 if you only want to list real output devices.
     /// </remarks>
-    [BassFuction("BASS_GetDeviceInfo")]
+    [BassFunction("BASS_GetDeviceInfo")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid.")]
     [BassBooleanVerification]
     public delegate bool GetDeviceInfo(int device, ref DeviceInfo info);
@@ -110,7 +110,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, and requesting either the <see cref="DSoundObjectType" /> interfaces, the current thread's
     ///     device setting (as set with <see cref="SetDevice" />) determines which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_GetDSoundObject")]
+    [BassFunction("BASS_GetDSoundObject")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.IllegalParam, "object is invalid.")]
     [BassError(ErrorCode.NotAvailable, "The requested object is not available with the current device.")]
@@ -129,7 +129,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice" />) determines
     ///     which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_GetInfo")]
+    [BassFunction("BASS_GetInfo")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool GetInfo(ref Info info);
@@ -146,7 +146,7 @@ namespace xZune.Bass.Interop.Core
     ///     The BASS API includes a BASSVERSION constant, which can be used to check that the loaded BASS.DLL matches the API
     ///     version used, ignoring revisions.
     /// </remarks>
-    [BassFuction("BASS_GetVersion")]
+    [BassFunction("BASS_GetVersion")]
     [BassUInt32Verification]
     public delegate uint GetVersion();
 
@@ -161,7 +161,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with BASS_SetDevice) determines which
     ///     device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_GetVolume")]
+    [BassFunction("BASS_GetVolume")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "There is no volume control when using the \"no sound\" device.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem! ")]
@@ -201,7 +201,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using the default device (device = -1), <see cref="GetDevice" /> can be used to find out which device it was
     ///     mapped to.
     /// </remarks>
-    [BassFuction("BASS_Init")]
+    [BassFunction("BASS_Init")]
     [BassError(ErrorCode.DirectXError, "DirectX (or ALSA on Linux or OpenSL ES on Android) is not installed. ")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid. ")]
     [BassError(ErrorCode.Already,
@@ -228,7 +228,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with BASS_SetDevice) determines which
     ///     device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_Pause")]
+    [BassFunction("BASS_Pause")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool Pause();
@@ -253,7 +253,7 @@ namespace xZune.Bass.Interop.Core
     ///     will automatically use the device that is initialized. Even if you free the device, and initialize another, BASS
     ///     will automatically switch to the one that is initialized.
     /// </remarks>
-    [BassFuction("BASS_SetDevice")]
+    [BassFunction("BASS_SetDevice")]
     [BassError(ErrorCode.InitializeFail, "The device has not been initialized. ")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid. ")]
     [BassBooleanVerification]
@@ -274,7 +274,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice" />) determines
     ///     which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_SetVolume")]
+    [BassFunction("BASS_SetVolume")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.IllegalParam, "volume is invalid. ")]
     [BassError(ErrorCode.NotAvailable, "There is no volume control when using the \"no sound\" device.")]
@@ -296,7 +296,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice" />) determines
     ///     which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_Start")]
+    [BassFunction("BASS_Start")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool Start();
@@ -315,7 +315,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice" />) determines
     ///     which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_Stop")]
+    [BassFunction("BASS_Stop")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool Stop();
@@ -333,7 +333,7 @@ namespace xZune.Bass.Interop.Core
     ///     playback buffers updated. The length parameter should include some safety margin, in case the next update cycle
     ///     gets delayed. For example, if calling this function every 100ms, 200 would be a reasonable length parameter.
     /// </remarks>
-    [BassFuction("BASS_Update")]
+    [BassFunction("BASS_Update")]
     [BassError(ErrorCode.NotAvailable, "Updating is already in progress. ")]
     [BassBooleanVerification]
     public delegate bool Update(int length);

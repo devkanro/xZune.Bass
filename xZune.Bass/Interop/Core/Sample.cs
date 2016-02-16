@@ -27,7 +27,7 @@ namespace xZune.Bass.Interop.Core
     /// If you want to play a large or one-off sample, then it would probably be better to stream it instead with BASS_StreamCreate.
     /// <para/>
     /// </remarks>
-    [BassFuction("BASS_SampleCreate")]
+    [BassFunction("BASS_SampleCreate")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "Sample functions are not available when using the \"no sound\" device.")]
     [BassError(ErrorCode.IllegalParam, "max is invalid.")]
@@ -45,7 +45,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     /// If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
-    [BassFuction("BASS_SampleFree")]
+    [BassFunction("BASS_SampleFree")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassBooleanVerificationAttribute]
     public delegate bool SampleFree(IntPtr handle);
@@ -71,7 +71,7 @@ namespace xZune.Bass.Interop.Core
     /// All of a sample's channels share the same sample data, and just have their own individual playback state information (volume/position/etc).
     /// <para/>
     /// </remarks>
-    [BassFuction("BASS_SampleGetChannel")]
+    [BassFunction("BASS_SampleGetChannel")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid sample handle.")]
     [BassError(ErrorCode.NoChannel, "The sample has no free channels... the maximum number of simultaneous playbacks has been reached, and no BASS_SAMPLE_OVER flag was specified for the sample or onlynew = TRUE.")]
     [BassError(ErrorCode.TimeOut, "The sample's minimum time gap (BASS_SAMPLE) has not yet passed since the last channel was created.")]
@@ -89,7 +89,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     /// To determine whether a particular sample channel still exists, it is simplest to just try it in a function call.
     /// </remarks>
-    [BassFuction("BASS_SampleGetChannels")]
+    [BassFunction("BASS_SampleGetChannels")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid sample handle.")]
     [BassInt32VerificationAttribute]
     public delegate int SampleGetChannels(IntPtr handle, IntPtr channels);
@@ -105,7 +105,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     /// The buffer must be big enough to receive the sample's data, the size of which can be retrieved via BASS_SampleGetInfo.
     /// </remarks>
-    [BassFuction("BASS_SampleGetData")]
+    [BassFunction("BASS_SampleGetData")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassBooleanVerificationAttribute]
@@ -122,7 +122,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     /// Use this function and <see cref="SampleSetInfo"/> to edit a sample's default attributes.
     /// </remarks>
-    [BassFuction("BASS_SampleGetInfo")]
+    [BassFunction("BASS_SampleGetInfo")]
     [BassError(ErrorCode.BadHandle, "The handle is invalid.")]
     [BassBooleanVerificationAttribute]
     public delegate bool SampleGetInfo(IntPtr handle, ref SampleInfo info);
@@ -150,7 +150,7 @@ namespace xZune.Bass.Interop.Core
     /// If you want to play a large or one-off sample, then it would probably be better to stream it instead with BASS_StreamCreateFile.
     /// <para/>
     /// </remarks>
-    [BassFuction("BASS_SampleLoad")]
+    [BassFunction("BASS_SampleLoad")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "Sample functions are not available when using the \"no sound\" device.")]
     [BassError(ErrorCode.IllegalParam, "max and/or length is invalid. The length must be specified when loading from memory.")]
@@ -177,7 +177,7 @@ namespace xZune.Bass.Interop.Core
     /// A sample's data can be set at any time, including during playback.
     /// <para/>
     /// </remarks>
-    [BassFuction("BASS_SampleSetData")]
+    [BassFunction("BASS_SampleSetData")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassBooleanVerificationAttribute]
@@ -198,7 +198,7 @@ namespace xZune.Bass.Interop.Core
     /// The length, origres and chans members of the BASS_SAMPLE structure cannot be modified; any changes are ignored. The BASS_SAMPLE_8BITS, BASS_SAMPLE_MONO, BASS_SAMPLE_3D, BASS_SAMPLE_MUTEMAX, BASS_SAMPLE_SOFTWARE and BASS_SAMPLE_VAM flags also cannot be changed.
     /// <para/>
     /// </remarks>
-    [BassFuction("BASS_SampleSetInfo")]
+    [BassFunction("BASS_SampleSetInfo")]
     [BassError(ErrorCode.BadHandle, "The handle is invalid.")]
     [BassError(ErrorCode.IllegalParam, "The BASS_SAMPLE max value is invalid.")]
     [BassBooleanVerificationAttribute]
@@ -214,7 +214,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     /// If a sample is playing simultaneously multiple times, calling this function will stop them all, which is obviously simpler than calling BASS_ChannelStop multiple times.
     /// </remarks>
-    [BassFuction("BASS_SampleStop")]
+    [BassFunction("BASS_SampleStop")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid sample.")]
     [BassBooleanVerificationAttribute]
     public delegate bool SampleStop(IntPtr handle);

@@ -25,7 +25,7 @@ namespace xZune.Bass.Interop.Core
     ///     which
     ///     device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_GetEAXParameters")]
+    [BassFunction("BASS_GetEAXParameters")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NoEAX, "The current device does not support EAX.")]
     [BassBooleanVerification]
@@ -58,7 +58,7 @@ namespace xZune.Bass.Interop.Core
     ///     which device this function call applies to.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_SetEAXParameters")]
+    [BassFunction("BASS_SetEAXParameters")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NoEAX, "The output device does not support EAX.")]
     [BassBooleanVerification]

@@ -15,7 +15,7 @@ namespace xZune.Bass.Interop.Core
     ///     device when using multiple devices.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_Apply3D")]
+    [BassFunction("BASS_Apply3D")]
     public delegate void Apply3D();
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice" />) determines
     ///     which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_Get3DFactors")]
+    [BassFunction("BASS_Get3DFactors")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.No3D, "The device was not initialized with 3D support.")]
     [BassBooleanVerification]
@@ -55,7 +55,7 @@ namespace xZune.Bass.Interop.Core
     ///     which device this function call applies to.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_Get3DPosition")]
+    [BassFunction("BASS_Get3DPosition")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.No3D, "The device was not initialized with 3D support.")]
     [BassBooleanVerification]
@@ -89,7 +89,7 @@ namespace xZune.Bass.Interop.Core
     ///     which device this function call applies to.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_Set3DFactors")]
+    [BassFunction("BASS_Set3DFactors")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.No3D, "The device was not initialized with 3D support.")]
     [BassBooleanVerification]
@@ -122,7 +122,7 @@ namespace xZune.Bass.Interop.Core
     ///     device this function call applies to.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_Set3DPosition")]
+    [BassFunction("BASS_Set3DPosition")]
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.No3D, "The device was not initialized with 3D support.")]
     [BassBooleanVerification]

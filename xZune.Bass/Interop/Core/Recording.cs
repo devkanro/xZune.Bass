@@ -20,7 +20,7 @@ namespace xZune.Bass.Interop.Core
     ///     When using multiple recording devices, the current thread's device setting (as set with
     ///     <see cref="RecordSetDevice" />) determines which device this function call applies to.
     /// </remarks>
-    [BassFuction("BASS_RecordFree")]
+    [BassFunction("BASS_RecordFree")]
     [BassError(ErrorCode.InitializeFail, "RecordInit() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool RecordFree();
@@ -32,7 +32,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, the device number is returned, else -1 is returned. Use <see cref="GetErrorCode" /> to get the error
     ///     code.
     /// </returns>
-    [BassFuction("BASS_RecordGetDevice")]
+    [BassFunction("BASS_RecordGetDevice")]
     [BassError(ErrorCode.InitializeFail,
         "RecordInit() has not been successfully called; there are no initialized devices.")]
     [BassInt32Verification]
@@ -50,7 +50,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     This function can be used to enumerate the available devices for a setup dialog.
     /// </remarks>
-    [BassFuction("BASS_RecordGetDeviceInfo")]
+    [BassFunction("BASS_RecordGetDeviceInfo")]
     [BassError(ErrorCode.DirectXError, "A sufficient version of DirectX is not installed.")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid.")]
     [BassBooleanVerification]
@@ -63,7 +63,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode" /> to get the error code.
     /// </returns>
-    [BassFuction("BASS_RecordGetInfo")]
+    [BassFunction("BASS_RecordGetInfo")]
     [BassError(ErrorCode.InitializeFail, "RecordInit() has not been successfully called.")]
     [BassBooleanVerification]
     public delegate bool RecordGetInfo(ref RecordInfo info);
@@ -79,7 +79,7 @@ namespace xZune.Bass.Interop.Core
     ///     enabled. The type of input is also indicated in the high 8 bits (use BASS_INPUT_TYPE_MASK to test) of the return
     ///     value, and can be one of the following. If the volume is requested but not available, volume will receive -1.
     /// </returns>
-    [BassFuction("BASS_RecordGetInput")]
+    [BassFunction("BASS_RecordGetInput")]
     [BassError(ErrorCode.InitializeFail, "RecordInit() has not been successfully called.")]
     [BassError(ErrorCode.IllegalParam, "input is invalid.")]
     [BassError(ErrorCode.NotAvailable, "A master input is not available.")]
@@ -95,7 +95,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, then a pointer to the description is returned, else NULL is returned. Use
     ///     <see cref="GetErrorCode" /> to get the error code.
     /// </returns>
-    [BassFuction("BASS_RecordGetInputName")]
+    [BassFunction("BASS_RecordGetInputName")]
     [BassError(ErrorCode.InitializeFail, "RecordInit() has not been successfully called.")]
     [BassError(ErrorCode.IllegalParam, "input is invalid.")]
     [BassError(ErrorCode.NotAvailable, "A master input is not available.")]
@@ -123,7 +123,7 @@ namespace xZune.Bass.Interop.Core
     ///     was mapped to.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_RecordInit")]
+    [BassFunction("BASS_RecordInit")]
     [BassError(ErrorCode.DirectXError, "A sufficient version of DirectX (or ALSA) is not installed.")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid.")]
     [BassError(ErrorCode.Already,
@@ -155,7 +155,7 @@ namespace xZune.Bass.Interop.Core
     ///     and initialize another, BASS will automatically switch to the one that is initialized.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_RecordSetDevice")]
+    [BassFunction("BASS_RecordSetDevice")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid.")]
     [BassError(ErrorCode.InitializeFail, "The device has not been initialized.")]
     [BassBooleanVerification]
@@ -179,7 +179,7 @@ namespace xZune.Bass.Interop.Core
     ///     Changes made by this function are system-wide, ie. other software using the device will be affected by it.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_RecordSetInput")]
+    [BassFunction("BASS_RecordSetInput")]
     [BassError(ErrorCode.InitializeFail, "RecordInit() has not been successfully called.")]
     [BassError(ErrorCode.IllegalParam, "input or volume is invalid.")]
     [BassError(ErrorCode.NotAvailable,
@@ -218,7 +218,7 @@ namespace xZune.Bass.Interop.Core
     ///     too much data; freshly recorded data will only be retrieved after the older data in the buffer is.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_RecordStart")]
+    [BassFunction("BASS_RecordStart")]
     [BassError(ErrorCode.InitializeFail, "RecordInit() has not been successfully called.")]
     [BassError(ErrorCode.Busy,
         "The device is busy. An existing recording may need to be stopped before starting another one.")]

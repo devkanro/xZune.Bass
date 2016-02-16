@@ -20,7 +20,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     The translation is based on the channel's initial sample rate, when it was created.
     /// </remarks>
-    [BassFuction("BASS_ChannelBytes2Seconds")]
+    [BassFunction("BASS_ChannelBytes2Seconds")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassDoubleVerification]
     public delegate double ChannelBytes2Seconds(IntPtr handle, UInt64 pos);
@@ -53,7 +53,7 @@ namespace xZune.Bass.Interop.Core
     ///     use the BASS_CONFIG_BUFFER configure option to reduce the buffer length.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelFlags")]
+    [BassFunction("BASS_ChannelFlags")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassInt32Verification]
     public delegate int ChannelFlags(IntPtr handle, Flags.ChannelFlags flags, int mask);
@@ -76,7 +76,7 @@ namespace xZune.Bass.Interop.Core
     ///     The iangle and oangle parameters must both be retrieved in a single call to this function; one cannot be retrieved
     ///     without the other. See BASS_ChannelSet3DAttributes for an explanation of the parameters.
     /// </remarks>
-    [BassFuction("BASS_ChannelGet3DAttributes")]
+    [BassFunction("BASS_ChannelGet3DAttributes")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.No3D, "The channel does not have 3D functionality.")]
     [BassBooleanVerification]
@@ -94,7 +94,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode" /> to get the error
     ///     code.
     /// </returns>
-    [BassFuction("BASS_ChannelGet3DPosition")]
+    [BassFunction("BASS_ChannelGet3DPosition")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.No3D, "The channel does not have 3D functionality.")]
     [BassBooleanVerification]
@@ -110,7 +110,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode" /> to get the error
     ///     code.
     /// </returns>
-    [BassFuction("BASS_ChannelGetAttribute")]
+    [BassFunction("BASS_ChannelGetAttribute")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.NotAvailable, "The attribute is not available.")]
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
@@ -131,7 +131,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     This function also supports the floating-point attributes supported by <see cref="ChannelGetAttribute" />.
     /// </remarks>
-    [BassFuction("BASS_ChannelGetAttributeEx")]
+    [BassFunction("BASS_ChannelGetAttributeEx")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.NotAvailable, "The attribute is not available.")]
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
@@ -193,7 +193,7 @@ namespace xZune.Bass.Interop.Core
     ///     This function is most useful if you wish to visualize (eg. spectrum analyze) the sound.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelGetData")]
+    [BassFunction("BASS_ChannelGetData")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.Ended, "The channel has reached the end.")]
     [BassError(ErrorCode.NotAvailable, "The BASS_DATA_AVAILABLE flag was used with a decoding channel.")]
@@ -214,7 +214,7 @@ namespace xZune.Bass.Interop.Core
     ///     Recording devices are indicated by the HIWORD of the return value being 1, when this function is called with a
     ///     HRECORD channel.
     /// </remarks>
-    [BassFuction("BASS_ChannelGetDevice")]
+    [BassFunction("BASS_ChannelGetDevice")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassInt32Verification]
     public delegate int ChannelGetDevice(IntPtr handle);
@@ -227,7 +227,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode" /> to get the error code.
     /// </returns>
-    [BassFuction("BASS_ChannelGetInfo")]
+    [BassFunction("BASS_ChannelGetInfo")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassBooleanVerification]
     public delegate bool ChannelGetInfo(IntPtr handle, ref ChannelInfo info);
@@ -257,7 +257,7 @@ namespace xZune.Bass.Interop.Core
     ///     <see cref="MusicLoad" /> call.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelGetLength")]
+    [BassFunction("BASS_ChannelGetLength")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.NotAvailable, "The requested length is not available.")]
     [BassUInt64Verification]
@@ -290,7 +290,7 @@ namespace xZune.Bass.Interop.Core
     ///     More flexible level retrieval is available with BASS_ChannelGetLevelEx.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelGetLevel")]
+    [BassFunction("BASS_ChannelGetLevel")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.NoPlay, "The channel is not playing.")]
     [BassError(ErrorCode.Ended, "The decoding channel has reached the end.")]
@@ -317,7 +317,7 @@ namespace xZune.Bass.Interop.Core
     ///     This function operates in the same way as BASS_ChannelGetLevel but has greater flexibility on how the level is
     ///     measured. The levels are not clipped, so may exceed +/-1.0 on floating-point channels.
     /// </remarks>
-    [BassFuction("BASS_ChannelGetLevelEx")]
+    [BassFunction("BASS_ChannelGetLevelEx")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalParam, "length is not valid.")]
     [BassError(ErrorCode.NoPlay, "The channel is not playing.")]
@@ -336,7 +336,7 @@ namespace xZune.Bass.Interop.Core
     ///     If successful, then the channel's position is returned, else -1 is returned. Use <see cref="GetErrorCode"/> to get the error
     ///     code.
     /// </returns>
-    [BassFuction("BASS_ChannelGetPosition")]
+    [BassFunction("BASS_ChannelGetPosition")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.NotAvailable, "The requested position is not available.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
@@ -365,7 +365,7 @@ namespace xZune.Bass.Interop.Core
     ///     0x0162 = WMA pro, 0x0163 = WMA lossless, 0x1610 = AAC.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelGetTags")]
+    [BassFunction("BASS_ChannelGetTags")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassError(ErrorCode.NotAvailable, "The requested tags are not available.")]
     [BassPointerVerification]
@@ -392,7 +392,7 @@ namespace xZune.Bass.Interop.Core
     ///     stalled if <see cref="ChannelGetData" /> returns less data than requested, and this function still returns
     ///     <see cref="ChannelStatus.Playing" />.
     /// </remarks>
-    [BassFuction("BASS_ChannelIsActive")]
+    [BassFunction("BASS_ChannelIsActive")]
     public delegate ChannelStatus ChannelIsActive(IntPtr handle);
 
     /// <summary>
@@ -403,7 +403,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If the attribute is sliding, then TRUE is returned, else FALSE is returned.
     /// </returns>
-    [BassFuction("BASS_ChannelIsSliding")]
+    [BassFunction("BASS_ChannelIsSliding")]
     public delegate bool ChannelIsSliding(IntPtr handle, ChannelAttribute attrib);
 
     /// <summary>
@@ -419,7 +419,7 @@ namespace xZune.Bass.Interop.Core
     ///     threads wanting to access a locked channel will block until it is unlocked, so a channel should only be locked very
     ///     briefly. A channel must be unlocked in the same thread that it was locked.
     /// </remarks>
-    [BassFuction("BASS_ChannelLock")]
+    [BassFunction("BASS_ChannelLock")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassBooleanVerification]
     public delegate bool ChannelLock(IntPtr handle, bool @lock);
@@ -434,7 +434,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     Use BASS_ChannelPlay to resume a paused channel. BASS_ChannelStop can be used to stop a paused channel.
     /// </remarks>
-    [BassFuction("BASS_ChannelPause")]
+    [BassFunction("BASS_ChannelPause")]
     [BassError(ErrorCode.NoPlay, "The channel is not playing (or handle is not a valid channel).")]
     [BassError(ErrorCode.DecodeError, "The channel is not playable; it is a \"decoding channel\".")]
     [BassError(ErrorCode.Already, "The channel is already paused.")]
@@ -456,7 +456,7 @@ namespace xZune.Bass.Interop.Core
     ///     When streaming in blocks (BASS_STREAM_BLOCK), the restart parameter is ignored as it is not possible to go back to
     ///     the start. The restart parameter is also of no consequence with recording channels.
     /// </remarks>
-    [BassFuction("BASS_ChannelPlay")]
+    [BassFunction("BASS_ChannelPlay")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.StartFail, "The output is paused/stopped, use BASS_Start to start it.")]
     [BassError(ErrorCode.DecodeError, "The channel is not playable; it is a \"decoding channel\".")]
@@ -478,7 +478,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
-    [BassFuction("BASS_ChannelRemoveDSP")]
+    [BassFunction("BASS_ChannelRemoveDSP")]
     [BassError(ErrorCode.BadHandle, "At least one of handle and dsp is not valid.")]
     [BassBooleanVerification]
     public delegate bool ChannelRemoveDSP(IntPtr handle, IntPtr displayHandle);
@@ -497,7 +497,7 @@ namespace xZune.Bass.Interop.Core
     ///     BASS_ChannelRemoveDSP can also be used to remove effects.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelRemoveFX")]
+    [BassFunction("BASS_ChannelRemoveFX")]
     [BassError(ErrorCode.BadHandle, "At least one of handle and fx is not valid.")]
     [BassBooleanVerification]
     public delegate bool ChannelRemoveFX(IntPtr handle, IntPtr fx);
@@ -510,7 +510,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, then TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
-    [BassFuction("BASS_ChannelRemoveLink")]
+    [BassFunction("BASS_ChannelRemoveLink")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.Already, "Either chan is not a valid channel, or it is already not linked to handle.")]
     [BassBooleanVerification]
@@ -524,7 +524,7 @@ namespace xZune.Bass.Interop.Core
     /// <returns>
     ///     If successful, TRUE is returned, else FALSE is returned. Use <see cref="GetErrorCode"/> to get the error code.
     /// </returns>
-    [BassFuction("BASS_ChannelRemoveSync")]
+    [BassFunction("BASS_ChannelRemoveSync")]
     [BassError(ErrorCode.BadHandle, "At least one of handle and sync is not valid.")]
     [BassBooleanVerification]
     public delegate bool ChannelRemoveSync(IntPtr handle, IntPtr sync);
@@ -543,7 +543,7 @@ namespace xZune.Bass.Interop.Core
     ///     The return value is rounded down to the position of the nearest sample.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSeconds2Bytes")]
+    [BassFunction("BASS_ChannelSeconds2Bytes")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassUInt64Verification]
     public delegate UInt64 ChannelSeconds2Bytes(IntPtr handle, double pos);
@@ -585,7 +585,7 @@ namespace xZune.Bass.Interop.Core
     ///     transmitted equally in all directions.
     ///     As with all 3D functions, use BASS_Apply3D to apply the changes made.
     /// </remarks>
-    [BassFuction("BASS_ChannelSet3DAttributes")]
+    [BassFunction("BASS_ChannelSet3DAttributes")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.No3D, "The channel does not have 3D functionality.")]
     [BassError(ErrorCode.IllegalParam, "One or more of the attribute values is invalid.")]
@@ -609,7 +609,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     As with all 3D functions, <see cref="Apply3D" /> must be called to apply the changes made.
     /// </remarks>
-    [BassFuction("BASS_ChannelSet3DPosition")]
+    [BassFunction("BASS_ChannelSet3DPosition")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.No3D, "The channel does not have 3D functionality.")]
     [BassBooleanVerification]
@@ -628,7 +628,7 @@ namespace xZune.Bass.Interop.Core
     ///     The actual attribute value may not be exactly the same as requested, due to precision differences. For example, an
     ///     attribute might only allow whole number values. BASS_ChannelGetAttribute can be used to confirm what the value is.
     /// </remarks>
-    [BassFuction("BASS_ChannelSetAttribute")]
+    [BassFunction("BASS_ChannelSetAttribute")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
     [BassError(ErrorCode.IllegalParam,
@@ -649,7 +649,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     This function also supports the floating-point attributes supported by BASS_ChannelGetAttribute.
     /// </remarks>
-    [BassFuction("BASS_ChannelSetAttributeEx")]
+    [BassFunction("BASS_ChannelSetAttributeEx")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
     [BassError(ErrorCode.IllegalParam, "The value content or size is not valid.")]
@@ -673,7 +673,7 @@ namespace xZune.Bass.Interop.Core
     ///     change the device of an individual sample channel.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSetDevice")]
+    [BassFunction("BASS_ChannelSetDevice")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.InvalidDevice, "device is invalid.")]
     [BassError(ErrorCode.InitializeFail, "The requested device has not been initialized.")]
@@ -711,7 +711,7 @@ namespace xZune.Bass.Interop.Core
     ///     sample, then you should stream the sample.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSetDSP")]
+    [BassFunction("BASS_ChannelSetDSP")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassPointerVerification]
     public delegate IntPtr ChannelSetDSP(IntPtr handle, DisplayHandler proc, IntPtr user, int priority);
@@ -741,7 +741,7 @@ namespace xZune.Bass.Interop.Core
     ///     afterwards.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSetFX")]
+    [BassFunction("BASS_ChannelSetFX")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalType, "type is invalid.")]
     [BassError(ErrorCode.NoFX, "The specified DX8 effect is unavailable.")]
@@ -766,7 +766,7 @@ namespace xZune.Bass.Interop.Core
     ///     beforehand.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSetLink")]
+    [BassFunction("BASS_ChannelSetLink")]
     [BassError(ErrorCode.BadHandle, "At least one of handle and chan is not a valid channel.")]
     [BassError(ErrorCode.DecodeError, "At least one of handle and chan is a \"decoding channel\", so cannot be linked.")
     ]
@@ -822,7 +822,7 @@ namespace xZune.Bass.Interop.Core
     ///     the BASS_POS_SCAN flag) within the scanned part of it will use the scanned infomation.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSetPosition")]
+    [BassFunction("BASS_ChannelSetPosition")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.NotFile, "The stream is not a file stream.")]
     [BassError(ErrorCode.PositionError,
@@ -864,7 +864,7 @@ namespace xZune.Bass.Interop.Core
     ///     containing the sync position.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSetSync")]
+    [BassFunction("BASS_ChannelSetSync")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalType, "An illegal type was specified.")]
     [BassError(ErrorCode.IllegalParam, "An illegal param was specified.")]
@@ -895,7 +895,7 @@ namespace xZune.Bass.Interop.Core
     ///     Attribute slides are unaffected by whether the channel is playing, paused or stopped. They carry on regardless.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelSlideAttribute")]
+    [BassFunction("BASS_ChannelSlideAttribute")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
     [BassBooleanVerification]
@@ -918,7 +918,7 @@ namespace xZune.Bass.Interop.Core
     ///     reset the channel and start decoding again.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelStop")]
+    [BassFunction("BASS_ChannelStop")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassBooleanVerification]
     public delegate bool ChannelStop(IntPtr handle);
@@ -952,7 +952,7 @@ namespace xZune.Bass.Interop.Core
     ///     BASS_ATTRIB_CPU attribute value.
     ///     <para />
     /// </remarks>
-    [BassFuction("BASS_ChannelUpdate")]
+    [BassFunction("BASS_ChannelUpdate")]
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.NotAvailable, "Decoding channels do not have playback buffers.")]
     [BassError(ErrorCode.Ended, "The channel has ended.")]
