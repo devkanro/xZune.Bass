@@ -5,7 +5,7 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 
 ## Todo List  
 
-### Interop components (processing).
+### Interop components (completed).
 - [x] Infomation and initialization module.
 - [x] Plug-in module.
 - [x] Stream module.
@@ -16,10 +16,10 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 - [x] MOD/MO3 music module.
 - [x] 3D & EAX module.
 - [x] Effect module.
-- [ ] Base interop module (processing).
+- [x] Base interop module.
 
-### Player components.
-- [ ] Initializer wrapper.
+### Player components (processing).
+- [ ] Initializer wrapper (processing).
 - [ ] Player wrapper.
 - [ ] Stream wrapper.
 - [ ] Channel wrapper.
@@ -30,7 +30,7 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 - [ ] EAX wrapper.
 - [ ] Effect wrapper.
 
-### Plug-in components.
+### Plug-in components (waiting).
 - [ ] BassWma
 - [ ] BassScd
 - [ ] BassFlac
