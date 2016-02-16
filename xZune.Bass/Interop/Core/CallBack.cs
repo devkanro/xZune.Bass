@@ -47,7 +47,7 @@ namespace xZune.Bass.Interop.Core
     ///         right-rear center.
     ///     </para>
     /// </remarks>
-    public delegate uint SteamProcessHandler(IntPtr handle, IntPtr buffer, uint length, IntPtr user);
+    public delegate uint StreamHandler(IntPtr handle, IntPtr buffer, uint length, IntPtr user);
 
     /// <summary>
     ///     User file stream close callback function.
@@ -179,7 +179,7 @@ namespace xZune.Bass.Interop.Core
     ///     <para />
     ///     "Mixtime" syncs are not executed in the sync thread, but immediately in whichever thread triggers them. In most
     ///     cases that will be an update thread, and so the same restrictions that apply to stream callbacks (
-    ///     <see cref="SteamProcessHandler" />) also apply here, except that <see cref="ChannelStop" /> can be used in a
+    ///     <see cref="StreamHandler" />) also apply here, except that <see cref="ChannelStop" /> can be used in a
     ///     <see cref="SyncHandlerType.Pos" /> sync's callback to stop a channel at a particular position.
     ///     <para />
     ///     <see cref="ChannelSetPosition" /> can be used in a mixtime sync to implement custom looping, eg. set a

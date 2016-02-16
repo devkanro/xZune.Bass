@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
 using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Modules;
 using Guid = xZune.Bass.Interop.Core.Guid;
 
 namespace xZune.Bass
@@ -18,22 +19,9 @@ namespace xZune.Bass
     /// </summary>
     public static class BassManager
     {
-        private static BassFunction<GetErrorCode> _getErrorCodeFunction;
-        private static BassFunction<Free> _freeFunction;
-        private static BassFunction<Initialize> _initializeFunction;
-        private static BassFunction<GetVersion> _getVersionFunction;
-        private static BassFunction<GetInfo> _getInfoFunction;
-        private static BassFunction<GetDeviceInfo> _getDeviceInfoFunction;
-        private static BassFunction<GetDevice> _getDeviceFunction;
-        private static BassFunction<GetCpuUsage> _getCpuUsageFunction;
-        private static BassFunction<GetDSoundObject> _getDSoundObjectFunction;
-        private static BassFunction<GetVolume> _getVolumeFunction;
-        private static BassFunction<Pause> _pauseFunction;
-        private static BassFunction<SetDevice> _setDeviceFunction;
-        private static BassFunction<SetVolume> _setVolumeFunction;
-        private static BassFunction<Start> _startFunction;
-        private static BassFunction<Stop> _stopFunction;
-        private static BassFunction<Update> _updateFunction;
+        #region -- Properties --
+
+        #region ---- Bass library properties ----
 
         /// <summary>
         ///     Get the Bass library handle.
@@ -51,14 +39,11 @@ namespace xZune.Bass
         public static String BassLibraryPath { get; private set; }
 
         /// <summary>
-        ///     Get is this module is loaded and available.
-        /// </summary>
-        public static bool ModuleAvailable { get; private set; }
-
-        /// <summary>
         ///     Get is Bass loaded and available.
         /// </summary>
         public static bool Available => BassLibraryHandle != IntPtr.Zero;
+
+        #endregion ---- Bass library properties ----
 
         /// <summary>
         ///     Get version of Bass that is loaded.
@@ -72,91 +57,95 @@ namespace xZune.Bass
         {
             get
             {
-                var version = _getVersionFunction.Delegate();
+                var version = BassCoreModule._getVersionFunction.Delegate();
 
-                return new Version((int) ((version & 0xFF000000) >> 24), (int) ((version & 0x00FF0000) >> 16),
-                    (int) ((version & 0x0000FF00) >> 8), (int) ((version & 0x0000000FF) >> 0));
+                return new Version((int)((version & 0xFF000000) >> 24), (int)((version & 0x00FF0000) >> 16),
+                    (int)((version & 0x0000FF00) >> 8), (int)((version & 0x0000000FF) >> 0));
             }
         }
 
         /// <summary>
         ///     Get the current CPU usage of Bass.
         /// </summary>
-        public static float CpuUsage => _getCpuUsageFunction.Delegate();
+        public static float CpuUsage => BassCoreModule._getCpuUsageFunction.Delegate();
 
         /// <summary>
-        /// Get the current master volume level. 
+        /// Get the current master volume level.
         /// </summary>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static float Volume
         {
-            get { return _getVolumeFunction.CheckResult(_getVolumeFunction.Delegate()); }
+            get { return BassCoreModule._getVolumeFunction.CheckResult(BassCoreModule._getVolumeFunction.Delegate()); }
 
-            set { _setVolumeFunction.CheckResult(_setVolumeFunction.Delegate(value)); }
+            set { BassCoreModule._setVolumeFunction.CheckResult(BassCoreModule._setVolumeFunction.Delegate(value)); }
         }
 
         /// <summary>
-        /// Get or set the device to use for subsequent calls in the current thread. 
+        /// Get or set the device to use for subsequent calls in the current thread.
         /// </summary>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static int Device
         {
-            get { return _getDeviceFunction.CheckResult(_getDeviceFunction.Delegate()); }
+            get { return BassCoreModule._getDeviceFunction.CheckResult(BassCoreModule._getDeviceFunction.Delegate()); }
 
-            set { _setDeviceFunction.CheckResult(_setDeviceFunction.Delegate(value)); }
+            set { BassCoreModule._setDeviceFunction.CheckResult(BassCoreModule._setDeviceFunction.Delegate(value)); }
         }
 
         /// <summary>
-        /// Get information on the device being used. 
+        /// Get information on the device being used.
         /// </summary>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static Info Infomation
         {
             get
             {
                 Info result = new Info();
-                _getInfoFunction.CheckResult(_getInfoFunction.Delegate(ref result));
+                BassCoreModule._getInfoFunction.CheckResult(BassCoreModule._getInfoFunction.Delegate(ref result));
                 return result;
             }
         }
 
+        #endregion -- Properties --
+
+        #region -- Methods --
+
         #region ---- Play controls ----
 
         /// <summary>
-        /// Stops the output, pausing all musics/samples/streams on it. 
+        /// Stops the output, pausing all musics/samples/streams on it.
         /// </summary>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static void PauseAll()
         {
-            _pauseFunction.CheckResult(_pauseFunction.Delegate());
+            BassCoreModule._pauseFunction.CheckResult(BassCoreModule._pauseFunction.Delegate());
         }
 
         /// <summary>
-        /// Starts (or resumes) the all output. 
+        /// Starts (or resumes) the all output.
         /// </summary>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static void StartAll()
         {
-            _startFunction.CheckResult(_startFunction.Delegate());
+            BassCoreModule._startFunction.CheckResult(BassCoreModule._startFunction.Delegate());
         }
 
         /// <summary>
-        /// Stops the output, stopping all musics/samples/streams on it. 
+        /// Stops the output, stopping all musics/samples/streams on it.
         /// </summary>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static void StopAll()
         {
-            _stopFunction.CheckResult(_stopFunction.Delegate());
+            BassCoreModule._stopFunction.CheckResult(BassCoreModule._stopFunction.Delegate());
         }
 
         /// <summary>
-        /// Updates the <see cref="StreamMedia"/> and <see cref="MusicMedia"/> channel playback buffers. 
+        /// Updates the <see cref="StreamMedia"/> and <see cref="MusicMedia"/> channel playback buffers.
         /// </summary>
         /// <param name="length">The amount of data to render, in milliseconds. </param>
         /// <remarks>
@@ -166,33 +155,33 @@ namespace xZune.Bass
         /// </remarks>
         public static void Update(int length)
         {
-            _updateFunction.CheckResult(_updateFunction.Delegate(length));
+            BassCoreModule._updateFunction.CheckResult(BassCoreModule._updateFunction.Delegate(length));
         }
 
-        #endregion
+        #endregion ---- Play controls ----
 
         /// <summary>
-        /// Get information on an output device. 
+        /// Get information on an output device.
         /// </summary>
         /// <param name="device">The device to get the information of... 0 = first. </param>
         /// <returns>Device infomation.</returns>
-        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException" accessor="get">Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static DeviceInfo GetDeviceInfo(int device)
         {
             DeviceInfo deviceInfo = new DeviceInfo();
-            _getDeviceInfoFunction.CheckResult(_getDeviceInfoFunction.Delegate(device, ref deviceInfo));
+            BassCoreModule._getDeviceInfoFunction.CheckResult(BassCoreModule._getDeviceInfoFunction.Delegate(device, ref deviceInfo));
             return deviceInfo;
         }
 
         /// <summary>
-        /// Get a pointer to a DirectSound object interface. 
+        /// Get a pointer to a DirectSound object interface.
         /// </summary>
         /// <param name="type">DirectSound object type.</param>
         /// <returns>Pointer to the requested object.</returns>
         public static IntPtr GetDSoundObject(DSoundObjectType type)
         {
-            return _getDSoundObjectFunction.CheckResult(_getDSoundObjectFunction.Delegate(type));
+            return BassCoreModule._getDSoundObjectFunction.CheckResult(BassCoreModule._getDSoundObjectFunction.Delegate(type));
         }
 
         /// <summary>
@@ -207,7 +196,7 @@ namespace xZune.Bass
         /// </returns>
         public static ErrorCode GetErrorCode()
         {
-            return _getErrorCodeFunction.Delegate.Invoke();
+            return BassCoreModule._getErrorCodeFunction.Delegate.Invoke();
         }
 
         #region ---- Initialize ----
@@ -233,7 +222,7 @@ namespace xZune.Bass
         /// </remarks>
         /// <exception cref="BassAlreadyInitilizedException">
         ///     Bass has initialized, maybe you should call
-        ///     <see cref="BassManager.ReleaseAll" /> to dispose all resource, then call <see cref="BassManager.Initialize" />
+        ///     <see cref="BassManager.ReleaseAll" /> to dispose all resource, then call <see cref="Interop.Core.Initialize" />
         ///     initialize Bass again.
         /// </exception>
         /// <exception cref="BassLibraryNotFoundException">Can't find Bass DLL.</exception>
@@ -309,7 +298,7 @@ namespace xZune.Bass
         /// </remarks>
         /// <exception cref="BassAlreadyInitilizedException">
         ///     Bass has initialized, maybe you should call
-        ///     <see cref="BassManager.ReleaseAll" /> to dispose all resource, then call <see cref="BassManager.Initialize" />
+        ///     <see cref="BassManager.ReleaseAll" /> to dispose all resource, then call <see cref="Interop.Core.Initialize" />
         ///     initialize Bass again.
         /// </exception>
         /// <exception cref="BassLibraryNotFoundException">Can't find Bass DLL.</exception>
@@ -373,43 +362,9 @@ namespace xZune.Bass
 
             if (Available)
             {
-                InitializeModule();
+                BassCoreModule.Current.InitializeModule();
                 InitializeBass(device, freq, configs, windowHandle, dSoundGuid);
             }
-        }
-
-        /// <exception cref="BassNotLoadedException">
-        ///     Bass DLL not loaded, you must use Bass to load Bass DLL
-        ///     first.
-        /// </exception>
-        /// <exception cref="NoBassFunctionAttributeException">
-        ///     Can't find <see cref="T:xZune.Bass.Interop.BassFunctionAttribute" />
-        ///     in this Bass function.
-        /// </exception>
-        /// <exception cref="TypeLoadException">A custom attribute type cannot be loaded. </exception>
-        /// <exception cref="FunctionNotFoundException">Can't find this function in Bass DLL.</exception>
-        internal static void InitializeModule()
-        {
-            if (!Available) throw new BassNotLoadedException();
-
-            _getErrorCodeFunction = new BassFunction<GetErrorCode>();
-            _freeFunction = new BassFunction<Free>();
-            _initializeFunction = new BassFunction<Initialize>();
-            _getVersionFunction = new BassFunction<GetVersion>();
-            _getInfoFunction = new BassFunction<GetInfo>();
-            _getDeviceInfoFunction = new BassFunction<GetDeviceInfo>();
-            _getDeviceFunction = new BassFunction<GetDevice>();
-            _getCpuUsageFunction = new BassFunction<GetCpuUsage>();
-            _getDSoundObjectFunction = new BassFunction<GetDSoundObject>();
-            _getVolumeFunction = new BassFunction<GetVolume>();
-            _pauseFunction = new BassFunction<Pause>();
-            _setDeviceFunction = new BassFunction<SetDevice>();
-            _setVolumeFunction = new BassFunction<SetVolume>();
-            _startFunction = new BassFunction<Start>();
-            _stopFunction = new BassFunction<Stop>();
-            _updateFunction = new BassFunction<Update>();
-
-            ModuleAvailable = true;
         }
 
         /// <summary>
@@ -442,7 +397,7 @@ namespace xZune.Bass
         ///     mapped to.
         /// </remarks>
         /// <exception cref="BassNotLoadedException">
-        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
+        ///     Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
         /// <exception cref="BassErrorException">
@@ -459,7 +414,7 @@ namespace xZune.Bass
                 guidHandle = GCHandle.Alloc(dSoundGuid.Value, GCHandleType.Pinned);
             }
 
-            _initializeFunction.CheckResult(_initializeFunction.Delegate(device, freq, configs, windowHandle,
+            BassCoreModule._initializeFunction.CheckResult(BassCoreModule._initializeFunction.Delegate(device, freq, configs, windowHandle,
                 guidHandle?.AddrOfPinnedObject() ?? IntPtr.Zero));
 
             guidHandle?.Free();
@@ -473,7 +428,7 @@ namespace xZune.Bass
         ///     Free Bass library and release all resource it used, it will automatically call <see cref="FreeBass" />.
         /// </summary>
         /// <exception cref="BassNotLoadedException">
-        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to load Bass DLL
+        ///     Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize" /> to load Bass DLL
         ///     first.
         /// </exception>
         /// <exception cref="BassErrorException">
@@ -486,39 +441,11 @@ namespace xZune.Bass
 
             FreeBass();
 
-            FreeModule();
+            BassCoreModule.Current.FreeModule();
 
             Win32Api.FreeLibrary(BassLibraryHandle);
 
             BassLibraryHandle = IntPtr.Zero;
-        }
-
-        /// <exception cref="BassNotLoadedException">
-        ///     Bass DLL not loaded, you must use Bass to load Bass DLL
-        ///     first.
-        /// </exception>
-        internal static void FreeModule()
-        {
-            if (!Available) throw new BassNotLoadedException();
-
-            _getErrorCodeFunction = null;
-            _freeFunction = null;
-            _initializeFunction = null;
-            _getVersionFunction = null;
-            _getInfoFunction = null;
-            _getDeviceInfoFunction = null;
-            _getDeviceFunction = null;
-            _getCpuUsageFunction = null;
-            _getDSoundObjectFunction = null;
-            _getVolumeFunction = null;
-            _pauseFunction = null;
-            _setDeviceFunction = null;
-            _setVolumeFunction = null;
-            _startFunction = null;
-            _stopFunction = null;
-            _updateFunction = null;
-
-            ModuleAvailable = false;
         }
 
         /// <summary>
@@ -537,14 +464,16 @@ namespace xZune.Bass
         ///     to get more error infomation.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
-        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
+        ///     Bass DLL not loaded, you must use <see cref="Interop.Core.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
         public static void FreeBass()
         {
-            _freeFunction.CheckResult(_freeFunction.Delegate());
+            BassCoreModule._freeFunction.CheckResult(BassCoreModule._freeFunction.Delegate());
         }
 
         #endregion ---- Release ----
+
+        #endregion
     }
 }

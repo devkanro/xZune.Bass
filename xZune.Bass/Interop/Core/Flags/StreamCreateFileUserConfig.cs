@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: StreamCreateFileUserConfig.cs
-// Version: 20160215
+// Version: 20160216
 
 using System;
 
@@ -12,6 +12,8 @@ namespace xZune.Bass.Interop.Core.Flags
     [Flags]
     public enum StreamCreateFileUserConfig : uint
     {
+        None,
+
         /// <summary>
         ///     Decode/play the stream (MP3/MP2/MP1 only) in mono, reducing the CPU usage (if it was originally stereo). This flag
         ///     is automatically applied if <see cref="InitializationConfig.Mono" /> was specified when calling

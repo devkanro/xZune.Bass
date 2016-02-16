@@ -17,6 +17,8 @@ namespace xZune.Bass.Sample
 
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None,
                 new WindowInteropHelper(this).Handle, null);
+
+            AudioFileStream afs = new AudioFileStream(@"E:\Music\CloudMusic\perfume -.mp3", StreamCreateFileConfig.None);
         }
     }
 }

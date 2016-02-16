@@ -191,4 +191,18 @@ namespace xZune.Bass
 
         public String BassLibraryDirectory { get; private set; }
     }
+
+    /// <summary>
+    /// If you use a <see cref="Channel"/> after <see cref="Channel.Free"/>, this exception will be throwed.
+    /// </summary>
+    public class ChannelNotAvailable : BassException
+    {
+        /// <summary>
+        ///     Create a <see cref="ChannelNotAvailable" />.
+        /// </summary>
+        public ChannelNotAvailable(): base("Channel object is no longer available.")
+        {
+
+        }
+    }
 }

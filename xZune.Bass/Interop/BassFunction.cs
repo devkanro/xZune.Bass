@@ -38,19 +38,19 @@ namespace xZune.Bass.Interop
                 {
                     _errorDictionary.Add(((BassErrorAttribute)item).ErrorCode, ((BassErrorAttribute)item));
                     errors.Add(item as BassErrorAttribute);
-                    break;
+                    continue;
                 }
 
                 if (item is BassFunctionAttribute)
                 {
                     FunctionInfomation = item as BassFunctionAttribute;
-                    break;
+                    continue;
                 }
 
                 if (item is BassVerificationAttribute)
                 {
                     Verifier = item as BassVerificationAttribute;
-                    break;
+                    continue;
                 }
             }
 

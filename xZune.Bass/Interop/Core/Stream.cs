@@ -169,7 +169,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassPointerVerification]
     public delegate IntPtr StreamCreateFileUser(
-        int system, StreamCreateFileUserConfig configs, ref FileHandlers procs, IntPtr user);
+        StreamFileSystemType system, StreamCreateFileUserConfig configs, ref FileHandlers procs, IntPtr user);
 
     /// <summary>
     ///     Creates a sample stream from an MP3, MP2, MP1, OGG, WAV, AIFF or plug-in supported file on the Internet, optionally

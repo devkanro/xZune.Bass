@@ -9,6 +9,7 @@ namespace xZune.Bass.Interop
     /// <summary>
     /// A base class of Bass attributes.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Delegate, AllowMultiple = true)]
     public abstract class BassAttribute : Attribute
     {
     }
