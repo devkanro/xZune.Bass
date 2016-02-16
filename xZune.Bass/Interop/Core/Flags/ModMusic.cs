@@ -58,7 +58,7 @@ namespace xZune.Bass.Interop.Core.Flags
     ///     <para />
     /// </remarks>
     [BassFuction("BASS_MusicLoad")]
-    [BassError(ErrorCode.InitializeFail, "BASS_Init has not been successfully called.")]
+    [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "The BASS_MUSIC_AUTOFREE flag is unavailable to decoding channels.")]
     [BassError(ErrorCode.FileOpenFail, "The file could not be opened.")]
     [BassError(ErrorCode.IncorrectFileFromat, "The file's format is not recognized/supported.")]

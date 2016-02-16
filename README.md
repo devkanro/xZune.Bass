@@ -1,5 +1,5 @@
 # xZune.Bass
-xZune.Bass is a Bass library wrapper for .NET    
+xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NET    
   
 **This project is on processing!**
 
@@ -14,8 +14,8 @@ xZune.Bass is a Bass library wrapper for .NET
 - [x] Sample module.
 - [x] Recording module.
 - [x] MOD/MO3 music module.
-- [ ] 3D & EAX module (processing).
-- [ ] Effect module.
+- [x] 3D & EAX module.
+- [ ] Effect module (processing).
 - [ ] Base interop module.
 
 ### Player components.
@@ -23,6 +23,7 @@ xZune.Bass is a Bass library wrapper for .NET
 - [ ] Player wrapper.
 - [ ] Stream wrapper.
 - [ ] Channel wrapper.
+- [ ] Device wrapper.
 - [ ] Sample wrapper.
 - [ ] MOD music wrapper.
 - [ ] Record wrapper.

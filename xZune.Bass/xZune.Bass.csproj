@@ -43,6 +43,7 @@
     <Compile Include="Interop\BassErrorAttribute.cs" />
     <Compile Include="Interop\BassFuctionAttribute.cs" />
     <Compile Include="Interop\BassVerificationAttribute.cs" />
+    <Compile Include="Interop\Core\3D.cs" />
     <Compile Include="Interop\Core\CallBack.cs" />
     <Compile Include="Interop\Core\Channel.cs" />
     <Compile Include="Interop\Core\ChannelInfo.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Interop\Core\Dx8I3Dl2.cs" />
     <Compile Include="Interop\Core\Dx8ParametricEqualizer.cs" />
     <Compile Include="Interop\Core\Dx8Reverb.cs" />
+    <Compile Include="Interop\Core\EaxEnvironmentParameter.cs" />
     <Compile Include="Interop\Core\FileHandlers.cs" />
     <Compile Include="Interop\Core\Flags\Channel3DMode.cs" />
     <Compile Include="Interop\Core\Flags\ChannelAttribute.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Interop\Core\Flags\DeviceStatus.cs" />
     <Compile Include="Interop\Core\Flags\DSoundObjectType.cs" />
     <Compile Include="Interop\Core\Flags\Dx8PhaseType.cs" />
+    <Compile Include="Interop\Core\Flags\EaxEnvironment.cs" />
     <Compile Include="Interop\Core\Flags\FilePositionMode.cs" />
     <Compile Include="Interop\Core\Flags\FxType.cs" />
     <Compile Include="Interop\Core\Flags\InitializationConfig.cs" />
@@ -141,6 +144,8 @@
     <Compile Include="Interop\Core\TagCoreAudioCodec.cs" />
     <Compile Include="Interop\Core\TagID3.cs" />
     <Compile Include="Interop\Core\Vector3.cs" />
+    <Compile Include="Interop\Core\Eax.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\EaxEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

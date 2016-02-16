@@ -28,7 +28,7 @@ namespace xZune.Bass.Interop.Core
     /// <para/>
     /// </remarks>
     [BassFuction("BASS_SampleCreate")]
-    [BassError(ErrorCode.InitializeFail, "BASS_Init has not been successfully called.")]
+    [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "Sample functions are not available when using the \"no sound\" device.")]
     [BassError(ErrorCode.IllegalParam, "max is invalid.")]
     [BassError(ErrorCode.IncorrectFormat, "The sample format is not supported by the device/drivers.")]
@@ -151,7 +151,7 @@ namespace xZune.Bass.Interop.Core
     /// <para/>
     /// </remarks>
     [BassFuction("BASS_SampleLoad")]
-    [BassError(ErrorCode.InitializeFail, "BASS_Init has not been successfully called.")]
+    [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NotAvailable, "Sample functions are not available when using the \"no sound\" device.")]
     [BassError(ErrorCode.IllegalParam, "max and/or length is invalid. The length must be specified when loading from memory.")]
     [BassError(ErrorCode.FileOpenFail, "The file could not be opened.")]
