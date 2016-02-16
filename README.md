@@ -15,8 +15,8 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 - [x] Recording module.
 - [x] MOD/MO3 music module.
 - [x] 3D & EAX module.
-- [ ] Effect module (processing).
-- [ ] Base interop module.
+- [x] Effect module.
+- [ ] Base interop module (processing).
 
 ### Player components.
 - [ ] Initializer wrapper.
@@ -29,3 +29,33 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 - [ ] Record wrapper.
 - [ ] EAX wrapper.
 - [ ] Effect wrapper.
+
+### Plug-in components.
+- [ ] BassWma
+- [ ] BassScd
+- [ ] BassFlac
+- [ ] BassMidi
+- [ ] BassWv
+- [ ] BassOpus
+- [ ] BassDsd
+- [ ] BassAlac
+- [ ] BassSenc
+- [ ] BassSmix
+- [ ] BassWasApi
+- [ ] BassHls
+- [ ] BassFx
+- [ ] BassSpx
+- [ ] BassMpc
+- [ ] BassApe
+- [ ] BassAac
+- [ ] BassAc3
+- [ ] BassTta
+- [ ] BassPfr
+- [ ] BassAdx
+- [ ] BassAix
+- [ ] BassWaDsp
+- [ ] BassVst
+- [ ] BassWinamp
+- [ ] BassSfx
+- [ ] BassWa
+- [ ] BassTags

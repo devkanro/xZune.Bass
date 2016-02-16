@@ -58,6 +58,7 @@
     <Compile Include="Interop\Core\Dx8ParametricEqualizer.cs" />
     <Compile Include="Interop\Core\Dx8Reverb.cs" />
     <Compile Include="Interop\Core\EaxEnvironmentParameter.cs" />
+    <Compile Include="Interop\Core\Effect.cs" />
     <Compile Include="Interop\Core\FileHandlers.cs" />
     <Compile Include="Interop\Core\Flags\Channel3DMode.cs" />
     <Compile Include="Interop\Core\Flags\ChannelAttribute.cs" />
