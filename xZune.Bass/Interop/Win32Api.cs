@@ -51,14 +51,16 @@ namespace xZune.Bass.Interop
             }
             return result;
         }
-        
+
+
+        [DllImport("kernel32", SetLastError = true, CharSet = CharSet.Ansi, EntryPoint = "FreeLibrary")]
         public static extern bool FreeLibrary(IntPtr hModule);
         
         [DllImport("kernel32", SetLastError = true)]
         public static extern IntPtr CreateFileMapping(IntPtr hFile, IntPtr lpAttributes, PageAccess flProtect,
             int dwMaximumSizeHigh, int dwMaximumSizeLow, string lpName);
         
-        [DllImport("kernel32.dll", SetLastError = true)]
+        [DllImport("kernel32", SetLastError = true)]
         public static extern IntPtr MapViewOfFile(IntPtr hFileMappingObject, FileMapAccess dwDesiredAccess,
             uint dwFileOffsetHigh, uint dwFileOffsetLow, uint dwNumberOfBytesToMap);
 

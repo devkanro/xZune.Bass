@@ -54,7 +54,7 @@ namespace xZune.Bass
         ///     Create a <see cref="BassNotLoadedException" />.
         /// </summary>
         public BassNotLoadedException()
-            : base("Bass DLL not loaded, you must use BassManager to load Bass DLL first.")
+            : base("Bass DLL not loaded, you must use BassManager.Initialize() to load Bass DLL first.")
         {
         }
     }
@@ -128,5 +128,67 @@ namespace xZune.Bass
 
         public ErrorCode ErrorCode { get; private set; }
         public string ErrorMessage { get; private set; }
+    }
+
+    /// <summary>
+    /// If you have called <see cref="BassManager.Initialize"/> to initialize Bass, you call it again, this exception will be throwed.
+    /// </summary>
+    public class BassAlreadyInitilizedException : BassException
+    {
+        /// <summary>
+        ///     Create a <see cref="BassAlreadyInitilizedException" />.
+        /// </summary>
+        public BassAlreadyInitilizedException()
+            : base("Bass has initialized, maybe you should call BassManager.ReleaseAll() to dispose all resource, then call BassManager.Initialize() initialize Bass again.")
+        {
+        }
+    }
+
+    /// <summary>
+    ///     If some exception throwed when loading Bass, this exception will be throwed. Maybe you should check the Bass
+    ///     target platform and your APP target platform.
+    /// </summary>
+    public class BassLoadLibraryException : BassException
+    {
+        /// <summary>
+        ///     Create a <see cref="BassLoadLibraryException" />.
+        /// </summary>
+        public BassLoadLibraryException() : this(null)
+        {
+        }
+
+        /// <summary>
+        ///     Create a <see cref="BassLoadLibraryException" /> with a inner exception.
+        /// </summary>
+        public BassLoadLibraryException(Exception innerException)
+            : base(
+                "Can't load Bass DLL, check the platform and Bass target platform (should be same, x86 or x64).",
+                innerException)
+        {
+        }
+    }
+
+    /// <summary>
+    /// If we can't find "bass.dll" in your provided path, this exception will be throwed.
+    /// </summary>
+    public class BassLibraryNotFoundException : BassException
+    {
+        /// <summary>
+        ///     Create a <see cref="BassLibraryNotFoundException" /> with <see cref="BassManager.BassLibraryDirectory"/>.
+        /// </summary>
+        public BassLibraryNotFoundException() : this(BassManager.BassLibraryDirectory)
+        {
+        }
+
+        /// <summary>
+        ///     Create a <see cref="BassLibraryNotFoundException" /> with Bass library directory path.
+        /// </summary>
+        public BassLibraryNotFoundException(string bassLibraryDirectory)
+            : base($"Can't find Bass DLL, make sure there are \"bass.dll\" in \"{bassLibraryDirectory}\".")
+        {
+            BassLibraryDirectory = bassLibraryDirectory;
+        }
+
+        public String BassLibraryDirectory { get; private set; }
     }
 }

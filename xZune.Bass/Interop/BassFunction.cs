@@ -17,10 +17,10 @@ namespace xZune.Bass.Interop
     public class BassFunction<T>
     {
         private readonly T _functionDelegate;
-        private readonly Dictionary<ErrorCode, BassErrorAttribute> _errorDictionary = new Dictionary<ErrorCode, BassErrorAttribute>(); 
+        private readonly Dictionary<ErrorCode, BassErrorAttribute> _errorDictionary = new Dictionary<ErrorCode, BassErrorAttribute>();
 
         /// <exception cref="NoBassFunctionAttributeException">Can't find <see cref="BassFunctionAttribute"/> in this Bass function.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use BassManager to load Bass DLL first.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         /// <exception cref="TypeLoadException">A custom attribute type cannot be loaded. </exception>
         /// <exception cref="FunctionNotFoundException">Can't find this function in Bass DLL.</exception>
         public BassFunction()
@@ -117,16 +117,48 @@ namespace xZune.Bass.Interop
         /// </summary>
         /// <param name="result"></param>
         /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use BassManager to load Bass DLL first.</exception>
-        public void CheckResult(object result)
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        public object CheckResult(object result)
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            if (Verifier == null) return;
+            if (Verifier == null) return result;
 
-            if (Verifier.VerifyResult(result)) return;
+            if (Verifier.VerifyResult(result)) return result;
 
             var errorCode = BassManager.GetErrorCode();
+
+            if (errorCode == ErrorCode.OK) return result;
+
+            BassErrorAttribute errorInfo;
+
+            if (_errorDictionary.TryGetValue(errorCode, out errorInfo))
+            {
+                throw new BassErrorException(errorInfo);
+            }
+            else
+            {
+                throw new BassErrorException(errorCode);
+            }
+        }
+
+        /// <summary>
+        /// Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException"/>, check <see cref="BassErrorException.ErrorCode"/> and <see cref="BassErrorException.ErrorMessage"/> to get more infomation about error.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        public T CheckResult<T>(T result)
+        {
+            if (!BassManager.Available) throw new BassNotLoadedException();
+
+            if (Verifier == null) return result;
+
+            if (Verifier.VerifyResult(result)) return result;
+
+            var errorCode = BassManager.GetErrorCode();
+
+            if (errorCode == ErrorCode.OK) return result;
 
             BassErrorAttribute errorInfo;
 

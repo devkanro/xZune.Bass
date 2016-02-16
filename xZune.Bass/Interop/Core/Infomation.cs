@@ -28,8 +28,8 @@ namespace xZune.Bass.Interop.Core
     ///     This function should be called for all initialized devices before the program closes. It is not necessary to
     ///     individually free the samples/streams/musics as these are all automatically freed by this function.
     ///     <para />
-    ///     When using multiple devices, the current thread's device setting (as set with BASS_SetDevice) determines which
-    ///     device this function call applies to.
+    ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice"/>) determines
+    ///     which device this function call applies to.
     /// </remarks>
     /// <seealso cref="Initialize" />
     [BassFunction("BASS_Free")]
@@ -147,7 +147,6 @@ namespace xZune.Bass.Interop.Core
     ///     version used, ignoring revisions.
     /// </remarks>
     [BassFunction("BASS_GetVersion")]
-    [BassUInt32Verification]
     public delegate uint GetVersion();
 
     /// <summary>

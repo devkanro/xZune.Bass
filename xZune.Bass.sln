@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Bass", "xZune.Bass\xZ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Bass.FuncGen", "xZune.Bass.FuncGen\xZune.Bass.FuncGen.csproj", "{D7267E40-15D2-4C69-B881-884D2398EE5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Bass.Sample", "xZune.Bass.Sample\xZune.Bass.Sample.csproj", "{12772962-8890-4583-991E-ADEC56F0866F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D7267E40-15D2-4C69-B881-884D2398EE5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7267E40-15D2-4C69-B881-884D2398EE5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7267E40-15D2-4C69-B881-884D2398EE5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12772962-8890-4583-991E-ADEC56F0866F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12772962-8890-4583-991E-ADEC56F0866F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12772962-8890-4583-991E-ADEC56F0866F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12772962-8890-4583-991E-ADEC56F0866F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

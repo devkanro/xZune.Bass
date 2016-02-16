@@ -12,6 +12,7 @@ namespace xZune.Bass.Interop.Core.Flags
     [Flags]
     public enum InitializationConfig
     {
+        None,
         /// <summary>
         ///     Use 8-bit resolution, else 16-bit.
         /// </summary>

@@ -19,12 +19,11 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 - [x] Base interop module.
 
 ### Player components (processing).
-- [ ] Initializer wrapper (processing).
-- [ ] Player wrapper.
-- [ ] Stream wrapper.
+- [x] Initializer wrapper.
+- [ ] Stream wrapper (processing).
 - [ ] Channel wrapper.
-- [ ] Device wrapper.
 - [ ] Sample wrapper.
+- [ ] Device wrapper.
 - [ ] MOD music wrapper.
 - [ ] Record wrapper.
 - [ ] EAX wrapper.
