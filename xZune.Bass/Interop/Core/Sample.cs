@@ -7,8 +7,8 @@ using xZune.Bass.Interop.Core.Flags;
 
 namespace xZune.Bass.Interop.Core
 {
-    /// <summary> 
-    /// Creates a new sample. 
+    /// <summary>
+    /// Creates a new sample.
     /// </summary>
     /// <param name="length">The sample's length, in bytes. </param>
     /// <param name="freq">The default sample rate. </param>
@@ -36,10 +36,10 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.No3D, "Could not initialize 3D support.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassPointerVerificationAttribute]
-    public delegate IntPtr SampleCreate(int length, int freq, int chans, int max, SampleConfig config);
+    public delegate IntPtr SampleCreate(uint length, uint freq, uint chans, uint max, SampleConfig config);
 
-    /// <summary> 
-    /// Frees a sample's resources. 
+    /// <summary>
+    /// Frees a sample's resources.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <returns>
@@ -50,8 +50,8 @@ namespace xZune.Bass.Interop.Core
     [BassBooleanVerificationAttribute]
     public delegate bool SampleFree(IntPtr handle);
 
-    /// <summary> 
-    /// Creates/initializes a playback channel for a sample. 
+    /// <summary>
+    /// Creates/initializes a playback channel for a sample.
     /// </summary>
     /// <param name="handle">Handle of the sample to play. </param>
     /// <param name="onlynew">Do not recycle/override one of the sample's existing channels? </param>
@@ -78,8 +78,8 @@ namespace xZune.Bass.Interop.Core
     [BassPointerVerificationAttribute]
     public delegate IntPtr SampleGetChannel(IntPtr handle, bool onlynew);
 
-    /// <summary> 
-    /// Retrieves all a sample's existing channels. 
+    /// <summary>
+    /// Retrieves all a sample's existing channels.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <param name="channels">An array to put the sample's channel handles in. The array should be the same size as the sample's max setting when the sample was created, which can be retrieved using BASS_SampleGetInfo. NULL can be used to just check how many channels exist. </param>
@@ -94,8 +94,8 @@ namespace xZune.Bass.Interop.Core
     [BassInt32VerificationAttribute]
     public delegate int SampleGetChannels(IntPtr handle, IntPtr channels);
 
-    /// <summary> 
-    /// Retrieves a copy of a sample's data. 
+    /// <summary>
+    /// Retrieves a copy of a sample's data.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <param name="buffer">Pointer to a buffer to receive the data. </param>
@@ -111,8 +111,8 @@ namespace xZune.Bass.Interop.Core
     [BassBooleanVerificationAttribute]
     public delegate bool SampleGetData(IntPtr handle, IntPtr buffer);
 
-    /// <summary> 
-    /// Retrieves a sample's default attributes and other information. 
+    /// <summary>
+    /// Retrieves a sample's default attributes and other information.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <param name="info">Pointer to a structure to receive the sample information. </param>
@@ -127,8 +127,8 @@ namespace xZune.Bass.Interop.Core
     [BassBooleanVerificationAttribute]
     public delegate bool SampleGetInfo(IntPtr handle, ref SampleInfo info);
 
-    /// <summary> 
-    /// Loads a WAV, AIFF, MP3, MP2, MP1, OGG or plugin supported sample. 
+    /// <summary>
+    /// Loads a WAV, AIFF, MP3, MP2, MP1, OGG or plugin supported sample.
     /// </summary>
     /// <param name="mem">TRUE = load the sample from memory. </param>
     /// <param name="file">Filename (mem = FALSE) or a memory location (mem = TRUE). </param>
@@ -162,10 +162,10 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.No3D, "Could not initialize 3D support.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassPointerVerificationAttribute]
-    public delegate IntPtr SampleLoad(bool mem, IntPtr file, UInt64 offset, int length, int max, SampleLoadConfig config);
+    public delegate IntPtr SampleLoad(bool mem, IntPtr file, UInt64 offset, uint length, uint max, SampleLoadConfig config);
 
-    /// <summary> 
-    /// Sets a sample's data. 
+    /// <summary>
+    /// Sets a sample's data.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <param name="buffer">Pointer to the data. </param>
@@ -183,8 +183,8 @@ namespace xZune.Bass.Interop.Core
     [BassBooleanVerificationAttribute]
     public delegate bool SampleSetData(IntPtr handle, IntPtr buffer);
 
-    /// <summary> 
-    /// Sets a sample's default attributes. 
+    /// <summary>
+    /// Sets a sample's default attributes.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <param name="info">Pointer to the sample information structure. </param>
@@ -204,8 +204,8 @@ namespace xZune.Bass.Interop.Core
     [BassBooleanVerificationAttribute]
     public delegate bool SampleSetInfo(IntPtr handle, ref SampleInfo info);
 
-    /// <summary> 
-    /// Stops all instances of a sample. 
+    /// <summary>
+    /// Stops all instances of a sample.
     /// </summary>
     /// <param name="handle">The sample handle. </param>
     /// <returns>

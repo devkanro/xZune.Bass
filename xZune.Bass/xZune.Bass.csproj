@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="AudioFileStream.cs" />
     <Compile Include="AudioNetworkStream.cs" />
+    <Compile Include="AudioSample.cs" />
     <Compile Include="AudioStream.cs" />
     <Compile Include="BassStream.cs" />
     <Compile Include="Channel.cs" />
@@ -157,7 +158,10 @@
     <Compile Include="Interop\Core\Flags\Internal\EaxEnvironment.cs" />
     <Compile Include="Interop\InteropHelper.cs" />
     <Compile Include="Interop\Win32Api.cs" />
+    <Compile Include="ISample.cs" />
+    <Compile Include="ISampleChannel.cs" />
     <Compile Include="IStream.cs" />
+    <Compile Include="Modules\AudioSampleModule.cs" />
     <Compile Include="Modules\AudioStreamModule.cs" />
     <Compile Include="Modules\BassCoreModule.cs" />
     <Compile Include="Modules\BassModule.cs" />

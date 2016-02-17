@@ -280,6 +280,9 @@ namespace xZune.Bass
             }
         }
 
+        /// <summary>
+        /// Playback time of the channel.
+        /// </summary>
         public TimeSpan Time
         {
             get
@@ -294,6 +297,9 @@ namespace xZune.Bass
             }
         }
 
+        /// <summary>
+        /// Playback position of the channel, 0 ~ 1.
+        /// </summary>
         public double Position
         {
             get
@@ -308,6 +314,9 @@ namespace xZune.Bass
             }
         }
 
+        /// <summary>
+        /// Time length of the channel.
+        /// </summary>
         public TimeSpan Length
         {
             get
@@ -415,6 +424,9 @@ namespace xZune.Bass
         /// <summary>
         /// Starts (or resumes) playback of a sample, stream, MOD music, or recording.
         /// </summary>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         public void Play()
         {
             CheckAvailable();
@@ -432,6 +444,9 @@ namespace xZune.Bass
         /// <summary>
         /// Restart playback of a sample, stream, MOD music, or recording.
         /// </summary>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         public void Replay()
         {
             CheckAvailable();
@@ -449,6 +464,9 @@ namespace xZune.Bass
         /// <summary>
         /// Pauses a sample, stream, MOD music, or recording.
         /// </summary>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         public void Pause()
         {
             CheckAvailable();
@@ -484,6 +502,9 @@ namespace xZune.Bass
         /// Locks a stream, MOD music or recording channel to the current thread.
         /// </summary>
         /// <remarks>Locking a channel prevents other threads from performing most functions on it, including buffer updates. Other threads wanting to access a locked channel will block until it is unlocked, so a channel should only be locked very briefly. A channel must be unlocked in the same thread that it was locked. </remarks>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         public void Lock()
         {
             CheckAvailable();
@@ -495,6 +516,9 @@ namespace xZune.Bass
         /// Unlocks a stream, MOD music or recording channel to the current thread.
         /// </summary>
         /// <remarks>Locking a channel prevents other threads from performing most functions on it, including buffer updates. Other threads wanting to access a locked channel will block until it is unlocked, so a channel should only be locked very briefly. A channel must be unlocked in the same thread that it was locked. </remarks>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         public void Unlock()
         {
             CheckAvailable();
@@ -513,6 +537,9 @@ namespace xZune.Bass
             throw new NotImplementedException();
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         float IChannelInternal.GetAttribute(ChannelAttribute attribute)
         {
             CheckAvailable();
@@ -524,6 +551,9 @@ namespace xZune.Bass
             return result;
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         byte[] IChannelInternal.GetAttribute(ChannelAttributeEx attribute)
         {
             CheckAvailable();
@@ -541,6 +571,9 @@ namespace xZune.Bass
             return result;
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.Get3DAttribute(out Channel3DMode mode, out float min, out float max, out uint iAngle,
             out uint oAngle, out float outVloume)
         {
@@ -558,6 +591,9 @@ namespace xZune.Bass
             ChannelModule.ChannelGet3DAttributesFunction.CheckResult(ChannelModule.ChannelGet3DAttributesFunction.Delegate(Handle, ref mode, ref min, ref max, ref iAngle, ref oAngle, ref outVloume));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.Get3DPosition(out Vector3 pos, out Vector3 orientation, out Vector3 vel)
         {
             CheckAvailable();
@@ -571,6 +607,9 @@ namespace xZune.Bass
             ChannelModule.ChannelGet3DPositionFunction.CheckResult(ChannelModule.ChannelGet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SetAttribute(ChannelAttribute attribute, float value)
         {
             CheckAvailable();
@@ -578,6 +617,9 @@ namespace xZune.Bass
             ChannelModule.ChannelSetAttributeFunction.CheckResult(ChannelModule.ChannelSetAttributeFunction.Delegate(Handle, attribute, value));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SetAttribute(ChannelAttributeEx attribute, byte[] value)
         {
             CheckAvailable();
@@ -589,6 +631,9 @@ namespace xZune.Bass
             valueHandle.Free();
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.Set3DAttribute(Channel3DMode mode, float min, float max, uint iAngle, uint oAngle, float outVloume)
         {
             CheckAvailable();
@@ -596,6 +641,9 @@ namespace xZune.Bass
             ChannelModule.ChannelSet3DAttributesFunction.CheckResult(ChannelModule.ChannelSet3DAttributesFunction.Delegate(Handle, mode, min, max, (int)iAngle, (int)oAngle, outVloume));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.Set3DPosition(Vector3 pos, Vector3 orientation, Vector3 vel)
         {
             CheckAvailable();
@@ -603,6 +651,9 @@ namespace xZune.Bass
             ChannelModule.ChannelSet3DPositionFunction.CheckResult(ChannelModule.ChannelSet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SetLink(Channel channel)
         {
             CheckAvailable();
@@ -611,6 +662,9 @@ namespace xZune.Bass
             ChannelModule.ChannelSetLinkFunction.CheckResult(ChannelModule.ChannelSetLinkFunction.Delegate(Handle, channel.Handle));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.RemoveLink(Channel channel)
         {
             CheckAvailable();
@@ -619,6 +673,9 @@ namespace xZune.Bass
             ChannelModule.ChannelRemoveLinkFunction.CheckResult(ChannelModule.ChannelRemoveLinkFunction.Delegate(Handle, channel.Handle));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         ulong IChannelInternal.GetPosition(PositionConfig config)
         {
             CheckAvailable();
@@ -627,6 +684,9 @@ namespace xZune.Bass
                 ChannelModule.ChannelGetPositionFunction.Delegate(Handle, config));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SetPosition(PositionConfig config, ulong value)
         {
             CheckAvailable();
@@ -635,6 +695,9 @@ namespace xZune.Bass
                 ChannelModule.ChannelSetPositionFunction.Delegate(Handle, value, config));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         UInt64 IChannelInternal.GetLength(PositionConfig config)
         {
             CheckAvailable();
@@ -643,6 +706,9 @@ namespace xZune.Bass
                 ChannelModule.ChannelGetLengthFunction.Delegate(Handle, config));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         object IChannelInternal.GetTag(TagType type)
         {
             CheckAvailable();
@@ -705,6 +771,9 @@ namespace xZune.Bass
             }
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SetConfig(ChannelFlags config, ChannelFlags mask)
         {
             CheckAvailable();
@@ -713,6 +782,9 @@ namespace xZune.Bass
                 ChannelModule.ChannelFlagsFunction.Delegate(Handle, config, (int)mask));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         double IChannelInternal.Bytes2Seconds(ulong position)
         {
             CheckAvailable();
@@ -721,6 +793,9 @@ namespace xZune.Bass
                 ChannelModule.ChannelBytes2SecondsFunction.Delegate(Handle, position));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         ulong IChannelInternal.Seconds2Bytes(double time)
         {
             CheckAvailable();
@@ -729,6 +804,9 @@ namespace xZune.Bass
                 ChannelModule.ChannelSeconds2BytesFunction.Delegate(Handle, time));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         IntPtr IChannelInternal.SetDisplayCallback(DisplayHandler handler, IntPtr user, int priority)
         {
             CheckAvailable();
@@ -738,6 +816,9 @@ namespace xZune.Bass
                     handler, user, priority));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.RemoveDisplayCallback(IntPtr displayHandle)
         {
             CheckAvailable();
@@ -746,6 +827,9 @@ namespace xZune.Bass
                 displayHandle));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         IntPtr IChannelInternal.SetSyncCallback(SyncHandlerType type, UInt64 param, SyncHandler handler, IntPtr user)
         {
             CheckAvailable();
@@ -755,6 +839,9 @@ namespace xZune.Bass
                     type, param, handler, user));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.RemoveSyncCallback(IntPtr syncHandle)
         {
             CheckAvailable();
@@ -763,6 +850,9 @@ namespace xZune.Bass
                 Handle, syncHandle));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SlideAttribute(ChannelAttribute attribute, float value, uint time)
         {
             CheckAvailable();
@@ -770,6 +860,9 @@ namespace xZune.Bass
             ChannelModule.ChannelSlideAttributeFunction.CheckResult(ChannelModule.ChannelSlideAttributeFunction.Delegate(Handle, attribute, value, time));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         bool IChannelInternal.IsSliding(ChannelAttribute attribute)
         {
             CheckAvailable();
@@ -777,6 +870,9 @@ namespace xZune.Bass
             return ChannelModule.ChannelIsSlidingFunction.CheckResult(ChannelModule.ChannelIsSlidingFunction.Delegate(Handle, attribute));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.Update(int length)
         {
             CheckAvailable();
@@ -784,6 +880,9 @@ namespace xZune.Bass
             ChannelModule.ChannelUpdateFunction.CheckResult(ChannelModule.ChannelUpdateFunction.Delegate(Handle, length));
         }
 
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         uint IChannelInternal.GetDate(IntPtr buffer, SampleDataType dataType)
         {
             CheckAvailable();

@@ -1,13 +1,18 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: SampleLoadConfig.cs
 // Version: 20160216
+
+using System;
+
 namespace xZune.Bass.Interop.Core.Flags
 {
     /// <summary>
     /// Configures used with <see cref="SampleLoad"/>
     /// </summary>
+    [Flags]
     public enum SampleLoadConfig: uint
     {
+        None,
         /// <summary>
         ///     Use 32-bit floating-point sample data. Not really recommended for samples as it (at least) doubles the memory
         ///     usage.

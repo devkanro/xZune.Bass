@@ -2,13 +2,17 @@
 // Filename: SampleConfig.cs
 // Version: 20160216
 
+using System;
+
 namespace xZune.Bass.Interop.Core.Flags
 {
     /// <summary>
     ///     Configure of sample.
     /// </summary>
+    [Flags]
     public enum SampleConfig
     {
+        None,
         /// <summary>
         ///     Use 8-bit resolution. If neither this or the BASS_SAMPLE_FLOAT flags are specified, then the sample is 16-bit.
         /// </summary>

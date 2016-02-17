@@ -120,7 +120,7 @@ namespace xZune.Bass
         /// </summary>
         /// <param name="errorCode">Error code.</param>
         /// <param name="errorMessage">Error message.</param>
-        public BassErrorException(ErrorCode errorCode, String errorMessage) : base("Some error occur to call a Bass function, check the error code and error message to get more error infomation.")
+        public BassErrorException(ErrorCode errorCode, String errorMessage) : base($"Some error occur to call a Bass function, Code:{errorCode}({(int)errorCode}) - {errorMessage}.")
         {
             ErrorCode = errorCode;
             ErrorMessage = errorMessage;
@@ -201,6 +201,21 @@ namespace xZune.Bass
         ///     Create a <see cref="ChannelNotAvailableException" />.
         /// </summary>
         public ChannelNotAvailableException(): base("Channel object is no longer available.")
+        {
+
+        }
+    }
+
+
+    /// <summary>
+    /// If you set a invalid data to a sample, this exception will be throwed, check the length of <see cref="AudioSample.Infomation"/> and your data.
+    /// </summary>
+    public class InvalidSampleDataException : BassException
+    {
+        /// <summary>
+        ///  Create a <see cref="InvalidSampleDataException" />.
+        /// </summary>
+        public InvalidSampleDataException(uint length, uint correctLength) : base($"Invalid data for this sample, the length of data is {length}, and it should be {correctLength}.")
         {
 
         }

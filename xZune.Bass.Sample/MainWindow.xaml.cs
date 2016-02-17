@@ -18,23 +18,15 @@ namespace xZune.Bass.Sample
 
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None,
                 new WindowInteropHelper(this).Handle, null);
+
+            audioSample = new AudioSample(@"E:\CloudMusic\July - Beyond The Memory.mp3", 0,0,5, SampleLoadConfig.None);
         }
 
-        private AudioFileStream afs;
+        private AudioSample audioSample;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (afs != null && afs.IsAvailable)
-            {
-                afs.Play();
-            }
-            else
-            {
-                afs = new AudioFileStream(@"E:\Music\CloudMusic\perfume -.mp3", StreamCreateFileConfig.None);
-                afs.StatusChanged += Afs_StatusChanged;
-                
-                afs.Play();
-            }
+            audioSample.GetChannel(true).Play();
         }
 
         private void Afs_StatusChanged(object sender, ChannelStatusChangedEventArgs args)
@@ -44,8 +36,7 @@ namespace xZune.Bass.Sample
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            afs.Pause();
-
+            audioSample.Stop();
         }
     }
 }

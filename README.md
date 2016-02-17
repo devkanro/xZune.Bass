@@ -4,6 +4,10 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 **This project is on processing!**  
 **Now we have completed base player function. See [Quick Start](https://github.com/higankanshi/xZune.Bass#quick-start) to get more infomation.**
 
+## Api Documentation
+
+See the api documentation of [xZune.Bass](http://higan.me/xZune.Bass/api/index.html).
+
 ## Quick Start
 
 **01.Add the references of xZune.Bass to your project.**  
@@ -33,9 +37,23 @@ audioStream.Pause(); // To pause audio stream.
 audioStream.Stop(); // To pause audio stream.
 ```
 
-**04.Events of channel.**
+**04.Create a audio sample and play it.**
 ```CSharp
-// We support many event of every channel.
+var audioSample = new AudioFileStream(@"E:\test.mp3",0,0,5, SampleLoadConfig.None); // Create a sample form a file.
+// We also support custom .NET Steam to create a audio sample, and you can set sample data to a sample.
+
+// Create playback channel for sample.
+var audioSampleChannel = audioSample.GetChannel(true);
+
+// Play it.
+audioSampleChannel.Play();
+
+// Note: Many events is not available with SampleChannel.
+```
+
+**05.Events of channel.**
+```CSharp
+// We support many events of every channel.
 // StatusChanged, PositionChanged, Ended...
 
 // Listen a event.
@@ -47,7 +65,7 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 }                                                                                
 ```
 
-**05.Property of channel.**
+**06.Property of channel.**
 ```CSharp
 // We support many properties of every channel.
 // Length, Position, Status, Time...
@@ -56,7 +74,7 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 TimeSpan time = audioStream.Time;                                   
 ```
 
-**06.Free and release a channel.**
+**07.Free and release a channel.**
 ```CSharp
 // Every channel object is inherited form IDispose interface.
 // Use Dispose() method to release all resource of channel.
@@ -65,7 +83,7 @@ TimeSpan time = audioStream.Time;
 audioStream.Dispose();                               
 ```
 
-**07.Realease Bass.**
+**08.Realease Bass.**
 ```CSharp
 // Use BassManager to manage Bass.
 
@@ -92,10 +110,10 @@ BassManager.ReleaseAll();
 - [x] Initializer wrapper.
 - [x] Stream wrapper.
 - [x] Channel wrapper.
-- [ ] Sample wrapper (processing).
-- [ ] Device wrapper.
-- [ ] MOD music wrapper.
+- [x] Sample wrapper.
+- [ ] MOD music wrapper (processing).
 - [ ] Record wrapper.
+- [ ] Device wrapper.
 - [ ] EAX wrapper.
 - [ ] Effect wrapper.
 
