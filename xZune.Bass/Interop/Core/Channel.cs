@@ -81,7 +81,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.No3D, "The channel does not have 3D functionality.")]
     [BassBooleanVerification]
     public delegate bool ChannelGet3DAttributes(
-        IntPtr handle, ref uint mode, ref float min, ref float max, ref uint iangle, ref uint oangle, ref float outvol);
+        IntPtr handle, ref Channel3DMode mode, ref float min, ref float max, ref uint iangle, ref uint oangle, ref float outvol);
 
     /// <summary>
     ///     Retrieves the 3D position of a sample, stream, or MOD music channel with 3D functionality.
@@ -137,7 +137,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
     [BassError(ErrorCode.IllegalParam, "size is not valid.")]
     [BassInt32Verification]
-    public delegate int ChannelGetAttributeEx(IntPtr handle, ChannelAttribute attrib, IntPtr value, int size);
+    public delegate int ChannelGetAttributeEx(IntPtr handle, ChannelAttributeEx attrib, IntPtr value, int size);
 
     /// <summary>
     ///     Retrieves the immediate sample data (or an FFT representation of it) of a sample channel, stream, MOD music, or
@@ -514,7 +514,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.Already, "Either chan is not a valid channel, or it is already not linked to handle.")]
     [BassBooleanVerification]
-    public delegate bool ChannelRemoveLink(IntPtr handle, int chan);
+    public delegate bool ChannelRemoveLink(IntPtr handle, IntPtr chan);
 
     /// <summary>
     ///     Removes a synchronizer from a MOD music, stream or recording channel.
@@ -773,7 +773,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.Already, "chan is already linked to handle.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassBooleanVerification]
-    public delegate bool ChannelSetLink(IntPtr handle, int chan);
+    public delegate bool ChannelSetLink(IntPtr handle, IntPtr chan);
 
     /// <summary>
     ///     Sets the playback position of a sample, MOD music, or stream.
@@ -899,7 +899,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.BadHandle, "handle is not a valid channel.")]
     [BassError(ErrorCode.IllegalType, "attribute is not valid.")]
     [BassBooleanVerification]
-    public delegate bool ChannelSlideAttribute(IntPtr handle, ChannelAttribute attribute, float value, int time);
+    public delegate bool ChannelSlideAttribute(IntPtr handle, ChannelAttribute attribute, float value, uint time);
 
     /// <summary>
     ///     Stops a sample, stream, MOD music, or recording.

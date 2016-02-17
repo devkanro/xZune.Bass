@@ -17,25 +17,20 @@ namespace xZune.Bass.Modules
             Current = new AudioStreamModule();
         }
 
-        internal static BassFunction<StreamCreate> _streamCreateFunction;
-        internal static BassFunction<StreamCreateFile> _streamCreateFileFunction;
-        internal static BassFunction<StreamCreateFileUser> _streamCreateFileUserFunction;
-        internal static BassFunction<StreamCreateUrl> _streamCreateUrlFunction;
-        internal static BassFunction<StreamFree> _streamFreeFunction;
-        internal static BassFunction<StreamGetFilePosition> _streamGetFilePositionFunction;
-        internal static BassFunction<StreamPutData> _streamPutDataFunction;
-        internal static BassFunction<StreamPutFileData> _streamPutFileDataFunction;
+        internal static BassFunction<StreamCreate> StreamCreateFunction;
+        internal static BassFunction<StreamCreateFile> StreamCreateFileFunction;
+        internal static BassFunction<StreamCreateFileUser> StreamCreateFileUserFunction;
+        internal static BassFunction<StreamCreateUrl> StreamCreateUrlFunction;
+        internal static BassFunction<StreamFree> StreamFreeFunction;
+        internal static BassFunction<StreamGetFilePosition> StreamGetFilePositionFunction;
+        internal static BassFunction<StreamPutData> StreamPutDataFunction;
+        internal static BassFunction<StreamPutFileData> StreamPutFileDataFunction;
 
         private AudioStreamModule()
         {
 
         }
-
-        /// <summary>
-        ///     Get is this module is loaded and available.
-        /// </summary>
-        public bool ModuleAvailable { get; private set; }
-
+        
         /// <exception cref="NoBassFunctionAttributeException">
         ///     Can't find <see cref="T:xZune.Bass.Interop.BassFunctionAttribute" />
         ///     in this Bass function.
@@ -50,14 +45,14 @@ namespace xZune.Bass.Modules
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            _streamCreateFunction = new BassFunction<StreamCreate>();
-            _streamCreateFileFunction = new BassFunction<StreamCreateFile>();
-            _streamCreateFileUserFunction = new BassFunction<StreamCreateFileUser>();
-            _streamCreateUrlFunction = new BassFunction<StreamCreateUrl>();
-            _streamFreeFunction = new BassFunction<StreamFree>();
-            _streamGetFilePositionFunction = new BassFunction<StreamGetFilePosition>();
-            _streamPutDataFunction = new BassFunction<StreamPutData>();
-            _streamPutFileDataFunction = new BassFunction<StreamPutFileData>();
+            StreamCreateFunction = new BassFunction<StreamCreate>();
+            StreamCreateFileFunction = new BassFunction<StreamCreateFile>();
+            StreamCreateFileUserFunction = new BassFunction<StreamCreateFileUser>();
+            StreamCreateUrlFunction = new BassFunction<StreamCreateUrl>();
+            StreamFreeFunction = new BassFunction<StreamFree>();
+            StreamGetFilePositionFunction = new BassFunction<StreamGetFilePosition>();
+            StreamPutDataFunction = new BassFunction<StreamPutData>();
+            StreamPutFileDataFunction = new BassFunction<StreamPutFileData>();
 
             ModuleAvailable = true;
         }
@@ -70,14 +65,14 @@ namespace xZune.Bass.Modules
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            _streamCreateFunction = null;
-            _streamCreateFileFunction = null;
-            _streamCreateFileUserFunction = null;
-            _streamCreateUrlFunction = null;
-            _streamFreeFunction = null;
-            _streamGetFilePositionFunction = null;
-            _streamPutDataFunction = null;
-            _streamPutFileDataFunction = null;
+            StreamCreateFunction = null;
+            StreamCreateFileFunction = null;
+            StreamCreateFileUserFunction = null;
+            StreamCreateUrlFunction = null;
+            StreamFreeFunction = null;
+            StreamGetFilePositionFunction = null;
+            StreamPutDataFunction = null;
+            StreamPutFileDataFunction = null;
 
             ModuleAvailable = false;
         }

@@ -150,26 +150,7 @@ namespace xZune.Bass.Interop
         /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         public T CheckResult<T>(T result)
         {
-            if (!BassManager.Available) throw new BassNotLoadedException();
-
-            if (Verifier == null) return result;
-
-            if (Verifier.VerifyResult(result)) return result;
-
-            var errorCode = BassManager.GetErrorCode();
-
-            if (errorCode == ErrorCode.OK) return result;
-
-            BassErrorAttribute errorInfo;
-
-            if (_errorDictionary.TryGetValue(errorCode, out errorInfo))
-            {
-                throw new BassErrorException(errorInfo);
-            }
-            else
-            {
-                throw new BassErrorException(errorCode);
-            }
+            return (T)CheckResult((object)result);
         }
     }
 }

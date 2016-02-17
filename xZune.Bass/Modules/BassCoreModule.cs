@@ -18,32 +18,27 @@ namespace xZune.Bass.Modules
             Current = new BassCoreModule();
         }
 
-        internal static BassFunction<GetErrorCode> _getErrorCodeFunction;
-        internal static BassFunction<Free> _freeFunction;
-        internal static BassFunction<Initialize> _initializeFunction;
-        internal static BassFunction<GetVersion> _getVersionFunction;
-        internal static BassFunction<GetInfo> _getInfoFunction;
-        internal static BassFunction<GetDeviceInfo> _getDeviceInfoFunction;
-        internal static BassFunction<GetDevice> _getDeviceFunction;
-        internal static BassFunction<GetCpuUsage> _getCpuUsageFunction;
-        internal static BassFunction<GetDSoundObject> _getDSoundObjectFunction;
-        internal static BassFunction<GetVolume> _getVolumeFunction;
-        internal static BassFunction<Pause> _pauseFunction;
-        internal static BassFunction<SetDevice> _setDeviceFunction;
-        internal static BassFunction<SetVolume> _setVolumeFunction;
-        internal static BassFunction<Start> _startFunction;
-        internal static BassFunction<Stop> _stopFunction;
-        internal static BassFunction<Update> _updateFunction;
+        internal static BassFunction<GetErrorCode> GetErrorCodeFunction;
+        internal static BassFunction<Free> FreeFunction;
+        internal static BassFunction<Initialize> InitializeFunction;
+        internal static BassFunction<GetVersion> GetVersionFunction;
+        internal static BassFunction<GetInfo> GetInfoFunction;
+        internal static BassFunction<GetDeviceInfo> GetDeviceInfoFunction;
+        internal static BassFunction<GetDevice> GetDeviceFunction;
+        internal static BassFunction<GetCpuUsage> GetCpuUsageFunction;
+        internal static BassFunction<GetDSoundObject> GetDSoundObjectFunction;
+        internal static BassFunction<GetVolume> GetVolumeFunction;
+        internal static BassFunction<Pause> PauseFunction;
+        internal static BassFunction<SetDevice> SetDeviceFunction;
+        internal static BassFunction<SetVolume> SetVolumeFunction;
+        internal static BassFunction<Start> StartFunction;
+        internal static BassFunction<Stop> StopFunction;
+        internal static BassFunction<Update> UpdateFunction;
 
         private BassCoreModule()
         {
             
         }
-
-        /// <summary>
-        ///     Get is this module is loaded and available.
-        /// </summary>
-        public bool ModuleAvailable { get; private set; }
 
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use Bass to load Bass DLL
@@ -59,26 +54,27 @@ namespace xZune.Bass.Modules
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            _getErrorCodeFunction = new BassFunction<GetErrorCode>();
-            _freeFunction = new BassFunction<Free>();
-            _initializeFunction = new BassFunction<Initialize>();
-            _getVersionFunction = new BassFunction<GetVersion>();
-            _getInfoFunction = new BassFunction<GetInfo>();
-            _getDeviceInfoFunction = new BassFunction<GetDeviceInfo>();
-            _getDeviceFunction = new BassFunction<GetDevice>();
-            _getCpuUsageFunction = new BassFunction<GetCpuUsage>();
-            _getDSoundObjectFunction = new BassFunction<GetDSoundObject>();
-            _getVolumeFunction = new BassFunction<GetVolume>();
-            _pauseFunction = new BassFunction<Pause>();
-            _setDeviceFunction = new BassFunction<SetDevice>();
-            _setVolumeFunction = new BassFunction<SetVolume>();
-            _startFunction = new BassFunction<Start>();
-            _stopFunction = new BassFunction<Stop>();
-            _updateFunction = new BassFunction<Update>();
+            GetErrorCodeFunction = new BassFunction<GetErrorCode>();
+            FreeFunction = new BassFunction<Free>();
+            InitializeFunction = new BassFunction<Initialize>();
+            GetVersionFunction = new BassFunction<GetVersion>();
+            GetInfoFunction = new BassFunction<GetInfo>();
+            GetDeviceInfoFunction = new BassFunction<GetDeviceInfo>();
+            GetDeviceFunction = new BassFunction<GetDevice>();
+            GetCpuUsageFunction = new BassFunction<GetCpuUsage>();
+            GetDSoundObjectFunction = new BassFunction<GetDSoundObject>();
+            GetVolumeFunction = new BassFunction<GetVolume>();
+            PauseFunction = new BassFunction<Pause>();
+            SetDeviceFunction = new BassFunction<SetDevice>();
+            SetVolumeFunction = new BassFunction<SetVolume>();
+            StartFunction = new BassFunction<Start>();
+            StopFunction = new BassFunction<Stop>();
+            UpdateFunction = new BassFunction<Update>();
 
             ModuleAvailable = true;
 
             // Other module initialization.
+            ChannelModule.Current.InitializeModule();
             AudioStreamModule.Current.InitializeModule();
         }
 
@@ -90,26 +86,27 @@ namespace xZune.Bass.Modules
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            _getErrorCodeFunction = null;
-            _freeFunction = null;
-            _initializeFunction = null;
-            _getVersionFunction = null;
-            _getInfoFunction = null;
-            _getDeviceInfoFunction = null;
-            _getDeviceFunction = null;
-            _getCpuUsageFunction = null;
-            _getDSoundObjectFunction = null;
-            _getVolumeFunction = null;
-            _pauseFunction = null;
-            _setDeviceFunction = null;
-            _setVolumeFunction = null;
-            _startFunction = null;
-            _stopFunction = null;
-            _updateFunction = null;
+            GetErrorCodeFunction = null;
+            FreeFunction = null;
+            InitializeFunction = null;
+            GetVersionFunction = null;
+            GetInfoFunction = null;
+            GetDeviceInfoFunction = null;
+            GetDeviceFunction = null;
+            GetCpuUsageFunction = null;
+            GetDSoundObjectFunction = null;
+            GetVolumeFunction = null;
+            PauseFunction = null;
+            SetDeviceFunction = null;
+            SetVolumeFunction = null;
+            StartFunction = null;
+            StopFunction = null;
+            UpdateFunction = null;
 
             ModuleAvailable = false;
 
             // Other module releasing.
+            ChannelModule.Current.FreeModule();
             AudioStreamModule.Current.FreeModule();
         }
     }

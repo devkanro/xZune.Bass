@@ -163,7 +163,7 @@ namespace xZune.Bass.Interop.Core
     ///     If the <see cref="ConfigureType.Floatdsp" /> configure option is set, then display callback functions will always
     ///     be passed 32-bit floating-point sample data, regardless of what the channels' actual sample format is.
     /// </remarks>
-    public delegate void DisplayHandler(IntPtr displayHandle, uint channel, IntPtr buffer, uint length, IntPtr user);
+    public delegate void DisplayHandler(IntPtr displayHandle, IntPtr channel, IntPtr buffer, uint length, IntPtr user);
 
     /// <summary>
     ///     User defined synchronizer callback function.
@@ -186,5 +186,5 @@ namespace xZune.Bass.Interop.Core
     ///     <see cref="SyncHandlerType.Pos" /> sync at the loop end position and seek to the loop start position in the
     ///     callback.
     /// </remarks>
-    public delegate void SyncHandler(IntPtr syncHandle, uint channel, uint data, IntPtr user);
+    public delegate void SyncHandler(IntPtr syncHandle, IntPtr channel, uint data, IntPtr user);
 }

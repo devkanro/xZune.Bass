@@ -21,12 +21,13 @@ namespace xZune.Bass.Interop
         /// <param name="count">count of string, -1 mean auto check the end char</param>
         /// <param name="encoding">encoding of string</param>
         /// <returns>result string</returns>
-        public static String PtrToString(IntPtr ptr, int count = -1, Encoding encoding = null)
+        public static String PtrToString(IntPtr ptr, Encoding encoding = null, int count = -1)
         {
             if (ptr == IntPtr.Zero)
             {
                 return null;
             }
+
             if (encoding == null)
             {
                 encoding = Encoding.Unicode;
@@ -36,14 +37,53 @@ namespace xZune.Bass.Interop
 
             if (count == -1)
             {
-                int offset = 0;
-                byte tmp = Marshal.ReadByte(ptr, offset);
-                while (tmp != 0)
+                if (encoding == Encoding.Unicode || encoding == Encoding.BigEndianUnicode)
                 {
-                    buffer.Add(tmp);
-                    offset++;
-                    tmp = Marshal.ReadByte(ptr, offset);
+                    int offset = 0;
+                    byte tmp = 0;
+                    bool zeroFlag = false;
+
+                    while (true)
+                    {
+                        tmp = Marshal.ReadByte(ptr, offset);
+
+                        if (tmp == 0)
+                        {
+                            if (zeroFlag)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                zeroFlag = true;
+                                continue;
+                            }
+                        }
+
+                        zeroFlag = false;
+                        buffer.Add(tmp);
+                        offset++;
+                    }
                 }
+                else
+                {
+                    int offset = 0;
+                    byte tmp = 0;
+
+                    while (true)
+                    {
+                        tmp = Marshal.ReadByte(ptr, offset);
+
+                        if (tmp == 0)
+                        {
+                            break;
+                        }
+                        
+                        buffer.Add(tmp);
+                        offset++;
+                    }
+                }
+                
             }
             else
             {
@@ -55,7 +95,7 @@ namespace xZune.Bass.Interop
                 }
             }
 
-            return encoding.GetString(buffer.ToArray());
+            return Encoding.UTF8.GetString(buffer.ToArray());
         }
 
         /// <summary>
@@ -101,6 +141,36 @@ namespace xZune.Bass.Interop
             }
 
             return Marshal.UnsafeAddrOfPinnedArrayElement(ptrs, 0);
+        }
+
+        public static String[] PtrToStringArray(IntPtr ptr)
+        {
+            byte b = 0;
+            List<Byte> buffer = new List<byte>(512);
+            bool zeroFlag = false;
+            List<String> result = new List<string>();
+
+            while (true)
+            {
+                b = Marshal.ReadByte(ptr);
+
+                if (b == 0)
+                {
+                    if (zeroFlag)
+                    {
+                        return result.ToArray();
+                    }
+                    else
+                    {
+                        zeroFlag = true;
+                        result.Add(Encoding.UTF8.GetString(buffer.ToArray()));
+                        continue;
+                    }
+                }
+
+                zeroFlag = false;
+                buffer.Add(b);
+            }
         }
     }
 }

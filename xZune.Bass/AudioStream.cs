@@ -66,8 +66,8 @@ namespace xZune.Bass
             }
 
             Handle =
-                AudioStreamModule._streamCreateFunction.CheckResult(
-                    AudioStreamModule._streamCreateFunction.Delegate(freq, channels, configs,
+                AudioStreamModule.StreamCreateFunction.CheckResult(
+                    AudioStreamModule.StreamCreateFunction.Delegate(freq, channels, configs,
                         handlerHandle, user));
         }
 
@@ -89,17 +89,17 @@ namespace xZune.Bass
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
-        /// <exception cref="ChannelNotAvailable">Channel object is no longer available.</exception>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
         public virtual int PutData(byte[] buffer)
         {
-            if(!IsAvailable) throw new ChannelNotAvailable();
+            CheckAvailable();
 
             GCHandle? bufferHandle = (buffer != null && buffer.Length != 0)
                 ? GCHandle.Alloc(buffer, GCHandleType.Pinned)
                 : (GCHandle?) null;
 
-            return AudioStreamModule._streamPutDataFunction.CheckResult(
-                AudioStreamModule._streamPutDataFunction.Delegate(Handle,
+            return AudioStreamModule.StreamPutDataFunction.CheckResult(
+                AudioStreamModule.StreamPutDataFunction.Delegate(Handle,
                     bufferHandle?.AddrOfPinnedObject() ?? IntPtr.Zero,
                     buffer?.Length ?? 0));
         }
@@ -115,13 +115,13 @@ namespace xZune.Bass
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
-        /// <exception cref="ChannelNotAvailable">Channel object is no longer available.</exception>
-        public override void Free()
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        protected override void Free()
         {
-            if (!IsAvailable) throw new ChannelNotAvailable();
-
-            AudioStreamModule._streamFreeFunction.CheckResult(
-                AudioStreamModule._streamFreeFunction.Delegate(Handle));
+            CheckAvailable();
+            
+            AudioStreamModule.StreamFreeFunction.CheckResult(
+                AudioStreamModule.StreamFreeFunction.Delegate(Handle));
 
             Handle = IntPtr.Zero;
             IsAvailable = false;

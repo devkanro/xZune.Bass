@@ -57,7 +57,7 @@ namespace xZune.Bass
         {
             get
             {
-                var version = BassCoreModule._getVersionFunction.Delegate();
+                var version = BassCoreModule.GetVersionFunction.Delegate();
 
                 return new Version((int)((version & 0xFF000000) >> 24), (int)((version & 0x00FF0000) >> 16),
                     (int)((version & 0x0000FF00) >> 8), (int)((version & 0x0000000FF) >> 0));
@@ -67,7 +67,7 @@ namespace xZune.Bass
         /// <summary>
         ///     Get the current CPU usage of Bass.
         /// </summary>
-        public static float CpuUsage => BassCoreModule._getCpuUsageFunction.Delegate();
+        public static float CpuUsage => BassCoreModule.GetCpuUsageFunction.Delegate();
 
         /// <summary>
         /// Get the current master volume level.
@@ -76,9 +76,9 @@ namespace xZune.Bass
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static float Volume
         {
-            get { return BassCoreModule._getVolumeFunction.CheckResult(BassCoreModule._getVolumeFunction.Delegate()); }
+            get { return BassCoreModule.GetVolumeFunction.CheckResult(BassCoreModule.GetVolumeFunction.Delegate()); }
 
-            set { BassCoreModule._setVolumeFunction.CheckResult(BassCoreModule._setVolumeFunction.Delegate(value)); }
+            set { BassCoreModule.SetVolumeFunction.CheckResult(BassCoreModule.SetVolumeFunction.Delegate(value)); }
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace xZune.Bass
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static int Device
         {
-            get { return BassCoreModule._getDeviceFunction.CheckResult(BassCoreModule._getDeviceFunction.Delegate()); }
+            get { return BassCoreModule.GetDeviceFunction.CheckResult(BassCoreModule.GetDeviceFunction.Delegate()); }
 
-            set { BassCoreModule._setDeviceFunction.CheckResult(BassCoreModule._setDeviceFunction.Delegate(value)); }
+            set { BassCoreModule.SetDeviceFunction.CheckResult(BassCoreModule.SetDeviceFunction.Delegate(value)); }
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace xZune.Bass
             get
             {
                 Info result = new Info();
-                BassCoreModule._getInfoFunction.CheckResult(BassCoreModule._getInfoFunction.Delegate(ref result));
+                BassCoreModule.GetInfoFunction.CheckResult(BassCoreModule.GetInfoFunction.Delegate(ref result));
                 return result;
             }
         }
@@ -121,7 +121,7 @@ namespace xZune.Bass
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static void PauseAll()
         {
-            BassCoreModule._pauseFunction.CheckResult(BassCoreModule._pauseFunction.Delegate());
+            BassCoreModule.PauseFunction.CheckResult(BassCoreModule.PauseFunction.Delegate());
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace xZune.Bass
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static void StartAll()
         {
-            BassCoreModule._startFunction.CheckResult(BassCoreModule._startFunction.Delegate());
+            BassCoreModule.StartFunction.CheckResult(BassCoreModule.StartFunction.Delegate());
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace xZune.Bass
         /// <exception cref="BassErrorException" accessor="get">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         public static void StopAll()
         {
-            BassCoreModule._stopFunction.CheckResult(BassCoreModule._stopFunction.Delegate());
+            BassCoreModule.StopFunction.CheckResult(BassCoreModule.StopFunction.Delegate());
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace xZune.Bass
         /// </remarks>
         public static void Update(int length)
         {
-            BassCoreModule._updateFunction.CheckResult(BassCoreModule._updateFunction.Delegate(length));
+            BassCoreModule.UpdateFunction.CheckResult(BassCoreModule.UpdateFunction.Delegate(length));
         }
 
         #endregion ---- Play controls ----
@@ -170,7 +170,7 @@ namespace xZune.Bass
         public static DeviceInfo GetDeviceInfo(int device)
         {
             DeviceInfo deviceInfo = new DeviceInfo();
-            BassCoreModule._getDeviceInfoFunction.CheckResult(BassCoreModule._getDeviceInfoFunction.Delegate(device, ref deviceInfo));
+            BassCoreModule.GetDeviceInfoFunction.CheckResult(BassCoreModule.GetDeviceInfoFunction.Delegate(device, ref deviceInfo));
             return deviceInfo;
         }
 
@@ -181,7 +181,7 @@ namespace xZune.Bass
         /// <returns>Pointer to the requested object.</returns>
         public static IntPtr GetDSoundObject(DSoundObjectType type)
         {
-            return BassCoreModule._getDSoundObjectFunction.CheckResult(BassCoreModule._getDSoundObjectFunction.Delegate(type));
+            return BassCoreModule.GetDSoundObjectFunction.CheckResult(BassCoreModule.GetDSoundObjectFunction.Delegate(type));
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace xZune.Bass
         /// </returns>
         public static ErrorCode GetErrorCode()
         {
-            return BassCoreModule._getErrorCodeFunction.Delegate.Invoke();
+            return BassCoreModule.GetErrorCodeFunction.Delegate.Invoke();
         }
 
         #region ---- Initialize ----
@@ -414,7 +414,7 @@ namespace xZune.Bass
                 guidHandle = GCHandle.Alloc(dSoundGuid.Value, GCHandleType.Pinned);
             }
 
-            BassCoreModule._initializeFunction.CheckResult(BassCoreModule._initializeFunction.Delegate(device, freq, configs, windowHandle,
+            BassCoreModule.InitializeFunction.CheckResult(BassCoreModule.InitializeFunction.Delegate(device, freq, configs, windowHandle,
                 guidHandle?.AddrOfPinnedObject() ?? IntPtr.Zero));
 
             guidHandle?.Free();
@@ -469,7 +469,7 @@ namespace xZune.Bass
         /// </exception>
         public static void FreeBass()
         {
-            BassCoreModule._freeFunction.CheckResult(BassCoreModule._freeFunction.Delegate());
+            BassCoreModule.FreeFunction.CheckResult(BassCoreModule.FreeFunction.Delegate());
         }
 
         #endregion ---- Release ----

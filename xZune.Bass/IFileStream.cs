@@ -11,4 +11,9 @@ namespace xZune.Bass
     {
         UInt64 GetFilePosition(FilePositionMode mode);
     }
+
+    public interface INetworkStream : IStream
+    {
+        float BufferLevel { get; set; }
+    }
 }

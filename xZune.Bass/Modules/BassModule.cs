@@ -9,7 +9,7 @@ namespace xZune.Bass.Modules
         /// <summary>
         ///     Get is this module is loaded and available.
         /// </summary>
-        public bool ModuleAvailable { get; private set; }
+        public bool ModuleAvailable { get; protected set; }
 
 
         internal abstract void InitializeModule();

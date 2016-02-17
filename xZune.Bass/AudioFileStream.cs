@@ -30,15 +30,15 @@ namespace xZune.Bass
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
-        /// <exception cref="ChannelNotAvailable">Channel object is no longer available.</exception>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
         public override int PutData(byte[] buffer)
         {
-            if (!IsAvailable) throw new ChannelNotAvailable();
+            CheckAvailable();
 
             GCHandle bufferHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-            return AudioStreamModule._streamPutFileDataFunction.CheckResult(
-                AudioStreamModule._streamPutFileDataFunction.Delegate(Handle, bufferHandle.AddrOfPinnedObject(),
+            return AudioStreamModule.StreamPutFileDataFunction.CheckResult(
+                AudioStreamModule.StreamPutFileDataFunction.Delegate(Handle, bufferHandle.AddrOfPinnedObject(),
                     buffer.Length));
         }
 
@@ -55,13 +55,13 @@ namespace xZune.Bass
         ///     Some error occur to call a Bass function, check the error code and error message
         ///     to get more error infomation.
         /// </exception>
-        /// <exception cref="ChannelNotAvailable">Channel object is no longer available.</exception>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
         public UInt64 GetFilePosition(FilePositionMode mode)
         {
-            if (!IsAvailable) throw new ChannelNotAvailable();
-
-            return AudioStreamModule._streamGetFilePositionFunction.CheckResult(
-                AudioStreamModule._streamGetFilePositionFunction.Delegate(Handle, mode));
+            CheckAvailable();
+            
+            return AudioStreamModule.StreamGetFilePositionFunction.CheckResult(
+                AudioStreamModule.StreamGetFilePositionFunction.Delegate(Handle, mode));
         }
 
         #region -- Creator --
@@ -78,8 +78,8 @@ namespace xZune.Bass
             configs |= StreamCreateFileConfig.Unicode;
             var fileNameHandle = InteropHelper.StringToPtr(file);
 
-            Handle = AudioStreamModule._streamCreateFileFunction.CheckResult(
-                AudioStreamModule._streamCreateFileFunction.Delegate(false,
+            Handle = AudioStreamModule.StreamCreateFileFunction.CheckResult(
+                AudioStreamModule.StreamCreateFileFunction.Delegate(false,
                     fileNameHandle.AddrOfPinnedObject(), offset, length, configs));
 
             fileNameHandle.Free();
@@ -114,8 +114,8 @@ namespace xZune.Bass
 
             GCHandle bufferHandle = GCHandle.Alloc(buffer);
 
-            Handle = AudioStreamModule._streamCreateFileFunction.CheckResult(
-                AudioStreamModule._streamCreateFileFunction.Delegate(true,
+            Handle = AudioStreamModule.StreamCreateFileFunction.CheckResult(
+                AudioStreamModule.StreamCreateFileFunction.Delegate(true,
                     bufferHandle.AddrOfPinnedObject(), 0, (uint) stream.Length, configs));
 
             bufferHandle.Free();
@@ -132,8 +132,8 @@ namespace xZune.Bass
             StreamFileSystemType systemType, IntPtr user)
         {
             Handle =
-                AudioStreamModule._streamCreateFileUserFunction.CheckResult(
-                    AudioStreamModule._streamCreateFileUserFunction.Delegate(systemType, configs,
+                AudioStreamModule.StreamCreateFileUserFunction.CheckResult(
+                    AudioStreamModule.StreamCreateFileUserFunction.Delegate(systemType, configs,
                         ref handlers, user));
         }
 

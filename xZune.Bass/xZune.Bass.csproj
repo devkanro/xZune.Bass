@@ -161,6 +161,7 @@
     <Compile Include="Modules\AudioStreamModule.cs" />
     <Compile Include="Modules\BassCoreModule.cs" />
     <Compile Include="Modules\BassModule.cs" />
+    <Compile Include="Modules\ChannelModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlyList.cs" />
   </ItemGroup>
