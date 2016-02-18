@@ -3,8 +3,9 @@
 // Version: 20160216
 
 using System;
+using xZune.Bass.Interop.Core.Flags;
 
-namespace xZune.Bass.Interop.Core.Flags
+namespace xZune.Bass.Interop.Core
 {
     /// <summary>
     ///     Frees a MOD music's resources, including any sync/DSP/FX it has.
@@ -72,6 +73,6 @@ namespace xZune.Bass.Interop.Core.Flags
     [BassError(ErrorCode.No3D, "Could not initialize 3D support.")]
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassPointerVerification]
-    public delegate IntPtr MusicLoad(bool mem, IntPtr file, UInt64 offset, int length, MusicLoadConfig configs, int freq
+    public delegate IntPtr MusicLoad(bool mem, IntPtr file, UInt64 offset, uint length, MusicLoadConfig configs, uint freq
         );
 }

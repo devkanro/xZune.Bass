@@ -51,7 +51,16 @@ audioSampleChannel.Play();
 // Note: Many events is not available with SampleChannel.
 ```
 
-**05.Events of channel.**
+**05.Play a MOD/MO3 music.**
+```CSharp
+// Create a MOD music with a file, and pre-scan it to get length and position of it.
+var modMusic = new ModMusic(@"C:\Users\higan\Downloads\CORE - Adobe CS4kg.XM", 0,0,1,MusicLoadConfig.Prescan);
+
+// Play it.
+audioSampleChannel.Play();
+```
+
+**06.Events of channel.**
 ```CSharp
 // We support many events of every channel.
 // StatusChanged, PositionChanged, Ended...
@@ -65,7 +74,7 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 }                                                                                
 ```
 
-**06.Property of channel.**
+**07.Property of channel.**
 ```CSharp
 // We support many properties of every channel.
 // Length, Position, Status, Time...
@@ -74,7 +83,7 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 TimeSpan time = audioStream.Time;                                   
 ```
 
-**07.Free and release a channel.**
+**08.Free and release a channel.**
 ```CSharp
 // Every channel object is inherited form IDispose interface.
 // Use Dispose() method to release all resource of channel.
@@ -83,7 +92,7 @@ TimeSpan time = audioStream.Time;
 audioStream.Dispose();                               
 ```
 
-**08.Realease Bass.**
+**09.Realease Bass.**
 ```CSharp
 // Use BassManager to manage Bass.
 
@@ -111,11 +120,12 @@ BassManager.ReleaseAll();
 - [x] Stream wrapper.
 - [x] Channel wrapper.
 - [x] Sample wrapper.
-- [ ] MOD music wrapper (processing).
-- [ ] Record wrapper.
+- [x] MOD music wrapper.
+- [ ] Record wrapper (processing).
 - [ ] Device wrapper.
 - [ ] EAX wrapper.
 - [ ] Effect wrapper.
+- [ ] Global configures wrapper.
 
 ### Plug-in components (waiting).
 - [ ] Plug-in loader.
@@ -147,3 +157,13 @@ BassManager.ReleaseAll();
 - [ ] BassWinamp
 - [ ] BassSfx
 - [ ] BassWa
+
+## xZune Media Suit  
+
+**[xZune.Vlc](https://github.com/higankanshi/xZune.Vlc)**  
+xZune.Vlc 是一个 LibVlc 封装库的 .NET 实现,封装了大部分的 LibVlc 的功能,该项目主要是为了寻求一个在 WPF 上使用 Vlc 的完美的解决方案,xZune.Vlc 提供一个原生的 WPF 播放控件(xZune.Vlc.Wpf),该控件采用 InteropBitmap 与共享内存进行播放视频,是一个原生的 WPF 控件,不存在 HwndHost 的空域问题.  
+_xZune.Vlc is an LibVlc solution for .NET, it has encapsulated most of functionalities of LibVlc. This project aims to find a perfect solution for using Vlc on WPF. xZune.Vlc provides an native WPF control(xZune.Vlc.Wpf), this control achieves video playback by utilizing InteropBitmap and shared memory. Since it’s a native WPF control, it doesn't suffer from HwndHost’s airspace issue._  
+
+**[xZune.Visualizer](https://github.com/higankanshi/xZune.Visualizer)**  
+ Zune 风格的音频可视化控件。
+Zune style audio visualizer. 

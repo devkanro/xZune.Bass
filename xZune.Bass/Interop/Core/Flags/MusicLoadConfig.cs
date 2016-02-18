@@ -2,10 +2,15 @@
 // Filename: MusicLoadConfig.cs
 // Version: 20160216
 
+using System;
+
 namespace xZune.Bass.Interop.Core.Flags
 {
+    [Flags]
     public enum MusicLoadConfig : uint
     {
+        None,
+
         /// <summary>
         ///     Use 8-bit resolution. If neither this or the BASS_SAMPLE_FLOAT flags are specified, then the stream is 16-bit.
         /// </summary>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
 using xZune.Bass.Interop.Core.Flags;
 using xZune.Bass.Modules;
@@ -68,7 +69,7 @@ namespace xZune.Bass
         {
             config |= SampleLoadConfig.Unicode;
 
-            var fileHandle = GCHandle.Alloc(file, GCHandleType.Pinned);
+            var fileHandle = InteropHelper.StringToPtr(file);
 
             Handle = AudioSampleModule.SampleLoadFunction.CheckResult(
                 AudioSampleModule.SampleLoadFunction.Delegate(false, fileHandle.AddrOfPinnedObject(), offset, length,
@@ -80,7 +81,7 @@ namespace xZune.Bass
         /// <summary>
         ///     Create a sample form a  WAV, AIFF, MP3, MP2, MP1, OGG or plug-in supported file sample stream.
         /// </summary>
-        /// <param name="stream"></param>
+        /// <param name="stream">A .NET memory stream. </param>
         /// <param name="max">
         ///     Maximum number of simultaneous playbacks... 1 (min) - 65535 (max)... use one of the
         ///     SampleConfig.OverXX flags to choose the override decider, in the case of there being no free channel available for
@@ -307,35 +308,6 @@ namespace xZune.Bass
 
             Handle = IntPtr.Zero;
             IsAvailable = false;
-        }
-    }
-
-    /// <summary>
-    /// A playback channel of sample, many event is not available.
-    /// </summary>
-    public class SampleChannel : Channel
-    {
-        internal SampleChannel(IntPtr handle)
-        {
-            Handle = handle;
-        }
-
-        protected override void ReleaseManaged()
-        {
-        }
-
-        protected override void ReleaseUnmanaged()
-        {
-        }
-
-        protected override void Free()
-        {
-
-        }
-
-        protected override void AttachEvent()
-        {
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: MainWindow.xaml.cs
-// Version: 20160216
+// Version: 20160218
 
 using System.Diagnostics;
 using System.Windows;
@@ -9,9 +9,10 @@ using xZune.Bass.Interop.Core.Flags;
 
 namespace xZune.Bass.Sample
 {
-
     public partial class MainWindow : Window
     {
+        private ModMusic modMusic;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -19,24 +20,22 @@ namespace xZune.Bass.Sample
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None,
                 new WindowInteropHelper(this).Handle, null);
 
-            audioSample = new AudioSample(@"E:\CloudMusic\July - Beyond The Memory.mp3", 0,0,5, SampleLoadConfig.None);
+            modMusic = new ModMusic(@"C:\Users\higan\Downloads\CORE - Adobe CS4kg.XM", 0,0,1,MusicLoadConfig.Prescan);
         }
-
-        private AudioSample audioSample;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            audioSample.GetChannel(true).Play();
+            modMusic.Play();
         }
 
         private void Afs_StatusChanged(object sender, ChannelStatusChangedEventArgs args)
         {
             Debug.WriteLine(args.Status);
-        }                                                                                
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            audioSample.Stop();
+            modMusic.Stop();
         }
     }
 }

@@ -283,7 +283,7 @@ namespace xZune.Bass
         /// <summary>
         /// Playback time of the channel.
         /// </summary>
-        public TimeSpan Time
+        public virtual TimeSpan Time
         {
             get
             {
@@ -300,7 +300,7 @@ namespace xZune.Bass
         /// <summary>
         /// Playback position of the channel, 0 ~ 1.
         /// </summary>
-        public double Position
+        public virtual double Position
         {
             get
             {
@@ -317,7 +317,7 @@ namespace xZune.Bass
         /// <summary>
         /// Time length of the channel.
         /// </summary>
-        public TimeSpan Length
+        public virtual TimeSpan Length
         {
             get
             {

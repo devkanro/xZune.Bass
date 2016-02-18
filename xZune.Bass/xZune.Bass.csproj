@@ -40,12 +40,16 @@
     <Compile Include="AudioStream.cs" />
     <Compile Include="BassStream.cs" />
     <Compile Include="Channel.cs" />
+    <Compile Include="ChannelCallback.cs" />
+    <Compile Include="ChannelDisplayCallback.cs" />
+    <Compile Include="ChannelSyncCallback.cs" />
     <Compile Include="Exception.cs" />
     <Compile Include="HandleManager.cs" />
     <Compile Include="HandleObject.cs" />
     <Compile Include="IChannel.cs" />
     <Compile Include="IFileStream.cs" />
     <Compile Include="IHandleObject.cs" />
+    <Compile Include="IMusic.cs" />
     <Compile Include="Interop\BassAttribute.cs" />
     <Compile Include="Interop\BassErrorAttribute.cs" />
     <Compile Include="Interop\BassFunctionAttribute.cs" />
@@ -114,7 +118,7 @@
     <Compile Include="Interop\Core\Flags\Internal\TagType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\WaveForamt.cs" />
     <Compile Include="Interop\Core\Flags\LevelConfig.cs" />
-    <Compile Include="Interop\Core\Flags\ModMusic.cs" />
+    <Compile Include="Interop\Core\ModMusic.cs" />
     <Compile Include="Interop\Core\Flags\MusicLoadConfig.cs" />
     <Compile Include="Interop\Core\Flags\PluginLoadConfig.cs" />
     <Compile Include="Interop\Core\Flags\PointerConfigureType.cs" />
@@ -161,13 +165,16 @@
     <Compile Include="ISample.cs" />
     <Compile Include="ISampleChannel.cs" />
     <Compile Include="IStream.cs" />
+    <Compile Include="ModMusic.cs" />
     <Compile Include="Modules\AudioSampleModule.cs" />
     <Compile Include="Modules\AudioStreamModule.cs" />
     <Compile Include="Modules\BassCoreModule.cs" />
     <Compile Include="Modules\BassModule.cs" />
     <Compile Include="Modules\ChannelModule.cs" />
+    <Compile Include="Modules\ModMusicModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlyList.cs" />
+    <Compile Include="SampleChannel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
