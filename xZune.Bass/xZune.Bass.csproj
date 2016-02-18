@@ -162,6 +162,7 @@
     <Compile Include="Interop\Core\Flags\Internal\EaxEnvironment.cs" />
     <Compile Include="Interop\InteropHelper.cs" />
     <Compile Include="Interop\Win32Api.cs" />
+    <Compile Include="IRecord.cs" />
     <Compile Include="ISample.cs" />
     <Compile Include="ISampleChannel.cs" />
     <Compile Include="IStream.cs" />
@@ -172,8 +173,12 @@
     <Compile Include="Modules\BassModule.cs" />
     <Compile Include="Modules\ChannelModule.cs" />
     <Compile Include="Modules\ModMusicModule.cs" />
+    <Compile Include="Modules\RecordModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlyList.cs" />
+    <Compile Include="Record.cs" />
+    <Compile Include="RecordingEventArgs.cs" />
+    <Compile Include="RecordManager.cs" />
     <Compile Include="SampleChannel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

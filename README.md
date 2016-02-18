@@ -121,10 +121,10 @@ BassManager.ReleaseAll();
 - [x] Channel wrapper.
 - [x] Sample wrapper.
 - [x] MOD music wrapper.
-- [ ] Record wrapper (processing).
-- [ ] Device wrapper.
-- [ ] EAX wrapper.
+- [x] Record wrapper.
+- [ ] EAX wrapper (processing).
 - [ ] Effect wrapper.
+- [ ] Device wrapper.
 - [ ] Global configures wrapper.
 
 ### Plug-in components (waiting).

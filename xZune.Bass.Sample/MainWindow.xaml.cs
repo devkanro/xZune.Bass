@@ -11,7 +11,7 @@ namespace xZune.Bass.Sample
 {
     public partial class MainWindow : Window
     {
-        private ModMusic modMusic;
+        private AudioNetworkStream networkStream;
 
         public MainWindow()
         {
@@ -20,12 +20,12 @@ namespace xZune.Bass.Sample
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None,
                 new WindowInteropHelper(this).Handle, null);
 
-            modMusic = new ModMusic(@"C:\Users\higan\Downloads\CORE - Adobe CS4kg.XM", 0,0,1,MusicLoadConfig.Prescan);
+            networkStream = new AudioNetworkStream("http://lounge-office.rautemusik.fm", StreamCreateUrlConfig.None);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            modMusic.Play();
+            networkStream.Play();
         }
 
         private void Afs_StatusChanged(object sender, ChannelStatusChangedEventArgs args)
@@ -35,7 +35,7 @@ namespace xZune.Bass.Sample
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            modMusic.Stop();
+            networkStream.Stop();
         }
     }
 }

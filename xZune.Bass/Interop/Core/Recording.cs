@@ -232,5 +232,5 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.Unknown, "Some other mystery problem!")]
     [BassPointerVerification]
     public delegate IntPtr RecordStart(
-        int freq, int chans, RecordInitializationConfig configs, RecordHandler proc, IntPtr user);
+        uint freq, uint chans, uint configs, RecordHandler proc, IntPtr user);
 }
