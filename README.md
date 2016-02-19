@@ -1,4 +1,6 @@
 # xZune.Bass
+
+[![Join the chat at https://gitter.im/higankanshi/xZune.Bass](https://badges.gitter.im/higankanshi/xZune.Bass.svg)](https://gitter.im/higankanshi/xZune.Bass?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NET    
   
 **This project is on processing!**  
