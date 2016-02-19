@@ -104,7 +104,7 @@ namespace xZune.Bass
 
         float PanningPosition { get; set; }
 
-        float SampleRateConversionQuality { get; set; }
+        int SampleRateConversionQuality { get; set; }
 
         float Volume { get; set; }
 
