@@ -4,6 +4,8 @@ xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NE
 **This project is on processing!**  
 **Now we have completed base player function. See [Quick Start](https://github.com/higankanshi/xZune.Bass#quick-start) to get more infomation.**
 
+[![Join the chat at https://gitter.im/higankanshi/xZune.Bass](https://badges.gitter.im/higankanshi/xZune.Bass.svg)](https://gitter.im/higankanshi/xZune.Bass?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+
 ## Api Documentation
 
 See the api documentation of [xZune.Bass](http://higan.me/xZune.Bass/api/index.html).
