@@ -34,6 +34,10 @@ namespace xZune.Bass.Modules
         internal static BassFunction<Start> StartFunction;
         internal static BassFunction<Stop> StopFunction;
         internal static BassFunction<Update> UpdateFunction;
+        internal static BassFunction<GetConfig> GetConfigFunction;
+        internal static BassFunction<GetConfigPtr> GetConfigPtrFunction;
+        internal static BassFunction<SetConfig> SetConfigFunction;
+        internal static BassFunction<SetConfigPtr> SetConfigPtrFunction;
 
         private BassCoreModule()
         {
@@ -70,6 +74,10 @@ namespace xZune.Bass.Modules
             StartFunction = new BassFunction<Start>();
             StopFunction = new BassFunction<Stop>();
             UpdateFunction = new BassFunction<Update>();
+            GetConfigFunction = new BassFunction<GetConfig>();
+            GetConfigPtrFunction = new BassFunction<GetConfigPtr>();
+            SetConfigFunction = new BassFunction<SetConfig>();
+            SetConfigPtrFunction = new BassFunction<SetConfigPtr>();
 
             ModuleAvailable = true;
 
@@ -105,6 +113,10 @@ namespace xZune.Bass.Modules
             StartFunction = null;
             StopFunction = null;
             UpdateFunction = null;
+            GetConfigFunction = null;
+            GetConfigPtrFunction = null;
+            SetConfigFunction = null;
+            SetConfigPtrFunction = null;
 
             ModuleAvailable = false;
 

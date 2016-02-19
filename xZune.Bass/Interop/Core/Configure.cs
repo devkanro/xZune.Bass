@@ -31,8 +31,7 @@ namespace xZune.Bass.Interop.Core
     /// </returns>
     [BassFunction("BASS_GetConfigPtr")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
-    [BassPointerVerification]
-    public delegate IntPtr GetConfigPtr(int option);
+    public delegate IntPtr GetConfigPtr(PointerConfigureType option);
 
     /// <summary>
     ///     Sets the value of a configure option.
@@ -55,7 +54,7 @@ namespace xZune.Bass.Interop.Core
     [BassFunction("BASS_SetConfig")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
     [BassBooleanVerification]
-    public delegate bool SetConfig(int option, int value);
+    public delegate bool SetConfig(ConfigureType option, int value);
 
     /// <summary>
     ///     Sets the value of a pointer configure option.
@@ -72,5 +71,5 @@ namespace xZune.Bass.Interop.Core
     [BassFunction("BASS_SetConfigPtr")]
     [BassError(ErrorCode.IllegalParam, "option is invalid.")]
     [BassBooleanVerification]
-    public delegate bool SetConfigPtr(int option, IntPtr value);
+    public delegate bool SetConfigPtr(PointerConfigureType option, IntPtr value);
 }

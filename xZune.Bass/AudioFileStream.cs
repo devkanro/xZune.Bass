@@ -41,29 +41,7 @@ namespace xZune.Bass
                 AudioStreamModule.StreamPutFileDataFunction.Delegate(Handle, bufferHandle.AddrOfPinnedObject(),
                     buffer.Length));
         }
-
-        /// <summary>
-        ///     Get the file position/status of a stream.
-        /// </summary>
-        /// <param name="mode">The file position/status to retrieve. </param>
-        /// <returns>The requested file position/status.</returns>
-        /// <exception cref="BassNotLoadedException">
-        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
-        ///     load Bass DLL first.
-        /// </exception>
-        /// <exception cref="BassErrorException">
-        ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
-        /// </exception>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
-        public UInt64 GetFilePosition(FilePositionMode mode)
-        {
-            CheckAvailable();
-            
-            return AudioStreamModule.StreamGetFilePositionFunction.CheckResult(
-                AudioStreamModule.StreamGetFilePositionFunction.Delegate(Handle, mode));
-        }
-
+        
         #region -- Creator --
 
         /// <summary>

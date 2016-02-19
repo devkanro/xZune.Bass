@@ -1,7 +1,7 @@
 # xZune.Bass
-xZune.Bass is a [Bass](http://www.un4seen.com/bass.html) library wrapper for .NET    
+xZune.Bass is a .Net wrapper of the [Bass](http://www.un4seen.com/bass.html) Library.   
   
-**This project is on processing!**  
+**This project is working in progress!**  
 **Now we have completed base player function. See [Quick Start](https://github.com/higankanshi/xZune.Bass#quick-start) to get more infomation.**
 
 ## Api Documentation
@@ -23,11 +23,11 @@ BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None, n
 // Set the Bass library path , device, sample rate, configures, window handle, and guid of DSound object to initialize Bass.
 ```
 
-**02.Create a audio steam.**
+**02.Create an audio stream.**
 ```CSharp
 var audioStream = new AudioFileStream(@"E:\test.mp3", StreamCreateFileConfig.None); // File stream.
 // var audioStream = new AudioNetworkStream(@"http://127.0.0.1/test.mp3", StreamCreateUrlConfig.None); // Network stream.
-// We also support custom .NET Steam to create a audio stream.
+// We also support custom .NET Steam to create an audio stream.
 ```
 
 **03.Play control.**
@@ -37,10 +37,10 @@ audioStream.Pause(); // To pause audio stream.
 audioStream.Stop(); // To pause audio stream.
 ```
 
-**04.Create a audio sample and play it.**
+**04.Create an audio sample and play it.**
 ```CSharp
 var audioSample = new AudioFileStream(@"E:\test.mp3",0,0,5, SampleLoadConfig.None); // Create a sample form a file.
-// We also support custom .NET Steam to create a audio sample, and you can set sample data to a sample.
+// We also support custom .NET Steam to create an audio sample, and you can set sample data to a sample.
 
 // Create playback channel for sample.
 var audioSampleChannel = audioSample.GetChannel(true);
@@ -57,7 +57,7 @@ audioSampleChannel.Play();
 var modMusic = new ModMusic(@"C:\Users\higan\Downloads\CORE - Adobe CS4kg.XM", 0,0,1,MusicLoadConfig.Prescan);
 
 // Play it.
-audioSampleChannel.Play();
+modMusic.Play();
 ```
 
 **06.Events of channel.**
@@ -92,7 +92,7 @@ TimeSpan time = audioStream.Time;
 audioStream.Dispose();                               
 ```
 
-**09.Realease Bass.**
+**09.Release Bass.**
 ```CSharp
 // Use BassManager to manage Bass.
 
@@ -115,22 +115,22 @@ BassManager.ReleaseAll();
 - [x] Effect module.
 - [x] Base interop module.
 
-### Player components (processing).
+### Player components (working in progress).
 - [x] Initializer wrapper.
 - [x] Stream wrapper.
 - [x] Channel wrapper.
 - [x] Sample wrapper.
 - [x] MOD music wrapper.
 - [x] Record wrapper.
-- [ ] EAX wrapper (processing).
+- [x] Global configures wrapper.
+- [ ] EAX wrapper (working in progress).
 - [ ] Effect wrapper.
 - [ ] Device wrapper.
-- [ ] Global configures wrapper.
 
 ### Plug-in components (waiting).
 - [ ] Plug-in loader.
-- [ ] BassApe
 - [ ] BassFlac
+- [ ] BassApe
 - [ ] BassWma
 - [ ] BassAac
 - [ ] BassAlac
@@ -166,4 +166,4 @@ _xZune.Vlc is an LibVlc solution for .NET, it has encapsulated most of functiona
 
 **[xZune.Visualizer](https://github.com/higankanshi/xZune.Visualizer)**  
  Zune 风格的音频可视化控件。
-Zune style audio visualizer. 
+A Zune-like audio visualizer component 

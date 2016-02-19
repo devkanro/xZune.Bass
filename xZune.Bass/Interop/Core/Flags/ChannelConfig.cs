@@ -266,6 +266,6 @@ namespace xZune.Bass.Interop.Core.Flags
         /// <summary>
         ///     filename is in UTF-16 format.
         /// </summary>
-        Unicode = BassConfig.Unicode
+        Unicode = Internal.BassConfig.Unicode
     }
 }

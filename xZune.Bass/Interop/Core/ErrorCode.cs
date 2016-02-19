@@ -17,10 +17,6 @@ namespace xZune.Bass.Interop.Core
         BadHandle = 05,
         IncorrectFormat = 06,
         PositionError = 07,
-
-        /// <summary>
-        ///     <see cref="Initialize" /> has not been successfully called; there are no initialized devices.
-        /// </summary>
         InitializeFail = 08,
 
         StartFail = 09,
@@ -28,18 +24,10 @@ namespace xZune.Bass.Interop.Core
         Already = 14,
         NoChannel = 18,
         IllegalType = 19,
-
-        /// <summary>
-        ///     Parameter is invalid.
-        /// </summary>
         IllegalParam = 20,
 
         No3D = 21,
         NoEAX = 22,
-
-        /// <summary>
-        ///     Device is invalid.
-        /// </summary>
         InvalidDevice = 23,
 
         NoPlay = 24,
@@ -50,10 +38,6 @@ namespace xZune.Bass.Interop.Core
         NoNetwork = 32,
         CreateFail = 33,
         NoFX = 34,
-
-        /// <summary>
-        ///     The requested object is not available with the current device.
-        /// </summary>
         NotAvailable = 37,
 
         DecodeError = 38,

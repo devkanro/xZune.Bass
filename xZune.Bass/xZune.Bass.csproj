@@ -38,6 +38,7 @@
     <Compile Include="AudioNetworkStream.cs" />
     <Compile Include="AudioSample.cs" />
     <Compile Include="AudioStream.cs" />
+    <Compile Include="BassConfig.cs" />
     <Compile Include="BassStream.cs" />
     <Compile Include="Channel.cs" />
     <Compile Include="ChannelCallback.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Interop\Core\EaxEnvironmentParameter.cs" />
     <Compile Include="Interop\Core\Effect.cs" />
     <Compile Include="Interop\Core\FileHandlers.cs" />
+    <Compile Include="Interop\Core\Flags\Bass3DAlgorithm.cs" />
     <Compile Include="Interop\Core\Flags\Channel3DMode.cs" />
     <Compile Include="Interop\Core\Flags\ChannelAttribute.cs" />
     <Compile Include="Interop\Core\Flags\ChannelConfig.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Interop\Core\Flags\FilePositionMode.cs" />
     <Compile Include="Interop\Core\Flags\FxType.cs" />
     <Compile Include="Interop\Core\Flags\InitializationConfig.cs" />
+    <Compile Include="Interop\Core\Flags\Internal\Bass3DAlgorithm .cs" />
     <Compile Include="Interop\Core\Flags\Internal\Channel3DMode.cs" />
     <Compile Include="Interop\Core\Flags\Internal\ChannelAttribute.cs" />
     <Compile Include="Interop\Core\Flags\Internal\ChannelStatus.cs" />
@@ -118,6 +121,7 @@
     <Compile Include="Interop\Core\Flags\Internal\TagType.cs" />
     <Compile Include="Interop\Core\Flags\Internal\WaveForamt.cs" />
     <Compile Include="Interop\Core\Flags\LevelConfig.cs" />
+    <Compile Include="Interop\Core\Flags\NetworkPlaylistConfig.cs" />
     <Compile Include="Interop\Core\ModMusic.cs" />
     <Compile Include="Interop\Core\Flags\MusicLoadConfig.cs" />
     <Compile Include="Interop\Core\Flags\PluginLoadConfig.cs" />

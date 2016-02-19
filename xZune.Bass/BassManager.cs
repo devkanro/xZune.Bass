@@ -45,6 +45,12 @@ namespace xZune.Bass
 
         #endregion ---- Bass library properties ----
 
+        #region ---- Bass Configures ----
+
+
+
+        #endregion
+
         /// <summary>
         ///     Get version of Bass that is loaded.
         /// </summary>

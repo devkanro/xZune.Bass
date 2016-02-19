@@ -221,9 +221,9 @@ namespace xZune.Bass
         /// <summary>
         /// The sample rate conversion quality of a channel. 0 = linear interpolation, 1 = 8 point sinc interpolation, 2 = 16 point sinc interpolation, 3 = 32 point sinc interpolation. Other values are also accepted but will be interpreted as 0 or 3, depending on whether they are lower or higher.
         /// </summary>
-        public float SampleRateConversionQuality
+        public int SampleRateConversionQuality
         {
-            get { return ((IChannelInternal)this).GetAttribute(ChannelAttribute.Src); }
+            get { return (int)((IChannelInternal)this).GetAttribute(ChannelAttribute.Src); }
             set { ((IChannelInternal)this).SetAttribute(ChannelAttribute.Src, value); }
         }
 
