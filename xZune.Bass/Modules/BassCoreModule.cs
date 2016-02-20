@@ -102,6 +102,7 @@ namespace xZune.Bass.Modules
             AudioSampleModule.Current.InitializeModule();
             ModMusicModule.Current.InitializeModule();
             RecordModule.Current.InitializeModule();
+            EffectModule.Current.InitializeModule();
         }
 
         /// <exception cref="BassNotLoadedException">
@@ -148,6 +149,7 @@ namespace xZune.Bass.Modules
             AudioSampleModule.Current.FreeModule();
             ModMusicModule.Current.FreeModule();
             RecordModule.Current.FreeModule();
+            EffectModule.Current.FreeModule();
         }
     }
 }

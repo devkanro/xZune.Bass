@@ -85,7 +85,23 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 TimeSpan time = audioStream.Time;                                   
 ```
 
-**08.Free and release a channel.**
+**08.Effect of channel.**
+```CSharp
+// We support some effects of channel.
+// Effect need DirectX 8 support.
+
+// Create a effect. Effect will automatically add to Channel.Effects.
+ChorusEffect chorusEffect = new ChorusEffect(audioStream,0);            
+
+// Set parameters of effect.
+var parameters = new Dx8Chorus();
+chorusEffect.Parameters = parameters;
+
+// Remove effect.
+audioStream.RemoveEffect(chorusEffect);
+```
+
+**09.Free and release a channel.**
 ```CSharp
 // Every channel object is inherited form IDispose interface.
 // Use Dispose() method to release all resource of channel.
@@ -94,7 +110,7 @@ TimeSpan time = audioStream.Time;
 audioStream.Dispose();                               
 ```
 
-**09.Release Bass.**
+**10.Release Bass.**
 ```CSharp
 // Use BassManager to manage Bass.
 
@@ -117,7 +133,7 @@ BassManager.ReleaseAll();
 - [x] Effect module.
 - [x] Base interop module.
 
-### Player components (working in progress).
+### Player components (completed).
 - [x] Initializer wrapper.
 - [x] Stream wrapper.
 - [x] Channel wrapper.
@@ -126,10 +142,21 @@ BassManager.ReleaseAll();
 - [x] Record wrapper.
 - [x] Global configures wrapper.
 - [x] EAX wrapper.
-- [ ] Effect wrapper (working in progress).
+- [x] Effect wrapper.
 
-### Plug-in components (waiting).
-- [ ] Plug-in loader.
+### xZune.Bass.Player (working in progress).
+Provide "Player - Media" relationship APIs to manage audio media, and play it.  
+Like this:
+```
+AudioPlayer player = new AudioPlayer();
+player.Load(@"c:\test.mp3");
+player.Play();
+player.Stop();
+player.Load(@"c:\test2.xm");
+```
+
+### Plug-in components (working in progress).
+- [ ] Plug-in loader (working in progress).
 - [ ] BassFlac
 - [ ] BassApe
 - [ ] BassWma

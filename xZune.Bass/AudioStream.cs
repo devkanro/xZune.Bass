@@ -89,7 +89,7 @@ namespace xZune.Bass
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         public virtual int PutData(byte[] buffer)
         {
             CheckAvailable();
@@ -117,7 +117,7 @@ namespace xZune.Bass
         ///     Some error occur to call a Bass function, check the error code and error message
         ///     to get more error infomation.
         /// </exception>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         public UInt64 GetFilePosition(FilePositionMode mode)
         {
             CheckAvailable();
@@ -137,7 +137,7 @@ namespace xZune.Bass
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         protected override void Free()
         {
             CheckAvailable();

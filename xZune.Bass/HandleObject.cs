@@ -25,6 +25,20 @@ namespace xZune.Bass
             }
         }
 
+        /// <summary>
+        /// Check a handle object is available, if not a <see cref="NotAvailableException"/> will be throwed.
+        /// </summary>
+        /// <exception cref="NotAvailableException">Handle object is no longer available.</exception>
+        protected void CheckAvailable()
+        {
+            if (!IsAvailable) throw new NotAvailableException();
+        }
+
+        /// <summary>
+        /// The available status of a handle object. If a handle object is not available, every calling will case exception, but this.
+        /// </summary>
+        public bool IsAvailable { get; protected set; }
+
         #region IDisposable Support
 
         private bool disposedValue;

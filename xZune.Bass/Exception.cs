@@ -193,14 +193,14 @@ namespace xZune.Bass
     }
 
     /// <summary>
-    /// If you use a <see cref="Channel"/> after <see cref="Channel.Free"/>, this exception will be throwed.
+    /// If you use an unavailable <see cref="HandleObject"/>, this exception will be throwed.
     /// </summary>
-    public class ChannelNotAvailableException : BassException
+    public class NotAvailableException : BassException
     {
         /// <summary>
-        ///     Create a <see cref="ChannelNotAvailableException" />.
+        ///     Create a <see cref="NotAvailableException" />.
         /// </summary>
-        public ChannelNotAvailableException(): base("Channel object is no longer available.")
+        public NotAvailableException(): base("Handle object is no longer available.")
         {
 
         }

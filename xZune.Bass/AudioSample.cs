@@ -111,14 +111,9 @@ namespace xZune.Bass
         }
 
         /// <summary>
-        ///     The available status of a sample. If a sample is not available, every calling will case exception, but this.
-        /// </summary>
-        public bool IsAvailable { get; protected set; }
-
-        /// <summary>
         ///     Get or a sample's default attributes and other information.
         /// </summary>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
         ///     to get more error infomation.
@@ -151,7 +146,7 @@ namespace xZune.Bass
         ///     Get a copy of a sample's data, or set data to buffer of sample.
         /// </summary>
         /// <exception cref="InvalidSampleDataException" accessor="set">Invalid data for this sample.</exception>
-        /// <exception cref="ChannelNotAvailableException" accessor="get">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException" accessor="get">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException" accessor="get">
         ///     Some error occur to call a Bass function, check the error code and
         ///     error message to get more error infomation.
@@ -195,7 +190,7 @@ namespace xZune.Bass
         /// <summary>
         ///     Stops all channels instances of a sample.
         /// </summary>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
         ///     to get more error infomation.
@@ -216,7 +211,7 @@ namespace xZune.Bass
         /// </summary>
         /// <param name="recycle">Recycle on of the existing channels, then to create a new.</param>
         /// <returns>A playback channel of the sample.</returns>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
         ///     to get more error infomation.
@@ -239,7 +234,7 @@ namespace xZune.Bass
         ///     Get all a sample's existing channels.
         /// </summary>
         /// <returns>A array of this sample's channels.</returns>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
         ///     to get more error infomation.
@@ -271,15 +266,7 @@ namespace xZune.Bass
 
             return resultChannels.ToArray();
         }
-
-        /// <summary>
-        ///     Check a sample object is available, if not a <see cref="ChannelNotAvailableException" /> will be throwed.
-        /// </summary>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
-        protected void CheckAvailable()
-        {
-            if (!IsAvailable) throw new ChannelNotAvailableException();
-        }
+        
 
         protected override void ReleaseManaged()
         {
@@ -290,7 +277,7 @@ namespace xZune.Bass
             Free();
         }
 
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="Initialize" /> to load Bass DLL
         ///     first.

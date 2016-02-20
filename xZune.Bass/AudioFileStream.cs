@@ -30,7 +30,7 @@ namespace xZune.Bass
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
         ///     load Bass DLL first.
         /// </exception>
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         public override int PutData(byte[] buffer)
         {
             CheckAvailable();
