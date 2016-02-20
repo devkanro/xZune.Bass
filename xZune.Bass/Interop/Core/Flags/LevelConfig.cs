@@ -2,10 +2,14 @@
 // Filename: LevelConfig.cs
 // Version: 20160215
 
+using System;
+
 namespace xZune.Bass.Interop.Core.Flags
 {
+    [Flags]
     public enum LevelConfig
     {
+        None,
         /// <summary>
         ///     Get a mono level. If neither this or the <see cref="Stereo" /> flag is used, then a separate level is retrieved for
         ///     each channel.

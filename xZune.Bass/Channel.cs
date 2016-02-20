@@ -526,16 +526,125 @@ namespace xZune.Bass
             ChannelModule.ChannelLockFunction.CheckResult(ChannelModule.ChannelLockFunction.Delegate(Handle, false));
         }
 
-        protected abstract void Free();
-
-        #region -- IChannelInternal --
-
-        float[] IChannelInternal.GetLevelEx(LevelConfig config)
+        /// <summary>
+        /// Retrieves the level of a sample, stream, MOD music, or recording channel. 
+        /// </summary>
+        /// <param name="config">Level configure.</param>
+        /// <param name="length">The amount of data to inspect to calculate the level, in seconds. The maximum is 1 second. Less data than requested may be used if the full amount is not available, eg. if the channel's playback buffer is shorter. </param>
+        /// <returns>An array to receive the levels. </returns>
+        public float[] GetLevelEx(LevelConfig config, float length)
         {
             CheckAvailable();
 
-            throw new NotImplementedException();
+            float[] result = null;
+
+            if (config.HasFlag(LevelConfig.Mono))
+            {
+                result = new float[1];
+            }
+            else if (config.HasFlag(LevelConfig.Stereo))
+            {
+                result = new float[2];
+            }
+            else
+            {
+                result = new float[Infomation.Channels];
+            }
+
+            GCHandle resultHandle = GCHandle.Alloc(result, GCHandleType.Pinned);
+
+            ChannelModule.ChannelGetLevelExFunction.CheckResult(ChannelModule.ChannelGetLevelExFunction.Delegate(Handle, resultHandle.AddrOfPinnedObject(), length, config));
+
+            resultHandle.Free();
+
+            return result;
         }
+
+        /// <summary>
+        /// Get the 3D attributes of a sample, stream, or MOD music channel with 3D functionality. 
+        /// </summary>
+        /// <param name="mode">The 3D processing mode. </param>
+        /// <param name="min">The minimum distance. </param>
+        /// <param name="max">The maximum distance. </param>
+        /// <param name="iAngle">The angle of the inside projection cone. </param>
+        /// <param name="oAngle">The angle of the outside projection cone. </param>
+        /// <param name="outVloume">The delta-volume outside the outer projection cone. </param>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        public void Get3DAttribute(out Channel3DMode mode, out float min, out float max, out uint iAngle,
+            out uint oAngle, out float outVloume)
+        {
+            CheckAvailable();
+
+            mode = Channel3DMode.Normal;
+            min = 0;
+            max = 0;
+            iAngle = 0;
+            oAngle = 0;
+            outVloume = 0;
+
+            ChannelModule.ChannelGet3DAttributesFunction.CheckResult(ChannelModule.ChannelGet3DAttributesFunction.Delegate(Handle, ref mode, ref min, ref max, ref iAngle, ref oAngle, ref outVloume));
+        }
+
+        /// <summary>
+        /// Get the 3D position of a sample, stream, or MOD music channel with 3D functionality. 
+        /// </summary>
+        /// <param name="pos">Position of the sound.</param>
+        /// <param name="orientation">Orientation of the sound.</param>
+        /// <param name="vel">Velocity of the sound.</param>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        public void Get3DPosition(out Vector3 pos, out Vector3 orientation, out Vector3 vel)
+        {
+            CheckAvailable();
+
+            pos = new Vector3();
+            orientation = new Vector3();
+            vel = new Vector3();
+
+            ChannelModule.ChannelGet3DPositionFunction.CheckResult(ChannelModule.ChannelGet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
+        }
+
+        /// <summary>
+        /// Sets the 3D attributes of a sample, stream, or MOD music channel with 3D functionality. 
+        /// </summary>
+        /// <param name="mode">The 3D processing mode. </param>
+        /// <param name="min">The minimum distance. </param>
+        /// <param name="max">The maximum distance. </param>
+        /// <param name="iAngle">The angle of the inside projection cone. </param>
+        /// <param name="oAngle">The angle of the outside projection cone. </param>
+        /// <param name="outVloume">The delta-volume outside the outer projection cone. </param>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        public void Set3DAttribute(Channel3DMode mode, float min, float max, uint iAngle, uint oAngle, float outVloume)
+        {
+            CheckAvailable();
+
+            ChannelModule.ChannelSet3DAttributesFunction.CheckResult(ChannelModule.ChannelSet3DAttributesFunction.Delegate(Handle, mode, min, max, (int)iAngle, (int)oAngle, outVloume));
+        }
+
+        /// <summary>
+        /// Sets the 3D position of a sample, stream, or MOD music channel with 3D functionality. 
+        /// </summary>
+        /// <param name="pos">Position of the sound.</param>
+        /// <param name="orientation">Orientation of the sound.</param>
+        /// <param name="vel">Velocity of the sound.</param>
+        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
+        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
+        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        public void Set3DPosition(Vector3 pos, Vector3 orientation, Vector3 vel)
+        {
+            CheckAvailable();
+
+            ChannelModule.ChannelSet3DPositionFunction.CheckResult(ChannelModule.ChannelSet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
+        }
+
+        protected abstract void Free();
+
+        #region -- IChannelInternal --
 
         /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
@@ -574,42 +683,6 @@ namespace xZune.Bass
         /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
         /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
-        void IChannelInternal.Get3DAttribute(out Channel3DMode mode, out float min, out float max, out uint iAngle,
-            out uint oAngle, out float outVloume)
-        {
-            CheckAvailable();
-
-            // TODO: Check the null pointer.
-
-            mode = Channel3DMode.Normal;
-            min = 0;
-            max = 0;
-            iAngle = 0;
-            oAngle = 0;
-            outVloume = 0;
-
-            ChannelModule.ChannelGet3DAttributesFunction.CheckResult(ChannelModule.ChannelGet3DAttributesFunction.Delegate(Handle, ref mode, ref min, ref max, ref iAngle, ref oAngle, ref outVloume));
-        }
-
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
-        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
-        void IChannelInternal.Get3DPosition(out Vector3 pos, out Vector3 orientation, out Vector3 vel)
-        {
-            CheckAvailable();
-
-            // TODO: Check the null pointer.
-
-            pos = new Vector3();
-            orientation = new Vector3();
-            vel = new Vector3();
-
-            ChannelModule.ChannelGet3DPositionFunction.CheckResult(ChannelModule.ChannelGet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
-        }
-
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
-        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
         void IChannelInternal.SetAttribute(ChannelAttribute attribute, float value)
         {
             CheckAvailable();
@@ -629,26 +702,6 @@ namespace xZune.Bass
             ChannelModule.ChannelSetAttributeExFunction.CheckResult(ChannelModule.ChannelSetAttributeExFunction.Delegate(Handle, attribute, valueHandle.AddrOfPinnedObject(), (uint)value.Length));
 
             valueHandle.Free();
-        }
-
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
-        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
-        void IChannelInternal.Set3DAttribute(Channel3DMode mode, float min, float max, uint iAngle, uint oAngle, float outVloume)
-        {
-            CheckAvailable();
-
-            ChannelModule.ChannelSet3DAttributesFunction.CheckResult(ChannelModule.ChannelSet3DAttributesFunction.Delegate(Handle, mode, min, max, (int)iAngle, (int)oAngle, outVloume));
-        }
-
-        /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
-        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
-        void IChannelInternal.Set3DPosition(Vector3 pos, Vector3 orientation, Vector3 vel)
-        {
-            CheckAvailable();
-
-            ChannelModule.ChannelSet3DPositionFunction.CheckResult(ChannelModule.ChannelSet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
         }
 
         /// <exception cref="ChannelNotAvailableException">Channel object is no longer available.</exception>
@@ -718,6 +771,8 @@ namespace xZune.Bass
                 ChannelModule.ChannelGetTagsFunction.Delegate(Handle, type));
 
             return data;
+
+            // TODO: Return the tag value.
 
             switch (type)
             {

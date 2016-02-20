@@ -8,7 +8,7 @@ namespace xZune.Bass.Interop.Core.Flags
     /// </summary>
     public enum EaxEnvironment
     {
-        None = Internal.EaxEnvironment.None,
+        Current = Internal.EaxEnvironment.None,
         Generic = Internal.EaxEnvironment.Generic,
         PaddedCell = Internal.EaxEnvironment.PaddedCell,
         Room = Internal.EaxEnvironment.Room,

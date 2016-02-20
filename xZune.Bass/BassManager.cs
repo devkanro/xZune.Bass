@@ -45,9 +45,97 @@ namespace xZune.Bass
 
         #endregion ---- Bass library properties ----
 
-        #region ---- Bass Configures ----
+        #region ---- 3D&EAX Configures ----
 
+        public static EaxEnvironmentParameter EaxEnvironmentParameter
+        {
+            get
+            {
+                EaxEnvironmentParameter result = new EaxEnvironmentParameter();
 
+                BassCoreModule.GetEaxParametersFunction.CheckResult(BassCoreModule.GetEaxParametersFunction.Delegate(ref result.Environment,
+                ref result.Volume, ref result.Decay,ref result.Damp));
+
+                return result;
+            }
+
+            set
+            {
+                BassCoreModule.SetEaxParametersFunction.CheckResult(BassCoreModule.SetEaxParametersFunction.Delegate(value.Environment,
+                value.Volume, value.Decay, value.Damp));
+            }
+        }
+
+        /// <summary>
+        /// Applies changes made to the 3D system. 
+        /// </summary>
+        /// <remarks>
+        /// This function must be called to apply any changes made with <see cref="Set3DFactors"/>, <see cref="Set3DPosition"/>, <see cref="Channel.Set3DAttribute"/> or <see cref="Channel.Set3DPosition"/>. This allows multiple changes to be synchronized, and also improves performance. 
+        /// </remarks>
+        public static void Apply3DChanges()
+        {
+            BassCoreModule.Apply3DFunction.Delegate();
+        }
+
+        /// <summary>
+        /// Get the factors that affect the calculations of 3D sound. 
+        /// </summary>
+        /// <param name="distf">The distance factor.</param>
+        /// <param name="rollf">The rolloff factor.</param>
+        /// <param name="dollf">The doppler factor.</param>
+        public static void Get3DFactors(out float distf, out float rollf, out float dollf)
+        {
+            distf = 0;
+            rollf = 0;
+            dollf = 0;
+
+            BassCoreModule.Get3DFactorsFunction.CheckResult(BassCoreModule.Get3DFactorsFunction.Delegate(ref distf,
+                ref rollf, ref dollf));
+        }
+
+        /// <summary>
+        /// Set the factors that affect the calculations of 3D sound. 
+        /// </summary>
+        /// <param name="distf">The distance factor.</param>
+        /// <param name="rollf">The rolloff factor.</param>
+        /// <param name="dollf">The doppler factor.</param>
+        public static void Set3DFactors(float distf, float rollf, float dollf)
+        {
+            BassCoreModule.Set3DFactorsFunction.CheckResult(BassCoreModule.Set3DFactorsFunction.Delegate(distf,
+                 rollf, dollf));
+        }
+
+        /// <summary>
+        /// Get the position, velocity, and orientation of the listener. 
+        /// </summary>
+        /// <param name="pos">The position of the listener. </param>
+        /// <param name="vel">The listener's velocity.</param>
+        /// <param name="front">The direction that the listener's front is pointing.</param>
+        /// <param name="top">The direction that the listener's top is pointing.</param>
+        public static void Get3DPosition(out Vector3 pos, out Vector3 vel, out Vector3 front, out Vector3 top)
+        {
+            pos = new Vector3();
+            vel = new Vector3();
+            front = new Vector3();
+            top = new Vector3();
+
+            BassCoreModule.Get3DPositionFunction.CheckResult(BassCoreModule.Get3DPositionFunction.Delegate(ref pos,
+                ref vel, ref front, ref top));
+        }
+
+        /// <summary>
+        /// Set the position, velocity, and orientation of the listener. 
+        /// </summary>
+        /// <param name="pos">The position of the listener. </param>
+        /// <param name="vel">The listener's velocity.</param>
+        /// <param name="front">The direction that the listener's front is pointing.</param>
+        /// <param name="top">The direction that the listener's top is pointing.</param>
+        public static void Set3DPosition( Vector3 pos,  Vector3 vel,  Vector3 front,  Vector3 top)
+        {
+        
+            BassCoreModule.Set3DPositionFunction.CheckResult(BassCoreModule.Set3DPositionFunction.Delegate(ref pos,
+                ref vel, ref front, ref top));
+        }
 
         #endregion
 
@@ -189,6 +277,8 @@ namespace xZune.Bass
         {
             return BassCoreModule.GetDSoundObjectFunction.CheckResult(BassCoreModule.GetDSoundObjectFunction.Delegate(type));
         }
+
+
 
         /// <summary>
         ///     Retrieves the error code for the most recent Bass function call in the current thread.

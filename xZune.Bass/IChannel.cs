@@ -23,7 +23,7 @@ namespace xZune.Bass
 
         void Unlock();
 
-        float[] GetLevelEx(LevelConfig config);
+        float[] GetLevelEx(LevelConfig config, float length);
 
         float GetAttribute(ChannelAttribute attribute);
 

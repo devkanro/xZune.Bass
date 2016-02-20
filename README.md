@@ -125,9 +125,8 @@ BassManager.ReleaseAll();
 - [x] MOD music wrapper.
 - [x] Record wrapper.
 - [x] Global configures wrapper.
-- [ ] EAX wrapper (working in progress).
-- [ ] Effect wrapper.
-- [ ] Device wrapper.
+- [x] EAX wrapper.
+- [ ] Effect wrapper (working in progress).
 
 ### Plug-in components (waiting).
 - [ ] Plug-in loader.

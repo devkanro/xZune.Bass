@@ -51,7 +51,7 @@ namespace xZune.Bass.Interop.Core
     /// <remarks>
     ///     The use of EAX functions requires that the output device supports EAX. <see cref="GetInfo"/> can be used to check that. EAX
     ///     only affects 3D channels, but EAX functions do not require <see cref="Apply3D" /> to apply the changes.
-    ///     Presets are provided for all the EAX environments. To use a preset, simply call <see cref="SetEAXParameters" />(),
+    ///     Presets are provided for all the EAX environments. To use a preset, simply call <see cref="SetEaxParameters" />(),
     ///     where preset is one of the <see cref="PresetEaxEnvironment" />.
     ///     <para />
     ///     When using multiple devices, the current thread's device setting (as set with <see cref="SetDevice" />) determines
@@ -62,7 +62,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.InitializeFail, "Initialize() has not been successfully called.")]
     [BassError(ErrorCode.NoEAX, "The output device does not support EAX.")]
     [BassBooleanVerification]
-    public delegate bool SetEAXParameters(EaxEnvironment env, float vol, float decay, float damp);
+    public delegate bool SetEaxParameters(EaxEnvironment env, float vol, float decay, float damp);
 
     /// <summary>
     ///     Preset EAX environments.

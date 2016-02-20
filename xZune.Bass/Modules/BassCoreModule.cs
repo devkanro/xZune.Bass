@@ -38,10 +38,18 @@ namespace xZune.Bass.Modules
         internal static BassFunction<GetConfigPtr> GetConfigPtrFunction;
         internal static BassFunction<SetConfig> SetConfigFunction;
         internal static BassFunction<SetConfigPtr> SetConfigPtrFunction;
+        internal static BassFunction<Apply3D> Apply3DFunction;
+        internal static BassFunction<Get3DFactors> Get3DFactorsFunction;
+        internal static BassFunction<Get3DPosition> Get3DPositionFunction;
+        internal static BassFunction<Set3DFactors> Set3DFactorsFunction;
+        internal static BassFunction<Set3DPosition> Set3DPositionFunction;
+        internal static BassFunction<GetEaxParameters> GetEaxParametersFunction;
+        internal static BassFunction<SetEaxParameters> SetEaxParametersFunction;
+
 
         private BassCoreModule()
         {
-            
+
         }
 
         /// <exception cref="BassNotLoadedException">
@@ -78,6 +86,13 @@ namespace xZune.Bass.Modules
             GetConfigPtrFunction = new BassFunction<GetConfigPtr>();
             SetConfigFunction = new BassFunction<SetConfig>();
             SetConfigPtrFunction = new BassFunction<SetConfigPtr>();
+            Apply3DFunction = new BassFunction<Apply3D>();
+            Get3DFactorsFunction = new BassFunction<Get3DFactors>();
+            Get3DPositionFunction = new BassFunction<Get3DPosition>();
+            Set3DFactorsFunction = new BassFunction<Set3DFactors>();
+            Set3DPositionFunction = new BassFunction<Set3DPosition>();
+            GetEaxParametersFunction = new BassFunction<GetEaxParameters>();
+            SetEaxParametersFunction = new BassFunction<SetEaxParameters>();
 
             ModuleAvailable = true;
 
@@ -117,6 +132,13 @@ namespace xZune.Bass.Modules
             GetConfigPtrFunction = null;
             SetConfigFunction = null;
             SetConfigPtrFunction = null;
+            Apply3DFunction = null;
+            Get3DFactorsFunction = null;
+            Get3DPositionFunction = null;
+            Set3DFactorsFunction = null;
+            Set3DPositionFunction = null;
+            GetEaxParametersFunction = null;
+            SetEaxParametersFunction = null;
 
             ModuleAvailable = false;
 

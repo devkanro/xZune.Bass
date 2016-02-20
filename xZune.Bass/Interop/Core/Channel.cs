@@ -325,7 +325,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.BufferLost, "Should not happen... check that a valid window handle was used with Initialize()."
         )]
     [BassBooleanVerification]
-    public delegate bool ChannelGetLevelEx(IntPtr handle, ref float levels, float length, LevelConfig flags);
+    public delegate bool ChannelGetLevelEx(IntPtr handle, IntPtr levels, float length, LevelConfig flags);
 
     /// <summary>
     ///     Retrieves the playback position of a sample, stream, or MOD music. Can also be used with a recording channel.
