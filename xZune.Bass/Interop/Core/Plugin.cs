@@ -3,7 +3,7 @@
 // Version: 20160215
 
 using System;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 
 namespace xZune.Bass.Interop.Core
 {
@@ -19,7 +19,7 @@ namespace xZune.Bass.Interop.Core
     ///     freed too. Samples loaded by the plug-in are unaffected as the plug-in has nothing to do with them once they are
     ///     loaded; the sample data is already fully decoded.
     /// </remarks>
-    [BassFunction("BASS_plug-inFree")]
+    [BassFunction("BASS_PluginFree")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     [BassBooleanVerification]
     public delegate bool PluginFree(IntPtr handle);
@@ -37,7 +37,7 @@ namespace xZune.Bass.Interop.Core
     ///     The plug-in information does not change, so the returned pointer remains valid for as long as the plug-in is
     ///     loaded.
     /// </remarks>
-    [BassFunction("BASS_plug-inGetInfo")]
+    [BassFunction("BASS_PluginGetInfo")]
     [BassError(ErrorCode.BadHandle, "handle is not valid.")]
     public delegate IntPtr PluginGetInfo(IntPtr handle);
 

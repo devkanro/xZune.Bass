@@ -147,7 +147,7 @@ BassManager.ReleaseAll();
 ### xZune.Bass.Player (working in progress).
 Provide "Player - Media" relationship APIs to manage audio media, and play it.  
 Like this:
-```
+```CSharp
 AudioPlayer player = new AudioPlayer();
 player.Load(@"c:\test.mp3");
 player.Play();
@@ -156,8 +156,8 @@ player.Load(@"c:\test2.xm");
 ```
 
 ### Plug-in components (working in progress).
-- [ ] Plug-in loader (working in progress).
-- [ ] BassFlac
+- [x] Plug-in loader.
+- [ ] BassFlac (working in progress)
 - [ ] BassApe
 - [ ] BassWma
 - [ ] BassAac

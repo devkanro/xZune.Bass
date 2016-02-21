@@ -5,7 +5,7 @@
 using System;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 using xZune.Bass.Modules;
 
 namespace xZune.Bass

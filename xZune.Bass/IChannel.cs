@@ -4,8 +4,8 @@
 
 using System;
 using xZune.Bass.Interop.Core;
-using xZune.Bass.Interop.Core.Flags;
-using ChannelFlags = xZune.Bass.Interop.Core.Flags.ChannelFlags;
+using xZune.Bass.Interop.Flags;
+using ChannelFlags = xZune.Bass.Interop.Flags.ChannelFlags;
 
 namespace xZune.Bass
 {

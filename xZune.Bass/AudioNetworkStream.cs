@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 using xZune.Bass.Interop;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 using xZune.Bass.Modules;
 
 namespace xZune.Bass
@@ -50,25 +50,24 @@ namespace xZune.Bass
         public AudioNetworkStream(String url, StreamCreateUrlConfig configs, int offset, Stream saveStream)
         {
             configs |= StreamCreateUrlConfig.Unicode;
-
-            var urlHandle = InteropHelper.StringToPtr(url);
-
+            
             _saveStream = saveStream;
 
             try
             {
-                Handle =
-                    AudioStreamModule.StreamCreateUrlFunction.CheckResult(
-                        AudioStreamModule.StreamCreateUrlFunction.Delegate(urlHandle.AddrOfPinnedObject(),
-                            offset, configs, OnDownloadProcessing, IntPtr.Zero));
+                using (var urlHandle = InteropHelper.StringToPtr(url))
+                {
+                    Handle =
+                        AudioStreamModule.StreamCreateUrlFunction.CheckResult(
+                            AudioStreamModule.StreamCreateUrlFunction.Delegate(urlHandle.Handle,
+                                offset, configs, OnDownloadProcessing, IntPtr.Zero));
+                }
             }
             catch (Exception)
             {
                 _saveStream = null;
                 throw;
             }
-
-            urlHandle.Free();
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace xZune.Bass
     /// <typeparam name="T"></typeparam>
     public class ReadOnlyList<T> : IReadOnlyList<T>
     {
-        private T[] _array;
+        private List<T> _list;
 
         /// <summary>
         /// Create a readonly list with items.
@@ -26,7 +26,7 @@ namespace xZune.Bass
         /// <param name="list"></param>
         public ReadOnlyList(IEnumerable<T> list)
         {
-            _array = list.ToArray();
+            _list = list.ToList();
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace xZune.Bass
         /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
-            return (IEnumerator<T>)_array.GetEnumerator();
+            return (IEnumerator<T>)_list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -46,8 +46,8 @@ namespace xZune.Bass
         /// <summary>
         /// Get count of <see cref="ReadOnlyList{T}"/>.
         /// </summary>
-        public int Count => _array.Length;
+        public int Count => _list.Count;
 
-        public T this[int index] => _array[index];
+        public T this[int index] => _list[index];
     }
 }

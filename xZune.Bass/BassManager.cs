@@ -8,7 +8,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 using xZune.Bass.Modules;
 using Guid = xZune.Bass.Interop.Core.Guid;
 

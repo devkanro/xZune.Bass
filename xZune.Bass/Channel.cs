@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 using xZune.Bass.Modules;
-using ChannelFlags = xZune.Bass.Interop.Core.Flags.ChannelFlags;
+using ChannelFlags = xZune.Bass.Interop.Flags.ChannelFlags;
 
 namespace xZune.Bass
 {

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
 namespace xZune.Bass.Interop
@@ -104,10 +105,9 @@ namespace xZune.Bass.Interop
         /// </summary>
         /// <param name="str">string you need pinned</param>
         /// <returns>GCHandle of <see cref="String" />, you can call <see cref="GCHandle.AddrOfPinnedObject" /> to get pointer.</returns>
-        public static GCHandle StringToPtr(String str)
+        public static AutoFreeGCHandle StringToPtr(String str)
         {
-            var handle = GCHandle.Alloc(Encoding.Unicode.GetBytes(str), GCHandleType.Pinned);
-            return handle;
+            return new AutoFreeGCHandle(Encoding.Unicode.GetBytes(str));
         }
 
         /// <summary>

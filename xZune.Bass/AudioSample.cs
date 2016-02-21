@@ -9,7 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 using xZune.Bass.Modules;
 
 namespace xZune.Bass
@@ -69,13 +69,12 @@ namespace xZune.Bass
         {
             config |= SampleLoadConfig.Unicode;
 
-            var fileHandle = InteropHelper.StringToPtr(file);
-
-            Handle = AudioSampleModule.SampleLoadFunction.CheckResult(
-                AudioSampleModule.SampleLoadFunction.Delegate(false, fileHandle.AddrOfPinnedObject(), offset, length,
-                    max, config));
-
-            fileHandle.Free();
+            using (var fileHandle = InteropHelper.StringToPtr(file))
+            {
+                Handle = AudioSampleModule.SampleLoadFunction.CheckResult(
+                    AudioSampleModule.SampleLoadFunction.Delegate(false, fileHandle.Handle, offset, length,
+                        max, config));
+            }
         }
 
         /// <summary>

@@ -5,13 +5,13 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Interop;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 
 namespace xZune.Bass.Sample
 {
     public partial class MainWindow : Window
     {
-        private AudioNetworkStream networkStream;
+        private AudioFileStream fileStream;
 
         public MainWindow()
         {
@@ -19,13 +19,14 @@ namespace xZune.Bass.Sample
 
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None,
                 new WindowInteropHelper(this).Handle, null);
+            PluginManager.LoadPlugin(BassPlugin.BassFlac);
 
-            networkStream = new AudioNetworkStream("http://lounge-office.rautemusik.fm", StreamCreateUrlConfig.None);
+            fileStream = new AudioFileStream(@"E:\Music\乐园追放.OST\FLAC\31. EONIAN -English Ver.-.flac", StreamCreateFileConfig.None);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            networkStream.Play();
+            fileStream.Play();
         }
 
         private void Afs_StatusChanged(object sender, ChannelStatusChangedEventArgs args)
@@ -35,7 +36,7 @@ namespace xZune.Bass.Sample
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            networkStream.Stop();
+            fileStream.Stop();
         }
     }
 }

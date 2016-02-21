@@ -1,10 +1,11 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: BassFunction.cs
-// Version: 20160216
+// Version: 20160221
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.InteropServices;
 using xZune.Bass.Interop.Core;
 
@@ -16,27 +17,35 @@ namespace xZune.Bass.Interop
     /// <typeparam name="T"></typeparam>
     public class BassFunction<T>
     {
-        private readonly T _functionDelegate;
-        private readonly Dictionary<ErrorCode, BassErrorAttribute> _errorDictionary = new Dictionary<ErrorCode, BassErrorAttribute>();
+        private readonly Dictionary<ErrorCode, BassErrorAttribute> _errorDictionary =
+            new Dictionary<ErrorCode, BassErrorAttribute>();
 
-        /// <exception cref="NoBassFunctionAttributeException">Can't find <see cref="BassFunctionAttribute"/> in this Bass function.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        private readonly T _functionDelegate;
+
+        /// <exception cref="NoBassFunctionAttributeException">
+        ///     Can't find <see cref="BassFunctionAttribute" /> in this Bass
+        ///     function.
+        /// </exception>
+        /// <exception cref="BassNotLoadedException">
+        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
+        ///     load Bass DLL first.
+        /// </exception>
         /// <exception cref="TypeLoadException">A custom attribute type cannot be loaded. </exception>
         /// <exception cref="FunctionNotFoundException">Can't find this function in Bass DLL.</exception>
         public BassFunction()
         {
-            if(!BassManager.Available) throw new BassNotLoadedException();
+            if (!BassManager.Available) throw new BassNotLoadedException();
 
             IsEnable = false;
 
-            object[] attrs = typeof(T).GetCustomAttributes(typeof(BassAttribute), false);
+            object[] attrs = typeof (T).GetCustomAttributes(typeof (BassAttribute), false);
 
             List<BassErrorAttribute> errors = new List<BassErrorAttribute>();
             foreach (var item in attrs)
             {
                 if (item is BassErrorAttribute)
                 {
-                    _errorDictionary.Add(((BassErrorAttribute)item).ErrorCode, ((BassErrorAttribute)item));
+                    _errorDictionary.Add(((BassErrorAttribute) item).ErrorCode, ((BassErrorAttribute) item));
                     errors.Add(item as BassErrorAttribute);
                     continue;
                 }
@@ -47,10 +56,15 @@ namespace xZune.Bass.Interop
                     continue;
                 }
 
+                if (item is BassPluginAttribute)
+                {
+                    Plugin = item as BassPluginAttribute;
+                    continue;
+                }
+
                 if (item is BassVerificationAttribute)
                 {
                     Verifier = item as BassVerificationAttribute;
-                    continue;
                 }
             }
 
@@ -61,41 +75,63 @@ namespace xZune.Bass.Interop
                 throw new NoBassFunctionAttributeException();
             }
 
-            IntPtr procAddress;
+            IntPtr procAddress = IntPtr.Zero;
             try
             {
-                procAddress = Win32Api.GetProcAddress(BassManager.BassLibraryHandle,
-                    FunctionInfomation.FunctionName.Trim());
+                if (Plugin != null)
+                {
+                    var plugin = PluginManager.LoadedPlugins.First(p => p.PluginType == Plugin.Plugin);
+
+                    if (plugin != null)
+                    {
+                        procAddress = Win32Api.GetProcAddress(plugin.PluginLibraryHandle,
+                            FunctionInfomation.FunctionName.Trim());
+                    }
+                    else
+                    {
+                        throw new PluginNotLoadedException();
+                    }
+                }
+                else
+                {
+                    procAddress = Win32Api.GetProcAddress(BassManager.BassLibraryHandle,
+                        FunctionInfomation.FunctionName.Trim());
+                }
             }
             catch (Win32Exception e)
             {
                 throw new FunctionNotFoundException(FunctionInfomation, e);
             }
 
-            var del = Marshal.GetDelegateForFunctionPointer(procAddress, typeof(T));
-            _functionDelegate = (T)Convert.ChangeType(del, typeof(T));
+            var del = Marshal.GetDelegateForFunctionPointer(procAddress, typeof (T));
+            _functionDelegate = (T) Convert.ChangeType(del, typeof (T));
             IsEnable = true;
         }
 
         /// <summary>
         ///     Get this <see cref="BassFunction{T}" /> is available or not.
         /// </summary>
-        public bool IsEnable { get; private set; }
+        public bool IsEnable { get; }
 
         /// <summary>
         ///     Get infomation of <see cref="BassFunction{T}" />.
         /// </summary>
-        public BassFunctionAttribute FunctionInfomation { get; private set; }
+        public BassFunctionAttribute FunctionInfomation { get; }
 
         /// <summary>
         ///     Get error infomation of <see cref="BassFunction{T}" />.
         /// </summary>
-        public ReadOnlyList<BassErrorAttribute> ErrorAttributes { get; private set; }
+        public ReadOnlyList<BassErrorAttribute> ErrorAttributes { get; }
 
         /// <summary>
         ///     Get result verifier of <see cref="BassFunction{T}" />.
         /// </summary>
-        public BassVerificationAttribute Verifier { get; private set; }
+        public BassVerificationAttribute Verifier { get; }
+
+        /// <summary>
+        ///     Get plug-in infomation of <see cref="BassFunction{T}" />.
+        /// </summary>
+        public BassPluginAttribute Plugin { get; }
 
         /// <summary>
         ///     Get delegate of this <see cref="BassFunction{T}" />, if <see cref="IsEnable" /> is false, this method will throw
@@ -113,11 +149,19 @@ namespace xZune.Bass.Interop
         }
 
         /// <summary>
-        /// Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException"/>, check <see cref="BassErrorException.ErrorCode"/> and <see cref="BassErrorException.ErrorMessage"/> to get more infomation about error.
+        ///     Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException" />, check
+        ///     <see cref="BassErrorException.ErrorCode" /> and <see cref="BassErrorException.ErrorMessage" /> to get more
+        ///     infomation about error.
         /// </summary>
         /// <param name="result"></param>
-        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassErrorException">
+        ///     Some error occur to call a Bass function, check the error code and error message
+        ///     to get more error infomation.
+        /// </exception>
+        /// <exception cref="BassNotLoadedException">
+        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
+        ///     load Bass DLL first.
+        /// </exception>
         public object CheckResult(object result)
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
@@ -136,21 +180,26 @@ namespace xZune.Bass.Interop
             {
                 throw new BassErrorException(errorInfo);
             }
-            else
-            {
-                throw new BassErrorException(errorCode);
-            }
+            throw new BassErrorException(errorCode);
         }
 
         /// <summary>
-        /// Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException"/>, check <see cref="BassErrorException.ErrorCode"/> and <see cref="BassErrorException.ErrorMessage"/> to get more infomation about error.
+        ///     Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException" />, check
+        ///     <see cref="BassErrorException.ErrorCode" /> and <see cref="BassErrorException.ErrorMessage" /> to get more
+        ///     infomation about error.
         /// </summary>
         /// <param name="result"></param>
-        /// <exception cref="BassErrorException">Some error occur to call a Bass function, check the error code and error message to get more error infomation.</exception>
-        /// <exception cref="BassNotLoadedException">Bass DLL not loaded, you must use <see cref="BassManager.Initialize"/> to load Bass DLL first.</exception>
+        /// <exception cref="BassErrorException">
+        ///     Some error occur to call a Bass function, check the error code and error message
+        ///     to get more error infomation.
+        /// </exception>
+        /// <exception cref="BassNotLoadedException">
+        ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
+        ///     load Bass DLL first.
+        /// </exception>
         public T CheckResult<T>(T result)
         {
-            return (T)CheckResult((object)result);
+            return (T) CheckResult((object) result);
         }
     }
 }

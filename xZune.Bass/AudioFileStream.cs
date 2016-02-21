@@ -7,7 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 using xZune.Bass.Modules;
 
 namespace xZune.Bass
@@ -54,13 +54,13 @@ namespace xZune.Bass
         public AudioFileStream(String file, StreamCreateFileConfig configs, uint offset, uint length)
         {
             configs |= StreamCreateFileConfig.Unicode;
-            var fileNameHandle = InteropHelper.StringToPtr(file);
 
-            Handle = AudioStreamModule.StreamCreateFileFunction.CheckResult(
-                AudioStreamModule.StreamCreateFileFunction.Delegate(false,
-                    fileNameHandle.AddrOfPinnedObject(), offset, length, configs));
-
-            fileNameHandle.Free();
+            using (var fileNameHandle = InteropHelper.StringToPtr(file))
+            {
+                Handle = AudioStreamModule.StreamCreateFileFunction.CheckResult(
+                    AudioStreamModule.StreamCreateFileFunction.Delegate(false,
+                        fileNameHandle.Handle, offset, length, configs));
+            }
         }
 
         /// <summary>

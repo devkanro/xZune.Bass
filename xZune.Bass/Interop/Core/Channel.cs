@@ -3,7 +3,7 @@
 // Version: 20160216
 
 using System;
-using xZune.Bass.Interop.Core.Flags;
+using xZune.Bass.Interop.Flags;
 
 namespace xZune.Bass.Interop.Core
 {

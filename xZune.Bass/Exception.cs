@@ -5,6 +5,7 @@
 using System;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
+using xZune.Bass.Interop.Flags;
 
 namespace xZune.Bass
 {
@@ -55,6 +56,20 @@ namespace xZune.Bass
         /// </summary>
         public BassNotLoadedException()
             : base("Bass DLL not loaded, you must use BassManager.Initialize() to load Bass DLL first.")
+        {
+        }
+    }
+
+    /// <summary>
+    /// This is internal exception, it will not be throwed normal.
+    /// </summary>
+    public class PluginNotLoadedException : BassException
+    {
+        /// <summary>
+        ///     Create a <see cref="PluginNotLoadedException" />.
+        /// </summary>
+        public PluginNotLoadedException()
+            : base("Plug-in DLL not loaded, but you call some method to initialize plug-in module.")
         {
         }
     }
@@ -190,6 +205,25 @@ namespace xZune.Bass
         }
 
         public String BassLibraryDirectory { get; private set; }
+    }
+
+    /// <summary>
+    /// If we can't find plug-in DLL in your provided path, this exception will be throwed.
+    /// </summary>
+    public class BassPluginNotFoundException : BassException
+    {
+        /// <summary>
+        ///     Create a <see cref="xZune.Bass.BassLibraryNotFoundException" /> with Bass library directory path.
+        /// </summary>
+        public BassPluginNotFoundException(string bassPluginDirectory, BassPlugin plugin)
+            : base($"Can't find plug-in DLL, make sure there are {plugin} DLL in \"{bassPluginDirectory}\".")
+        {
+            BassPluginDirectory = bassPluginDirectory;
+            Plugin = plugin;
+        }
+
+        public String BassPluginDirectory { get; private set; }
+        public BassPlugin Plugin { get; private set; }
     }
 
     /// <summary>

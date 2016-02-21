@@ -3,6 +3,8 @@
 // Version: 20160216
 
 using System;
+using System.Linq;
+using System.Reflection;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
 
@@ -95,14 +97,17 @@ namespace xZune.Bass.Modules
             SetEaxParametersFunction = new BassFunction<SetEaxParameters>();
 
             ModuleAvailable = true;
-
-            // Other module initialization.
+            
             ChannelModule.Current.InitializeModule();
             AudioStreamModule.Current.InitializeModule();
             AudioSampleModule.Current.InitializeModule();
             ModMusicModule.Current.InitializeModule();
             RecordModule.Current.InitializeModule();
             EffectModule.Current.InitializeModule();
+            PluginModule.Current.InitializeModule();
+
+            BassModule plugin = null;
+            plugin = FlacModule.Current;
         }
 
         /// <exception cref="BassNotLoadedException">
@@ -150,6 +155,7 @@ namespace xZune.Bass.Modules
             ModMusicModule.Current.FreeModule();
             RecordModule.Current.FreeModule();
             EffectModule.Current.FreeModule();
+            PluginModule.Current.FreeModule();
         }
     }
 }
