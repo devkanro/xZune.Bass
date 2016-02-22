@@ -17,11 +17,13 @@ namespace xZune.Bass.Sample
         {
             InitializeComponent();
 
-            BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None,
+            BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig._3D,
                 new WindowInteropHelper(this).Handle, null);
+            var info = BassManager.Infomation;
+
             PluginManager.LoadPlugin(BassPlugin.BassFlac);
 
-            fileStream = new AudioFileStream(@"E:\Music\乐园追放.OST\FLAC\31. EONIAN -English Ver.-.flac", StreamCreateFileConfig.None);
+            fileStream = new AudioFileStream(@"E:\Music\CloudMusic\perfume -.mp3", StreamCreateFileConfig.None);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -78,6 +78,7 @@
     <Compile Include="Interop\Core\Effect.cs" />
     <Compile Include="Interop\Core\FileHandlers.cs" />
     <Compile Include="Interop\Flac\Flac.cs" />
+    <Compile Include="Interop\Flac\TagFlacPicture.cs" />
     <Compile Include="Interop\Flags\Bass3DAlgorithm.cs" />
     <Compile Include="Interop\Flags\BassPlugin.cs" />
     <Compile Include="Interop\Flags\Channel3DMode.cs" />

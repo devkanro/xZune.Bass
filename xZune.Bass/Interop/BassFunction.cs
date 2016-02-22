@@ -84,7 +84,7 @@ namespace xZune.Bass.Interop
 
                     if (plugin != null)
                     {
-                        procAddress = Win32Api.GetProcAddress(plugin.PluginLibraryHandle,
+                        procAddress = Win32Api.GetProcAddress(plugin.Handle,
                             FunctionInfomation.FunctionName.Trim());
                     }
                     else

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
+// Filename: AudioPlayer.cs
+// Version: 20160221
 
 namespace xZune.Bass.Player
 {

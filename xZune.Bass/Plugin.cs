@@ -21,13 +21,11 @@ namespace xZune.Bass
                 Handle = PluginModule.PluginLoadFunction.CheckResult(PluginModule.PluginLoadFunction.Delegate(pathHandle.Handle, PluginLoadConfig.Unicode));
                 PluginPath = pluginPath;
                 PluginType = plugin;
-                PluginLibraryHandle = Win32Api.LoadLibrary(pluginPath);
                 IsAvailable = true;
                 PluginManager.AddPlugin(this);
             }
         }
-
-        public IntPtr PluginLibraryHandle { get; private set; }
+        
         public String PluginPath { get; private set; }
         public BassPlugin PluginType { get; private set; }
 
@@ -39,8 +37,6 @@ namespace xZune.Bass
         protected override void ReleaseUnmanaged()
         {
             PluginManager.RemovePlugin(this);
-            Win32Api.FreeLibrary(PluginLibraryHandle);
-            PluginLibraryHandle = IntPtr.Zero;
             PluginModule.PluginFreeFunction.CheckResult(PluginModule.PluginFreeFunction.Delegate(Handle));
             Handle = IntPtr.Zero;
             IsAvailable = false;

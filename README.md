@@ -157,8 +157,8 @@ player.Load(@"c:\test2.xm");
 
 ### Plug-in components (working in progress).
 - [x] Plug-in loader.
-- [ ] BassFlac (working in progress)
-- [ ] BassApe
+- [x] BassFlac
+- [ ] BassApe (working in progress)
 - [ ] BassWma
 - [ ] BassAac
 - [ ] BassAlac
@@ -193,5 +193,5 @@ xZune.Vlc 是一个 LibVlc 封装库的 .NET 实现,封装了大部分的 LibVlc
 _xZune.Vlc is an LibVlc solution for .NET, it has encapsulated most of functionalities of LibVlc. This project aims to find a perfect solution for using Vlc on WPF. xZune.Vlc provides an native WPF control(xZune.Vlc.Wpf), this control achieves video playback by utilizing InteropBitmap and shared memory. Since it’s a native WPF control, it doesn't suffer from HwndHost’s airspace issue._  
 
 **[xZune.Visualizer](https://github.com/higankanshi/xZune.Visualizer)**  
- Zune 风格的音频可视化控件。
+ Zune 风格的音频可视化控件。  
 A Zune-like audio visualizer component 
