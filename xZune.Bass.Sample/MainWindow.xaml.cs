@@ -22,6 +22,7 @@ namespace xZune.Bass.Sample
             var info = BassManager.Infomation;
 
             PluginManager.LoadPlugin(BassPlugin.BassFlac);
+            PluginManager.LoadPlugin(BassPlugin.BassApe);
 
             fileStream = new AudioFileStream(@"E:\Music\CloudMusic\perfume -.mp3", StreamCreateFileConfig.None);
         }

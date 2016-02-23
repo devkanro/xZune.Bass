@@ -15,6 +15,10 @@ namespace xZune.Bass.Interop.Flags
         /// BassFlac plug-in.
         /// </summary>
         BassFlac,
+        /// <summary>
+        /// BassApe plug-in.
+        /// </summary>
+        BassApe,
     }
 
     /// <summary>
@@ -33,6 +37,8 @@ namespace xZune.Bass.Interop.Flags
             {
                 case BassPlugin.BassFlac:
                     return "bassflac.dll";
+                case BassPlugin.BassApe:
+                    return "bass_ape.dll";
                 default:
                     return null;
             }

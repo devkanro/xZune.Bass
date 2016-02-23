@@ -53,6 +53,7 @@
     <Compile Include="IFileStream.cs" />
     <Compile Include="IHandleObject.cs" />
     <Compile Include="IMusic.cs" />
+    <Compile Include="Interop\Ape\Ape.cs" />
     <Compile Include="Interop\BassAttribute.cs" />
     <Compile Include="Interop\BassErrorAttribute.cs" />
     <Compile Include="Interop\BassFunctionAttribute.cs" />
@@ -77,7 +78,12 @@
     <Compile Include="Interop\Core\EaxEnvironmentParameter.cs" />
     <Compile Include="Interop\Core\Effect.cs" />
     <Compile Include="Interop\Core\FileHandlers.cs" />
+    <Compile Include="Interop\Flac\AttachedPictureType.cs" />
     <Compile Include="Interop\Flac\Flac.cs" />
+    <Compile Include="Interop\Flac\FlacCueTrackType.cs" />
+    <Compile Include="Interop\Flac\TagFlacCue.cs" />
+    <Compile Include="Interop\Flac\TagFlacCueTrack.cs" />
+    <Compile Include="Interop\Flac\TagFlacCueTrackIndex.cs" />
     <Compile Include="Interop\Flac\TagFlacPicture.cs" />
     <Compile Include="Interop\Flags\Bass3DAlgorithm.cs" />
     <Compile Include="Interop\Flags\BassPlugin.cs" />
@@ -183,7 +189,8 @@
     <Compile Include="Modules\BassModule.cs" />
     <Compile Include="Modules\ChannelModule.cs" />
     <Compile Include="Modules\EffectModule.cs" />
-    <Compile Include="Modules\FlacModule.cs" />
+    <Compile Include="Modules\Plugins\ApeModule.cs" />
+    <Compile Include="Modules\Plugins\FlacModule.cs" />
     <Compile Include="Modules\ModMusicModule.cs" />
     <Compile Include="Modules\PluginModule.cs" />
     <Compile Include="Modules\RecordModule.cs" />
@@ -196,6 +203,7 @@
     <Compile Include="RecordManager.cs" />
     <Compile Include="SampleChannel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

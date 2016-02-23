@@ -63,7 +63,18 @@ namespace xZune.Bass.Interop.Flags
         ///     Media Foundation codec stream. Additional v format information is available from <see cref="ChannelGetTags" />
         /// </summary>
         StreamMf = Internal.ChannelType.StreamMf,
-
+        /// <summary>
+        /// Monkey's audio stream.
+        /// </summary>
+        StreamApe = Internal.ChannelType.StreamApe,
+        /// <summary>
+        /// Free Lossless Audio Codec stream.
+        /// </summary>
+        StreamFlac = Internal.ChannelType.StreamFlac,
+        /// <summary>
+        /// 
+        /// </summary>
+        StreamFlacOgg = Internal.ChannelType.StreamFlacOgg,
         /// <summary>
         ///     WAVE format flag. This can be used to test if the channel is any kind of WAVE format. The codec (the file's
         ///     "wFormatTag") is specified in the LOWORD. Additional information is also available

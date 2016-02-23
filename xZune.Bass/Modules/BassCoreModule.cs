@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using xZune.Bass.Interop;
 using xZune.Bass.Interop.Core;
+using xZune.Bass.Modules.Plugins;
 
 namespace xZune.Bass.Modules
 {

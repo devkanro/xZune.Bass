@@ -6,7 +6,7 @@ using xZune.Bass.Interop;
 using xZune.Bass.Interop.Flac;
 using xZune.Bass.Interop.Flags;
 
-namespace xZune.Bass.Modules
+namespace xZune.Bass.Modules.Plugins
 {
     public class FlacModule : BassModule
     {
