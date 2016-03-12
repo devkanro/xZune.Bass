@@ -158,8 +158,8 @@ player.Load(@"c:\test2.xm");
 ### Plug-in components (working in progress).
 - [x] Plug-in loader.
 - [x] BassFlac
-- [ ] BassApe (working in progress)
-- [ ] BassWma
+- [x] BassApe
+- [ ] BassWma (working in progress)
 - [ ] BassAac
 - [ ] BassAlac
 - [ ] BassTta

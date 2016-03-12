@@ -1,12 +1,15 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: SampleDataType.cs
-// Version: 20160215
+// Version: 20160312
+
+using System;
 
 namespace xZune.Bass.Interop.Flags
 {
     /// <summary>
     ///     Types of sample data.
     /// </summary>
+    [Flags]
     public enum SampleDataType : uint
     {
         /// <summary>

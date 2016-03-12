@@ -3,6 +3,7 @@
 // Version: 20160216
 
 using System;
+using System.Runtime.InteropServices;
 using xZune.Bass.Interop.Flags;
 
 namespace xZune.Bass.Interop.Core
@@ -200,7 +201,8 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.BufferLost, "Should not happen... check that a valid window handle was used with Initialize()."
         )]
     [BassInt32Verification]
-    public delegate int ChannelGetData(IntPtr handle, IntPtr buffer, SampleDataType length);
+    [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Auto)]
+    public delegate int ChannelGetData(IntPtr handle, float[] buffer, int length);
 
     /// <summary>
     ///     Retrieves the device that a channel is using.
