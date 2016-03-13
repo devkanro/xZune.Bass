@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: ErrorCode.cs
-// Version: 20160214
+// Version: 20160312
 
 namespace xZune.Bass.Interop.Core
 {
@@ -49,6 +49,13 @@ namespace xZune.Bass.Interop.Core
         CodecError = 44,
         Ended = 45,
         Busy = 46,
-        Unknown = -1
+        Unknown = -1,
+
+        WmaLicenseError = 1000,
+        WmaError = 1001,
+        Wm9Error = WmaError,
+        WmaDenied = 1002,
+        WmaIndividual = 1004,
+        WmaPubinit = 1005
     }
 }

@@ -1215,17 +1215,7 @@ namespace xZune.Bass
         public uint GetDate(IntPtr buffer, SampleDataType dataType)
         {
             CheckAvailable();
-            return 0;
-            //return (uint)ChannelModule.ChannelGetDataFunction.CheckResult(ChannelModule.ChannelGetDataFunction.Delegate(Handle, buffer, (int)dataType));
-        }
-
-        public uint GetDate(float[] buffer, SampleDataType dataType)
-        {
-            CheckAvailable();
-            return
-                (uint)
-                    ChannelModule.ChannelGetDataFunction.CheckResult(
-                        ChannelModule.ChannelGetDataFunction.Delegate(Handle, buffer, (int) dataType));
+            return (uint)ChannelModule.ChannelGetDataFunction.CheckResult(ChannelModule.ChannelGetDataFunction.Delegate(Handle, buffer, (int)dataType));
         }
 
         #endregion -- IChannelInternal --

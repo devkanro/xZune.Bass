@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: BassConfig.cs
-// Version: 20160219
+// Version: 20160313
 
 using System;
 using System.Runtime.InteropServices;
@@ -960,7 +960,7 @@ namespace xZune.Bass
         ///     <para />
         ///     The default setting is enabled. Changes only affect channels that are created afterwards, not any that already
         ///     exist. The latency and minbuf values in the <see cref="BassManager.Infomation" /> structure reflect the setting at
-        ///     the time of the device's <see cref="BassManager.Initialize" /> call.
+        ///     the time of the device's <see cref="Initialize" /> call.
         /// </remarks>
         public static bool IsVistaTruePositionModeEnable
         {
@@ -974,6 +974,103 @@ namespace xZune.Bass
             {
                 BassCoreModule.SetConfigFunction.CheckResult(
                     BassCoreModule.SetConfigFunction.Delegate(ConfigureType.VistaTruepos, value ? 1 : 0));
+            }
+        }
+
+        /// <summary>
+        ///     Have BASS handle the reading of WMA files?
+        /// </summary>
+        /// <remarks>
+        ///     By default, BASSWMA will let the Windows Media modules handle the reading of WMA files, which disables some
+        ///     features. The offset and length BASS_WMA_StreamCreateFile (and BASS_StreamCreateFile via the plug-in system)
+        ///     parameters are ignored. BASS_StreamGetFilePosition isn't fully supported. ID3 and ID3v2 tags aren't read (they
+        ///     shouldn't really be used in WMA files anyway).
+        ///     Using this configure option, BASS can be made to handle the WMA file reading instead, re-enabling the aforementioned
+        ///     features. There is a down side though, in that it's not possible to play WMA files while they are still being
+        ///     encoded.
+        ///     <para />
+        ///     BASS will only handle the reading of local WMA files. Internet files/streams will always be handled by the Windows
+        ///     Media modules, regardless of this configure setting.
+        ///     <para />
+        /// </remarks>
+        public static bool IsBassHandleWmaFile
+        {
+            get
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
+                    throw new PluginNotLoadedException(BassPlugin.BassWma);
+
+                return BassCoreModule.GetConfigFunction.CheckResult(
+                    BassCoreModule.GetConfigFunction.Delegate(ConfigureType.WmaBassfile)) != 0;
+            }
+
+            set
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
+                    throw new PluginNotLoadedException(BassPlugin.BassWma);
+
+                BassCoreModule.SetConfigFunction.CheckResult(
+                    BassCoreModule.SetConfigFunction.Delegate(ConfigureType.WmaBassfile, value ? 1 : 0));
+            }
+        }
+
+        /// <summary>
+        ///     Pre-buffer Internet streams during creation?
+        /// </summary>
+        /// <param name="prebuf">Pre-buffer Internet streams on creation? </param>
+        /// <remarks>
+        ///     The Windows Media modules must pre-buffer a stream before starting decoding/playback of it. This option determines
+        ///     whether the stream creation function (eg. BASS_WMA_StreamCreateFile) will wait for the pre-buffering to complete
+        ///     before returning. If playback of a stream is attempted before it has pre-buffered, it will stall and then resume
+        ///     once it has finished pre-buffering. The pre-buffering progress can be monitored via BASS_StreamGetFilePosition
+        ///     (BASS_FILEPOS_WMA_BUFFER).
+        ///     This option is disabled by default.
+        /// </remarks>
+        public static bool IsWmaPrebuffer
+        {
+            get
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
+                    throw new PluginNotLoadedException(BassPlugin.BassWma);
+
+                return BassCoreModule.GetConfigFunction.CheckResult(
+                    BassCoreModule.GetConfigFunction.Delegate(ConfigureType.WmaPrebuf)) != 0;
+            }
+
+            set
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
+                    throw new PluginNotLoadedException(BassPlugin.BassWma);
+
+                BassCoreModule.SetConfigFunction.CheckResult(
+                    BassCoreModule.SetConfigFunction.Delegate(ConfigureType.WmaPrebuf, value ? 1 : 0));
+            }
+        }
+
+        /// <summary>
+        ///     Play the audio from Windows Media Video (WMV) files?
+        /// </summary>
+        /// <remarks>
+        ///     This option is enabled by default, and applies both when using BASS_WMA_StreamCreateFile and the plug-in system.
+        /// </remarks>
+        public static bool AcceptWmaVideo
+        {
+            get
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
+                    throw new PluginNotLoadedException(BassPlugin.BassWma);
+
+                return BassCoreModule.GetConfigFunction.CheckResult(
+                    BassCoreModule.GetConfigFunction.Delegate(ConfigureType.WmaVideo)) != 0;
+            }
+
+            set
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
+                    throw new PluginNotLoadedException(BassPlugin.BassWma);
+
+                BassCoreModule.SetConfigFunction.CheckResult(
+                    BassCoreModule.SetConfigFunction.Delegate(ConfigureType.WmaVideo, value ? 1 : 0));
             }
         }
     }

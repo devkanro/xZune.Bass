@@ -201,8 +201,7 @@ namespace xZune.Bass.Interop.Core
     [BassError(ErrorCode.BufferLost, "Should not happen... check that a valid window handle was used with Initialize()."
         )]
     [BassInt32Verification]
-    [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Auto)]
-    public delegate int ChannelGetData(IntPtr handle, float[] buffer, int length);
+    public delegate int ChannelGetData(IntPtr handle, IntPtr buffer, int length);
 
     /// <summary>
     ///     Retrieves the device that a channel is using.

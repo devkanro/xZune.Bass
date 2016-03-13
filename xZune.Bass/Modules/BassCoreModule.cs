@@ -106,9 +106,6 @@ namespace xZune.Bass.Modules
             RecordModule.Current.InitializeModule();
             EffectModule.Current.InitializeModule();
             PluginModule.Current.InitializeModule();
-
-            BassModule plugin = null;
-            plugin = FlacModule.Current;
         }
 
         /// <exception cref="BassNotLoadedException">

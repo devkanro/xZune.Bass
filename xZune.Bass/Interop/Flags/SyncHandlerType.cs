@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: SyncHandlerType.cs
-// Version: 20160216
+// Version: 20160313
 
 using System;
 using xZune.Bass.Interop.Core;
@@ -116,6 +116,17 @@ namespace xZune.Bass.Interop.Flags
         /// <summary>
         ///     Call the sync only once, and then remove it from the channel.
         /// </summary>
-        Onetime = Internal.SyncHandlerType.Onetime
+        Onetime = Internal.SyncHandlerType.Onetime,
+
+        /// <summary>
+        ///     Sync when a mid-stream tag (script) is encountered in a WMA stream. The tag is available from
+        ///     <see cref="ChannelGetTags" /> (BASS_TAG_WMA_META).
+        /// </summary>
+        WmaChange = Internal.SyncHandlerType.WmaChange,
+
+        /// <summary>
+        ///     Sync on a track change in a server-side playlist. Updated tags are available via <see cref="ChannelGetTags" />.
+        /// </summary>
+        WmaMeta = Internal.SyncHandlerType.WmaMeta
     }
 }

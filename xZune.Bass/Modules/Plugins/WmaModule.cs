@@ -1,34 +1,35 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
-// Filename: ApeModule.cs
-// Version: 20160223
+// Filename: WmaModule.cs
+// Version: 20160313
 
 using xZune.Bass.Interop;
-using xZune.Bass.Interop.Ape;
 using xZune.Bass.Interop.Flags;
+using xZune.Bass.Interop.Wma;
 
 namespace xZune.Bass.Modules.Plugins
 {
-    public class ApeModule : BassModule
+    public class WmaModule : BassModule
     {
-        internal static BassFunction<ApeStreamCreateFile> ApeStreamCreateFileFunction;
-        internal static BassFunction<ApeStreamCreateFileUser> ApeStreamCreateFileUserFunction;
+        internal static BassFunction<WmaStreamCreateFile> WmaStreamCreateFileFunction;
+        internal static BassFunction<WmaStreamCreateFileAuth> WmaStreamCreateFileAuthFunction;
+        internal static BassFunction<WmaStreamCreateFileUser> WmaStreamCreateFileUserFunction;
 
-        static ApeModule()
+        static WmaModule()
         {
-            Current = new ApeModule();
+            Current = new WmaModule();
             PluginManager.PluginLoaded += OnPluginLoaded;
             PluginManager.PluginFreed += OnPluginFreed;
         }
 
-        private ApeModule()
+        private WmaModule()
         {
         }
 
-        public static ApeModule Current { get; }
+        public static WmaModule Current { get; }
 
         private static void OnPluginFreed(PluginEventArgs args)
         {
-            if (args.Plugin == BassPlugin.BassApe)
+            if (args.Plugin == BassPlugin.BassWma)
             {
                 Current.FreeModule();
             }
@@ -36,7 +37,7 @@ namespace xZune.Bass.Modules.Plugins
 
         private static void OnPluginLoaded(PluginEventArgs args)
         {
-            if (args.Plugin == BassPlugin.BassApe)
+            if (args.Plugin == BassPlugin.BassWma)
             {
                 Current.InitializeModule();
             }
@@ -46,8 +47,9 @@ namespace xZune.Bass.Modules.Plugins
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            ApeStreamCreateFileFunction = new BassFunction<ApeStreamCreateFile>();
-            ApeStreamCreateFileUserFunction = new BassFunction<ApeStreamCreateFileUser>();
+            WmaStreamCreateFileFunction = new BassFunction<WmaStreamCreateFile>();
+            WmaStreamCreateFileAuthFunction = new BassFunction<WmaStreamCreateFileAuth>();
+            WmaStreamCreateFileUserFunction = new BassFunction<WmaStreamCreateFileUser>();
 
             ModuleAvailable = true;
         }
@@ -56,8 +58,8 @@ namespace xZune.Bass.Modules.Plugins
         {
             if (!BassManager.Available) throw new BassNotLoadedException();
 
-            ApeStreamCreateFileFunction = null;
-            ApeStreamCreateFileUserFunction = null;
+            WmaStreamCreateFileFunction = null;
+            WmaStreamCreateFileUserFunction = null;
 
             ModuleAvailable = false;
         }

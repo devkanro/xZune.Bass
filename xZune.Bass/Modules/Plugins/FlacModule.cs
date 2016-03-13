@@ -17,8 +17,8 @@ namespace xZune.Bass.Modules.Plugins
         static FlacModule()
         {
             Current = new FlacModule();
-            PluginManager.PluginLoaded += PluginManagerPluginLoaded;
-            PluginManager.PluginFreed += PluginManagerPluginFreed;
+            PluginManager.PluginLoaded += OnPluginLoaded;
+            PluginManager.PluginFreed += OnPluginFreed;
         }
 
         private FlacModule()
@@ -27,7 +27,7 @@ namespace xZune.Bass.Modules.Plugins
 
         public static FlacModule Current { get; }
 
-        private static void PluginManagerPluginFreed(PluginFreedEventArgs args)
+        private static void OnPluginFreed(PluginEventArgs args)
         {
             if (args.Plugin == BassPlugin.BassFlac)
             {
@@ -35,7 +35,7 @@ namespace xZune.Bass.Modules.Plugins
             }
         }
 
-        private static void PluginManagerPluginLoaded(PluginLoadedEventArgs args)
+        private static void OnPluginLoaded(PluginEventArgs args)
         {
             if (args.Plugin == BassPlugin.BassFlac)
             {

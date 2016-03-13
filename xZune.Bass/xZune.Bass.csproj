@@ -176,8 +176,10 @@
     <Compile Include="Interop\Core\Vector3.cs" />
     <Compile Include="Interop\Core\Eax.cs" />
     <Compile Include="Interop\Flags\Internal\EaxEnvironment.cs" />
+    <Compile Include="Interop\Flags\WmaStreamCreateConfig.cs" />
     <Compile Include="Interop\InteropHelper.cs" />
     <Compile Include="Interop\Win32Api.cs" />
+    <Compile Include="Interop\Wma\Wma.cs" />
     <Compile Include="IRecord.cs" />
     <Compile Include="ISample.cs" />
     <Compile Include="ISampleChannel.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Modules\Plugins\FlacModule.cs" />
     <Compile Include="Modules\ModMusicModule.cs" />
     <Compile Include="Modules\PluginModule.cs" />
+    <Compile Include="Modules\Plugins\WmaModule.cs" />
     <Compile Include="Modules\RecordModule.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginManager.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="RecordingEventArgs.cs" />
     <Compile Include="RecordManager.cs" />
     <Compile Include="SampleChannel.cs" />
+    <Compile Include="Wma\WmaStream.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

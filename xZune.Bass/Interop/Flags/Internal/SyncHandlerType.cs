@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: SyncHandlerType.cs
-// Version: 20160215
+// Version: 20160313
 
 namespace xZune.Bass.Interop.Flags.Internal
 {
@@ -19,6 +19,9 @@ namespace xZune.Bass.Interop.Flags.Internal
         MusicFx = 3,
         OggChange = 12,
         Mixtime = 0x40000000,
-        Onetime = 0x80000000
+        Onetime = 0x80000000,
+
+        WmaChange = 0x10100,
+        WmaMeta = 0x10101
     }
 }

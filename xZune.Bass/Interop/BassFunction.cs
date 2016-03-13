@@ -80,7 +80,7 @@ namespace xZune.Bass.Interop
             {
                 if (Plugin != null)
                 {
-                    var plugin = PluginManager.LoadedPlugins.First(p => p.PluginType == Plugin.Plugin);
+                    var plugin = PluginManager.GetPlugin(Plugin.Plugin);
 
                     if (plugin != null)
                     {
@@ -89,7 +89,7 @@ namespace xZune.Bass.Interop
                     }
                     else
                     {
-                        throw new PluginNotLoadedException();
+                        throw new PluginNotLoadedException(Plugin.Plugin);
                     }
                 }
                 else

@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: ConfigureType.cs
-// Version: 20160215
+// Version: 20160313
 
 namespace xZune.Bass.Interop.Flags.Internal
 {
@@ -43,6 +43,12 @@ namespace xZune.Bass.Interop.Flags.Internal
         Airplay = 49,
         DevNonstop = 50,
         IosNocategory = 51,
-        VerifyNet = 52
+        VerifyNet = 52,
+        WmaPrecheck = 0x10100,
+        WmaPrebuf = 0x10101,
+        WmaBassfile = 0x10103,
+        WmaNetseek = 0x10104,
+        WmaVideo = 0x10105,
+        WmaBuftime = 0x10106
     }
 }

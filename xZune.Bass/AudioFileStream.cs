@@ -41,7 +41,7 @@ namespace xZune.Bass
                 AudioStreamModule.StreamPutFileDataFunction.Delegate(Handle, bufferHandle.AddrOfPinnedObject(),
                     buffer.Length));
         }
-        
+
         #region -- Creator --
 
         /// <summary>

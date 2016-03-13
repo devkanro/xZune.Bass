@@ -61,17 +61,23 @@ namespace xZune.Bass
     }
 
     /// <summary>
-    /// This is internal exception, it will not be throwed normal.
+    /// If you call some plug-in function, but it is not loaded, it will be throwed.
     /// </summary>
     public class PluginNotLoadedException : BassException
     {
         /// <summary>
         ///     Create a <see cref="PluginNotLoadedException" />.
         /// </summary>
-        public PluginNotLoadedException()
-            : base("Plug-in DLL not loaded, but you call some method to initialize plug-in module.")
+        public PluginNotLoadedException(BassPlugin requestedPluginType)
+            : base($"Plug-in not loaded, you should load \"{requestedPluginType}\" plug-in to use those functions.")
         {
+            RequestedPluginType = requestedPluginType;
         }
+
+        /// <summary>
+        /// Function requested Bass plug-in type.
+        /// </summary>
+        public BassPlugin RequestedPluginType { get; private set; }
     }
 
     /// <summary>

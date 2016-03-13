@@ -20,7 +20,7 @@ namespace xZune.Bass.Interop
         {
             FunctionName = functionName;
         }
-
+        
         /// <summary>
         ///     Name of Bass function.
         /// </summary>
