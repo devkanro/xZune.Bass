@@ -56,6 +56,8 @@ namespace xZune.Bass.Interop.Core
         Wm9Error = WmaError,
         WmaDenied = 1002,
         WmaIndividual = 1004,
-        WmaPubinit = 1005
+        WmaPubinit = 1005,
+
+        Mp4NoStream = 6000
     }
 }

@@ -977,6 +977,8 @@ namespace xZune.Bass
             }
         }
 
+        #region BassWma plug-in configures
+
         /// <summary>
         ///     Have BASS handle the reading of WMA files?
         /// </summary>
@@ -1073,5 +1075,83 @@ namespace xZune.Bass
                     BassCoreModule.SetConfigFunction.Delegate(ConfigureType.WmaVideo, value ? 1 : 0));
             }
         }
+
+        #endregion
+
+        #region BassAac plug-in configures
+
+        /// <summary>
+        /// Play the audio from MP4 videos.
+        /// </summary>
+        public static bool AcceptMp4Video
+        {
+            get
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassAac))
+                    throw new PluginNotLoadedException(BassPlugin.BassAac);
+
+                return BassCoreModule.GetConfigFunction.CheckResult(
+                    BassCoreModule.GetConfigFunction.Delegate(ConfigureType.Mp4Video)) != 0;
+            }
+
+            set
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassAac))
+                    throw new PluginNotLoadedException(BassPlugin.BassAac);
+
+                BassCoreModule.SetConfigFunction.CheckResult(
+                    BassCoreModule.SetConfigFunction.Delegate(ConfigureType.Mp4Video, value ? 1 : 0));
+            }
+        }
+
+        /// <summary>
+        /// Support MP4 in AAC functions (no need for MP4 functions).
+        /// </summary>
+        public static bool AccpetMp4InAacFunction
+        {
+            get
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassAac))
+                    throw new PluginNotLoadedException(BassPlugin.BassAac);
+
+                return BassCoreModule.GetConfigFunction.CheckResult(
+                    BassCoreModule.GetConfigFunction.Delegate(ConfigureType.AacMp4)) != 0;
+            }
+
+            set
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassAac))
+                    throw new PluginNotLoadedException(BassPlugin.BassAac);
+
+                BassCoreModule.SetConfigFunction.CheckResult(
+                    BassCoreModule.SetConfigFunction.Delegate(ConfigureType.AacMp4, value ? 1 : 0));
+            }
+        }
+
+        /// <summary>
+        /// Pre-scan ADTS AAC files for seek points and accurate length.
+        /// </summary>
+        public static bool IsPrescanAacEnable
+        {
+            get
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassAac))
+                    throw new PluginNotLoadedException(BassPlugin.BassAac);
+
+                return BassCoreModule.GetConfigFunction.CheckResult(
+                    BassCoreModule.GetConfigFunction.Delegate(ConfigureType.AacPrescan)) != 0;
+            }
+
+            set
+            {
+                if (!PluginManager.IsPluginLoaded(BassPlugin.BassAac))
+                    throw new PluginNotLoadedException(BassPlugin.BassAac);
+
+                BassCoreModule.SetConfigFunction.CheckResult(
+                    BassCoreModule.SetConfigFunction.Delegate(ConfigureType.AacPrescan, value ? 1 : 0));
+            }
+        }
+        #endregion
+        
     }
 }

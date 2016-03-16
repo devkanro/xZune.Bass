@@ -53,6 +53,8 @@
     <Compile Include="IFileStream.cs" />
     <Compile Include="IHandleObject.cs" />
     <Compile Include="IMusic.cs" />
+    <Compile Include="Interop\Aac\Aac.cs" />
+    <Compile Include="Interop\Flags\AacStreamConfig.cs" />
     <Compile Include="Interop\Ape\Ape.cs" />
     <Compile Include="Interop\BassAttribute.cs" />
     <Compile Include="Interop\BassErrorAttribute.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="Interop\Flac\TagFlacCueTrack.cs" />
     <Compile Include="Interop\Flac\TagFlacCueTrackIndex.cs" />
     <Compile Include="Interop\Flac\TagFlacPicture.cs" />
+    <Compile Include="Interop\Flags\AacStreamCreateFileUserConfig.cs" />
+    <Compile Include="Interop\Flags\AacStreamCreateUrlConfig.cs" />
     <Compile Include="Interop\Flags\Bass3DAlgorithm.cs" />
     <Compile Include="Interop\Flags\BassPlugin.cs" />
     <Compile Include="Interop\Flags\Channel3DMode.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="Interop\Flags\FilePositionMode.cs" />
     <Compile Include="Interop\Flags\FxType.cs" />
     <Compile Include="Interop\Flags\InitializationConfig.cs" />
+    <Compile Include="Interop\Flags\Internal\AacStreamConfig.cs" />
     <Compile Include="Interop\Flags\Internal\Bass3DAlgorithm .cs" />
     <Compile Include="Interop\Flags\Internal\Channel3DMode.cs" />
     <Compile Include="Interop\Flags\Internal\ChannelAttribute.cs" />
@@ -191,6 +196,7 @@
     <Compile Include="Modules\BassModule.cs" />
     <Compile Include="Modules\ChannelModule.cs" />
     <Compile Include="Modules\EffectModule.cs" />
+    <Compile Include="Modules\Plugins\AacModule.cs" />
     <Compile Include="Modules\Plugins\ApeModule.cs" />
     <Compile Include="Modules\Plugins\FlacModule.cs" />
     <Compile Include="Modules\ModMusicModule.cs" />

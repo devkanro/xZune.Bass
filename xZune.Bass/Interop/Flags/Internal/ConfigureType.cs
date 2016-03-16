@@ -49,6 +49,11 @@ namespace xZune.Bass.Interop.Flags.Internal
         WmaBassfile = 0x10103,
         WmaNetseek = 0x10104,
         WmaVideo = 0x10105,
-        WmaBuftime = 0x10106
+        WmaBuftime = 0x10106,
+
+        Mp4Video = 0x10700,
+        AacMp4 = 0x10701,
+        AacPrescan = 0x10702
+
     }
 }

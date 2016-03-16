@@ -180,6 +180,8 @@ namespace xZune.Bass.Interop.Flags
         /// </summary>
         VerifyNet = Internal.ConfigureType.VerifyNet,
 
+        #region BassWma plug-in configures
+
         WmaPrecheck = Internal.ConfigureType.WmaPrecheck,
 
         /// <summary>
@@ -199,6 +201,28 @@ namespace xZune.Bass.Interop.Flags
         /// </summary>
         WmaVideo = Internal.ConfigureType.WmaVideo,
 
-        WmaBuftime = Internal.ConfigureType.WmaBuftime
+        WmaBuftime = Internal.ConfigureType.WmaBuftime,
+
+        #endregion
+        
+        #region BassAac plug-in configures
+
+        /// <summary>
+        /// Play the audio from MP4 videos.
+        /// </summary>
+        Mp4Video = Internal.ConfigureType.Mp4Video,
+
+        /// <summary>
+        /// Support MP4 in AAC functions (no need for MP4 functions).
+        /// </summary>
+        AacMp4 = Internal.ConfigureType.AacMp4,
+
+        /// <summary>
+        /// Pre-scan ADTS AAC files for seek points and accurate length.
+        /// </summary>
+        AacPrescan = Internal.ConfigureType.AacPrescan
+
+        #endregion
+
     }
 }
