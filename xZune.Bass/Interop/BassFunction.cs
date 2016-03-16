@@ -5,14 +5,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
 using xZune.Bass.Interop.Core;
 
 namespace xZune.Bass.Interop
 {
     /// <summary>
-    ///     A dynamic mapper of LibVlc functions.
+    ///     A dynamic mapper of Bass functions.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class BassFunction<T>
