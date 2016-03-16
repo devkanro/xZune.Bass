@@ -118,7 +118,7 @@ namespace xZune.Bass
         /// </summary>
         /// <param name="stream">Stream to wrap.</param>
         /// <returns>Converted steam.</returns>
-        public static BassStream ToBassStream(this Stream stream)
+        public static BassStream AsBassStream(this Stream stream)
         {
             return new BassStream(stream);
         }

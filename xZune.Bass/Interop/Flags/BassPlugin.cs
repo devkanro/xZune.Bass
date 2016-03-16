@@ -30,7 +30,11 @@ namespace xZune.Bass.Interop.Flags
         /// <summary>
         /// BassAlac plug-in.
         /// </summary>
-        BassAlac
+        BassAlac,
+        /// <summary>
+        /// BassTta plug-in.
+        /// </summary>
+        BassTta,
     }
 
     /// <summary>
@@ -57,6 +61,8 @@ namespace xZune.Bass.Interop.Flags
                     return "bass_aac.dll";
                 case BassPlugin.BassAlac:
                     return "bassalac.dll";
+                case BassPlugin.BassTta:
+                    return "bass_tta.dll";
                 default:
                     return null;
             }

@@ -16,9 +16,6 @@ namespace xZune.Bass.Interop.Flags.Internal
         StreamAiff = 0x10006,
         StreamCa = 0x10007,
         StreamMf = 0x10008,
-        StreamApe = 0x10700,
-        StreamFlac = 0x10900,
-        StreamFlacOgg = 0x10901,
         StreamWav = 0x40000,
         StreamWavPcm = 0x50001,
         StreamWavFloat = 0x50003,
@@ -29,12 +26,19 @@ namespace xZune.Bass.Interop.Flags.Internal
         MusicIt = 0x20004,
         MusicMo3 = 0x00100,
 
+        StreamApe = 0x10700,
+
+        StreamFlac = 0x10900,
+        StreamFlacOgg = 0x10901,
+
         StreamWma = 0x10300,
         StreamWmaMp3 = 0x10301,
 
         StreamAac = 0x10b00,
         StreamMp4 = 0x10b01,
 
-        StreamAlac = 0x10e00
+        StreamAlac = 0x10e00,
+
+        StreamTta = 0x10f00
     }
 }

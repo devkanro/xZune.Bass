@@ -133,7 +133,7 @@ namespace xZune.Bass
         /// <param name="configs">Configure of <see cref="AudioFileStream" />.</param>
         /// <param name="systemType">File system to use.</param>
         public AudioFileStream(Stream stream, StreamCreateFileUserConfig configs,
-            StreamFileSystemType systemType) : this(stream.ToBassStream(), configs, systemType)
+            StreamFileSystemType systemType) : this(stream.AsBassStream(), configs, systemType)
         {
         }
 

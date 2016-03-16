@@ -147,6 +147,11 @@ namespace xZune.Bass.Interop.Flags
         /// <summary>
         ///     ALAC format stream.
         /// </summary>
-        StreamAlac = Internal.ChannelType.StreamAlac
+        StreamAlac = Internal.ChannelType.StreamAlac,
+
+        /// <summary>
+        ///     TTA format stream.
+        /// </summary>
+        StreamTta = Internal.ChannelType.StreamTta
     }
 }
