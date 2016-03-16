@@ -26,7 +26,7 @@ namespace xZune.Bass
         ///     Get or set 3D algorithm for software mixed 3D channels.
         /// </summary>
         /// <remarks>
-        ///     These algorithms only affect 3D channels that are being mixed in software. <see cref="Channel.Infomation" /> can be
+        ///     These algorithms only affect 3D channels that are being mixed in software. <see cref="Channel.Information" /> can be
         ///     used to check whether a channel is being software mixed.
         ///     <para />
         ///     Changing the algorithm only affects subsequently created or loaded samples, musics, or streams; it does not affect
@@ -111,7 +111,7 @@ namespace xZune.Bass
         ///     breaking-up on slower computers, but also increases the latency for DSP/FX.
         ///     <para />
         ///     Small buffer lengths are only required if the sound is going to be changing in real-time, for example, in a
-        ///     soft-synth. If you need to use a small buffer, then the min-buffer member of <see cref="BassManager.Infomation" />
+        ///     soft-synth. If you need to use a small buffer, then the min-buffer member of <see cref="BassManager.Information" />
         ///     should be used to get the recommended minimum buffer length supported by the device and its drivers. Even at this
         ///     default length, it's still possible that the sound could break up on some systems, it's also possible that smaller
         ///     buffers may be fine. So when using small buffers, you should have an option in your software for the user to
@@ -506,7 +506,7 @@ namespace xZune.Bass
         /// </summary>
         /// <remarks>
         ///     When enabled, BASS will process PLS and M3U playlists, trying each URL until it finds one that it can play.
-        ///     <see cref="Channel.Infomation" /> can be used to find out the URL that was successfully opened.
+        ///     <see cref="Channel.Information" /> can be used to find out the URL that was successfully opened.
         ///     <para />
         ///     Nested playlists are supported, that is a playlist can contain the URL of another playlist.
         ///     <para />
@@ -959,7 +959,7 @@ namespace xZune.Bass
         ///     non-mixtime syncs. When this option is enabled, it allows finer position reporting but it also increases latency.
         ///     <para />
         ///     The default setting is enabled. Changes only affect channels that are created afterwards, not any that already
-        ///     exist. The latency and minbuf values in the <see cref="BassManager.Infomation" /> structure reflect the setting at
+        ///     exist. The latency and minbuf values in the <see cref="BassManager.Information" /> structure reflect the setting at
         ///     the time of the device's <see cref="Initialize" /> call.
         /// </remarks>
         public static bool IsVistaTruePositionModeEnable

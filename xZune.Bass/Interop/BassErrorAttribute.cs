@@ -8,7 +8,7 @@ using xZune.Bass.Interop.Core;
 namespace xZune.Bass.Interop
 {
     /// <summary>
-    ///     A attribute class for get Bass function error infomation.
+    ///     A attribute class for get Bass function error information.
     /// </summary>
     [AttributeUsage(AttributeTargets.Delegate, AllowMultiple = true)]
     public class BassErrorAttribute : BassAttribute

@@ -311,7 +311,7 @@ namespace xZune.Bass
         /// <summary>
         ///     Get information on a channel.
         /// </summary>
-        public ChannelInfo Infomation
+        public ChannelInfo Information
         {
             get
             {
@@ -383,7 +383,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -409,7 +409,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -435,7 +435,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -483,7 +483,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -507,7 +507,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -546,7 +546,7 @@ namespace xZune.Bass
             }
             else
             {
-                result = new float[Infomation.Channels];
+                result = new float[Information.Channels];
             }
 
             GCHandle resultHandle = GCHandle.Alloc(result, GCHandleType.Pinned);
@@ -571,7 +571,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -603,7 +603,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -633,7 +633,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -657,7 +657,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -781,7 +781,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -802,7 +802,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -832,7 +832,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -849,7 +849,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -871,7 +871,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -889,7 +889,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -907,7 +907,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -924,7 +924,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -941,7 +941,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -958,7 +958,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1034,7 +1034,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1051,7 +1051,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1068,7 +1068,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1085,7 +1085,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1103,7 +1103,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1120,7 +1120,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1138,7 +1138,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1155,7 +1155,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1172,7 +1172,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1190,7 +1190,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1206,7 +1206,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -1224,7 +1224,7 @@ namespace xZune.Bass
     public delegate void PlaybackingEventHandler(object sender, PlaybackingEventArgs args);
 
     /// <summary>
-    ///     Some infomation of playback, you can get sample data and change it.
+    ///     Some information of playback, you can get sample data and change it.
     /// </summary>
     public class PlaybackingEventArgs : EventArgs
     {
@@ -1250,7 +1250,7 @@ namespace xZune.Bass
     public delegate void PositionSetEventHandler(object sender, PositionSetEventArgs args);
 
     /// <summary>
-    ///     Some infomation of position set event.
+    ///     Some information of position set event.
     /// </summary>
     public class PositionSetEventArgs : EventArgs
     {
@@ -1268,7 +1268,7 @@ namespace xZune.Bass
     public delegate void PropertyAnimationCompletedEventHandler(object sender, PropertyAnimationCompletedEventArgs args);
 
     /// <summary>
-    ///     Some infomation of property animation completed event.
+    ///     Some information of property animation completed event.
     /// </summary>
     public class PropertyAnimationCompletedEventArgs : EventArgs
     {
@@ -1286,7 +1286,7 @@ namespace xZune.Bass
     public delegate void ChannelStatusChangedEventHandler(object sender, ChannelStatusChangedEventArgs args);
 
     /// <summary>
-    ///     Some infomation of channel status changed event.
+    ///     Some information of channel status changed event.
     /// </summary>
     public class ChannelStatusChangedEventArgs : EventArgs
     {

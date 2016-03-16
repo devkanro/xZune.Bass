@@ -19,7 +19,7 @@ namespace xZune.Bass.Sample
 
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig._3D,
                 new WindowInteropHelper(this).Handle, null);
-            var info = BassManager.Infomation;
+            var info = BassManager.Information;
 
             PluginManager.LoadPlugin(BassPlugin.BassFlac);
             PluginManager.LoadPlugin(BassPlugin.BassApe);

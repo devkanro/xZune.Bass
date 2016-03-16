@@ -62,7 +62,7 @@ namespace xZune.Bass
     {
         int Device { get; set; }
 
-        ChannelInfo Infomation { get; }
+        ChannelInfo Information { get; }
 
         uint Level { get; }
 

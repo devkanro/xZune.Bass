@@ -218,7 +218,7 @@ namespace xZune.Bass.Wma
             if (!PluginManager.IsPluginLoaded(BassPlugin.BassWma))
                 throw new PluginNotLoadedException(BassPlugin.BassWma);
 
-            switch (audioStream.Infomation.Type)
+            switch (audioStream.Information.Type)
             {
                 case ChannelType.StreamWma:
                 case ChannelType.StreamWmaMp3:

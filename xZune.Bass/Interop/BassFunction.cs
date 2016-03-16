@@ -114,12 +114,12 @@ namespace xZune.Bass.Interop
         public bool IsEnable { get; }
 
         /// <summary>
-        ///     Get infomation of <see cref="BassFunction{T}" />.
+        ///     Get information of <see cref="BassFunction{T}" />.
         /// </summary>
         public BassFunctionAttribute FunctionInfomation { get; }
 
         /// <summary>
-        ///     Get error infomation of <see cref="BassFunction{T}" />.
+        ///     Get error information of <see cref="BassFunction{T}" />.
         /// </summary>
         public ReadOnlyList<BassErrorAttribute> ErrorAttributes { get; }
 
@@ -129,7 +129,7 @@ namespace xZune.Bass.Interop
         public BassVerificationAttribute Verifier { get; }
 
         /// <summary>
-        ///     Get plug-in infomation of <see cref="BassFunction{T}" />.
+        ///     Get plug-in information of <see cref="BassFunction{T}" />.
         /// </summary>
         public BassPluginAttribute Plugin { get; }
 
@@ -151,12 +151,12 @@ namespace xZune.Bass.Interop
         /// <summary>
         ///     Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException" />, check
         ///     <see cref="BassErrorException.ErrorCode" /> and <see cref="BassErrorException.ErrorMessage" /> to get more
-        ///     infomation about error.
+        ///     information about error.
         /// </summary>
         /// <param name="result"></param>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to
@@ -186,12 +186,12 @@ namespace xZune.Bass.Interop
         /// <summary>
         ///     Check the result of this function, if something go wrong, it will throw <see cref="BassErrorException" />, check
         ///     <see cref="BassErrorException.ErrorCode" /> and <see cref="BassErrorException.ErrorMessage" /> to get more
-        ///     infomation about error.
+        ///     information about error.
         /// </summary>
         /// <param name="result"></param>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to

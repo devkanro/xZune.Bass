@@ -7,7 +7,7 @@ using System;
 namespace xZune.Bass
 {
     /// <summary>
-    ///     Some infomation of recording.
+    ///     Some information of recording.
     /// </summary>
     public class RecordingEventArgs : EventArgs
     {

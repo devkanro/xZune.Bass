@@ -42,7 +42,7 @@ namespace xZune.Bass
         /// </exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         public AudioSample(uint length, uint freq, uint channels, uint max, SampleConfig config) : this()
         {
@@ -115,13 +115,13 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="Initialize" /> to load Bass DLL
         ///     first.
         /// </exception>
-        public SampleInfo Infomation
+        public SampleInfo Information
         {
             get
             {
@@ -148,7 +148,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException" accessor="get">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException" accessor="get">
         ///     Some error occur to call a Bass function, check the error code and
-        ///     error message to get more error infomation.
+        ///     error message to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException" accessor="get">
         ///     Bass DLL not loaded, you must use <see cref="Initialize" /> to
@@ -160,7 +160,7 @@ namespace xZune.Bass
             {
                 CheckAvailable();
 
-                byte[] result = new byte[Infomation.Length];
+                byte[] result = new byte[Information.Length];
                 GCHandle resultHandle = GCHandle.Alloc(result, GCHandleType.Pinned);
 
                 AudioSampleModule.SampleGetDataFunction.CheckResult(
@@ -173,7 +173,7 @@ namespace xZune.Bass
             {
                 CheckAvailable();
 
-                var info = Infomation;
+                var info = Information;
                 if (info.Length != value.Length)
                 {
                     throw new InvalidSampleDataException((uint) value.Length, info.Length);
@@ -192,7 +192,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="Initialize" /> to load Bass DLL
@@ -213,7 +213,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="Initialize" /> to load Bass DLL
@@ -236,7 +236,7 @@ namespace xZune.Bass
         /// <exception cref="NotAvailableException">Channel object is no longer available.</exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="Initialize" /> to load Bass DLL
@@ -283,7 +283,7 @@ namespace xZune.Bass
         /// </exception>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         protected void Free()
         {

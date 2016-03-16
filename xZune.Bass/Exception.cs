@@ -41,7 +41,7 @@ namespace xZune.Bass
         ///     Create a <see cref="NoBassFunctionAttributeException" />.
         /// </summary>
         public NoBassFunctionAttributeException()
-            : base("For BassFunction, need BassFunctionAttribute to get Infomation of function.")
+            : base("For BassFunction, need BassFunctionAttribute to get Information of function.")
         {
         }
     }
@@ -87,18 +87,18 @@ namespace xZune.Bass
     public class FunctionNotFoundException : BassException
     {
         /// <summary>
-        ///     Create a  <see cref="FunctionNotFoundException" /> with function's infomation.
+        ///     Create a  <see cref="FunctionNotFoundException" /> with function's information.
         /// </summary>
-        /// <param name="functionInfo">infomation of function</param>
+        /// <param name="functionInfo">information of function</param>
         public FunctionNotFoundException(BassFunctionAttribute functionInfo)
             : this(functionInfo, null)
         {
         }
 
         /// <summary>
-        ///     Create a  <see cref="FunctionNotFoundException" /> with function's infomation and a inner exception.
+        ///     Create a  <see cref="FunctionNotFoundException" /> with function's information and a inner exception.
         /// </summary>
-        /// <param name="functionInfo">infomation of function</param>
+        /// <param name="functionInfo">information of function</param>
         /// <param name="innerException">inner exception</param>
         public FunctionNotFoundException(BassFunctionAttribute functionInfo,
             Exception innerException)
@@ -108,21 +108,21 @@ namespace xZune.Bass
         }
 
         /// <summary>
-        ///     Infomation of function what not found.
+        ///     Information of function what not found.
         /// </summary>
         public BassFunctionAttribute FunctionInfomation { get; private set; }
     }
 
     /// <summary>
-    /// If a function result can't be verified, this exception will be throwed. You can check the error code and error message to get error infomation. 
+    /// If a function result can't be verified, this exception will be throwed. You can check the error code and error message to get error information. 
     /// </summary>
     public class BassErrorException : BassException
     {
 
         /// <summary>
-        /// Create a <see cref="BassErrorException"/> with a error infomation.
+        /// Create a <see cref="BassErrorException"/> with a error information.
         /// </summary>
-        /// <param name="errorInfo">Error infomation.</param>
+        /// <param name="errorInfo">Error information.</param>
         public BassErrorException(BassErrorAttribute errorInfo) : this(errorInfo.ErrorCode, errorInfo.ErrorMessage)
         {
         }
@@ -248,7 +248,7 @@ namespace xZune.Bass
 
 
     /// <summary>
-    /// If you set a invalid data to a sample, this exception will be throwed, check the length of <see cref="AudioSample.Infomation"/> and your data.
+    /// If you set a invalid data to a sample, this exception will be throwed, check the length of <see cref="AudioSample.Information"/> and your data.
     /// </summary>
     public class InvalidSampleDataException : BassException
     {

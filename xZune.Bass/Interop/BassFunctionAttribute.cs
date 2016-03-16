@@ -7,7 +7,7 @@ using System;
 namespace xZune.Bass.Interop
 {
     /// <summary>
-    ///     A attribute class of Bass function infomation.
+    ///     A attribute class of Bass function information.
     /// </summary>
     [AttributeUsage(AttributeTargets.Delegate)]
     public class BassFunctionAttribute : BassAttribute

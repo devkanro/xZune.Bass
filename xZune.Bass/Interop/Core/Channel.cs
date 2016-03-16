@@ -820,7 +820,7 @@ namespace xZune.Bass.Interop.Core
     ///     <see cref="StreamCreateFileConfig.Prescan" /> flag, and can be used to delay the scanning until after the stream
     ///     has been created. When a position beyond the end is requested, the call will fail (BASS_ERROR_POSITION error code)
     ///     but the seek table and exact length will have been scanned. When a file has been scanned, all seeking (even without
-    ///     the BASS_POS_SCAN flag) within the scanned part of it will use the scanned infomation.
+    ///     the BASS_POS_SCAN flag) within the scanned part of it will use the scanned information.
     ///     <para />
     /// </remarks>
     [BassFunction("BASS_ChannelSetPosition")]

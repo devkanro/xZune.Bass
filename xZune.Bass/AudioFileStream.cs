@@ -24,7 +24,7 @@ namespace xZune.Bass
         /// <returns>The number of bytes read from buffer.</returns>
         /// <exception cref="BassErrorException">
         ///     Some error occur to call a Bass function, check the error code and error message
-        ///     to get more error infomation.
+        ///     to get more error information.
         /// </exception>
         /// <exception cref="BassNotLoadedException">
         ///     Bass DLL not loaded, you must use <see cref="BassManager.Initialize" /> to

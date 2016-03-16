@@ -7,7 +7,7 @@ using xZune.Bass.Interop.Flags;
 namespace xZune.Bass.Interop
 {
     /// <summary>
-    ///     A attribute class of Bass plug-in function infomation.
+    ///     A attribute class of Bass plug-in function information.
     /// </summary>
     public class BassPluginAttribute : BassAttribute
     {

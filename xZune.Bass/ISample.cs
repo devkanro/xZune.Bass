@@ -11,7 +11,7 @@ namespace xZune.Bass
     /// </summary>
     public interface ISample
     {
-        SampleInfo Infomation { get; set; }
+        SampleInfo Information { get; set; }
 
         byte[] Data { get; set; }
 

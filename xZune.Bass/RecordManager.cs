@@ -54,7 +54,7 @@ namespace xZune.Bass
         ///     Get information on a recording device.
         /// </summary>
         /// <param name="device">The device to get the information of... 0 = first. </param>
-        /// <returns>Infomation of device.</returns>
+        /// <returns>Information of device.</returns>
         public static DeviceInfo GetDeviceInfomation(int device)
         {
             DeviceInfo result = new DeviceInfo();

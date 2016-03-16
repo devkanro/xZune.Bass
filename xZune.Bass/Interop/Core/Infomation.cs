@@ -1,5 +1,5 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
-// Filename: Infomation.cs
+// Filename: Information.cs
 // Version: 20160215
 
 using System;
