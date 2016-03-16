@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: ChannelType.cs
-// Version: 20160313
+// Version: 20160316
 
 namespace xZune.Bass.Interop.Flags.Internal
 {
@@ -28,7 +28,13 @@ namespace xZune.Bass.Interop.Flags.Internal
         MusicXm = 0x20003,
         MusicIt = 0x20004,
         MusicMo3 = 0x00100,
+
         StreamWma = 0x10300,
-        StreamWmaMp3 = 0x10301
+        StreamWmaMp3 = 0x10301,
+
+        StreamAac = 0x10b00,
+        StreamMp4 = 0x10b01,
+
+        StreamAlac = 0x10e00
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Bass", "xZune.Bass\xZune.Bass.csproj", "{A94BDD27-2C0D-4BCD-857D-8516743B1EA5}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Bass.Sample", "xZune.Bass.Sample\xZune.Bass.Sample.csproj", "{12772962-8890-4583-991E-ADEC56F0866F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Bass.Player", "xZune.Bass.Player\xZune.Bass.Player.csproj", "{476C5537-222F-458F-A2BB-9FA22C667C81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{549A0257-8DB0-4B42-BF20-7F2A1A21E7B4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

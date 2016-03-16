@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: ChannelType.cs
-// Version: 20160313
+// Version: 20160316
 
 using System;
 using xZune.Bass.Interop.Core;
@@ -132,6 +132,21 @@ namespace xZune.Bass.Interop.Flags
         /// <summary>
         ///     Wma mp3 format stream.
         /// </summary>
-        StreamWmaMp3 = Internal.ChannelType.StreamWmaMp3
+        StreamWmaMp3 = Internal.ChannelType.StreamWmaMp3,
+
+        /// <summary>
+        ///     AAC format stream.
+        /// </summary>
+        StreamAac = Internal.ChannelType.StreamAac,
+
+        /// <summary>
+        ///     AAC in MP4 format stream.
+        /// </summary>
+        StreamMp4 = Internal.ChannelType.StreamMp4,
+
+        /// <summary>
+        ///     ALAC format stream.
+        /// </summary>
+        StreamAlac = Internal.ChannelType.StreamAlac
     }
 }

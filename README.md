@@ -160,9 +160,9 @@ player.Load(@"c:\test2.xm");
 - [x] BassFlac
 - [x] BassApe
 - [x] BassWma
-- [ ] BassAac (working in progress)
-- [ ] BassAlac
-- [ ] BassTta
+- [x] BassAac
+- [x] BassAlac
+- [ ] BassTta (working in progress)
 - [ ] BassAc3
 - [ ] BassTags
 - [ ] BassMidi
