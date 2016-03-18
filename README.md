@@ -166,10 +166,10 @@ xZune.Bass.Tag
 TagsLibManager.Initialize();
 
 // Initialize TagsLib with a directory, we will automatically find TagsLib.dll.
-PluginManager.LoadPlugin(BassPlugin.BassFlac, @"c:\bass library\");
+TagsLibManager.Initialize(@"c:\bass library\");
 
 // Initialize TagsLib with a file, we will load your provided file.
-PluginManager.LoadPlugin(BassPlugin.BassFlac, @"c:\bass library\bassflac.dll");
+TagsLibManager.Initialize(@"c:\bass library\TagsLib.dll");
 ```
 
 **03.Create a TagsManager.**  
