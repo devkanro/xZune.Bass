@@ -1,5 +1,5 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
-// Filename: ID3v2TagEx.cs
+// Filename: MP4TagEx.cs
 // Version: 20160316
 
 using System;
@@ -8,14 +8,15 @@ using System.Runtime.InteropServices;
 namespace xZune.Bass.Tag.Interop.Core
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct ID3v2TagEx
+    public struct MP4Tag
     {
         private IntPtr _namePtr;
         private IntPtr _valuePtr;
         private int _valueSize;
-        private IntPtr _languagePtr;
-        private IntPtr _descriptionPtr;
-        private ID3v2TagType _type;
+        private IntPtr _nameValuePtr;
+        private IntPtr _meanValuePtr;
+        private MP4TagType _type;
+        private int _dataType;
         private int _index;
 
         public string Name
@@ -36,33 +37,35 @@ namespace xZune.Bass.Tag.Interop.Core
                 if (_valuePtr == IntPtr.Zero)
                     return null;
                 else
-                    return Marshal.PtrToStringAuto(_valuePtr, _valueSize);
+                    return Marshal.PtrToStringAuto(_valuePtr);
             }
         }
 
-        public string Language
+        public string NameValue
         {
             get
             {
-                if (_languagePtr == IntPtr.Zero)
+                if (_nameValuePtr == IntPtr.Zero)
                     return null;
                 else
-                    return Marshal.PtrToStringAuto(_languagePtr);
+                    return Marshal.PtrToStringAuto(_nameValuePtr);
             }
         }
 
-        public string Description
+        public string MeanValue
         {
             get
             {
-                if (_descriptionPtr == IntPtr.Zero)
+                if (_meanValuePtr == IntPtr.Zero)
                     return null;
                 else
-                    return Marshal.PtrToStringAuto(_descriptionPtr);
+                    return Marshal.PtrToStringAuto(_meanValuePtr);
             }
         }
-        
-        public ID3v2TagType Type => _type;
+
+        public MP4TagType Type => _type;
+
+        public int DateType => _dataType;
 
         public int Index => _index;
     }

@@ -5,6 +5,7 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+using xZune.Bass.Interop;
 using xZune.Bass.Tag.Interop;
 using xZune.Bass.Tag.Modules;
 
@@ -35,6 +36,22 @@ namespace xZune.Bass.Tag
         public static bool Available => TagsLibHandle != IntPtr.Zero;
 
         #endregion
+
+        public static void Initialize()
+        {
+            String path = null;
+
+            if (!Directory.Exists(BassManager.BassLibraryDirectory))
+                throw new TagsLibNotFoundException(); 
+
+            DirectoryInfo dir = new DirectoryInfo(BassManager.BassLibraryDirectory);
+
+            var files = dir.GetFiles("TagsLib.dll", SearchOption.AllDirectories);
+
+            if (files.Length == 0) throw new TagsLibNotFoundException();
+
+            Initialize(files[0].FullName);
+        }
 
         public static void Initialize(String tagsLibPath)
         {

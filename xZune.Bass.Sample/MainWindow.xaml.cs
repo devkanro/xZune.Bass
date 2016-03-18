@@ -6,12 +6,14 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Interop;
 using xZune.Bass.Interop.Flags;
+using xZune.Bass.Tag;
 
 namespace xZune.Bass.Sample
 {
     public partial class MainWindow : Window
     {
         private AudioFileStream fileStream;
+        private TagsManager tag;
 
         public MainWindow()
         {
@@ -19,17 +21,28 @@ namespace xZune.Bass.Sample
 
             BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig._3D,
                 new WindowInteropHelper(this).Handle, null);
-            var info = BassManager.Information;
+            TagsLibManager.Initialize();
 
+            var info = BassManager.Information;
+            
             PluginManager.LoadPlugin(BassPlugin.BassFlac);
             PluginManager.LoadPlugin(BassPlugin.BassApe);
             PluginManager.LoadPlugin(BassPlugin.BassWma);
 
-            fileStream = new AudioFileStream(@"E:\Music\CloudMusic\perfume -.mp3", StreamCreateFileConfig.None);
+            PluginManager.FreePlugin(BassPlugin.BassWma);
+
+            fileStream = new AudioFileStream(@"E:\Music\乐园追放.OST\MP3\01 Qunka!.mp3", StreamCreateFileConfig.None);
+
+            tag = TagsManager.CreateFormFile(@"E:\Music\乐园追放.OST\FLAC\01. Vacation 7.92.flac");
+            var t = tag.FLACTagList[0];
+            t.Value = "测试";
+
+            tag.FLACTagList.Change(t);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             fileStream.Play();
         }
 

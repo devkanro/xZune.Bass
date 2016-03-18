@@ -10,13 +10,13 @@ namespace xZune.Bass.Tag.Interop.Core
     [StructLayout(LayoutKind.Sequential)]
     public struct ExtTag
     {
-        private IntPtr _namePtr;
-        private IntPtr _valuePtr;
-        private int _valueSize;
-        private IntPtr _languagePtr;
-        private IntPtr _descriptionPtr;
-        private ExtTagType _type;
-        private int _index;
+        internal IntPtr _namePtr;
+        internal IntPtr _valuePtr;
+        internal int _valueSize;
+        internal IntPtr _languagePtr;
+        internal IntPtr _descriptionPtr;
+        internal ExtTagType _type;
+        internal int _index;
 
         public string Name
         {
@@ -36,7 +36,7 @@ namespace xZune.Bass.Tag.Interop.Core
                 if (_valuePtr == IntPtr.Zero)
                     return null;
                 else
-                    return Marshal.PtrToStringAuto(_valuePtr, _valueSize);
+                    return Marshal.PtrToStringAuto(_valuePtr);
             }
         }
 
@@ -65,5 +65,32 @@ namespace xZune.Bass.Tag.Interop.Core
         public ExtTagType Type => _type;
 
         public int Index => _index;
+
+        public bool Equals(ExtTag obj)
+        {
+            return
+                obj._descriptionPtr == _descriptionPtr && 
+                obj._languagePtr == _languagePtr && 
+                obj._namePtr == _namePtr &&
+                obj._valuePtr == _valuePtr && 
+                obj._valueSize == _valueSize && 
+                obj._index == _index && 
+                obj._type == _type;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals((ExtTag) obj);
+        }
+
+        public static bool operator ==(ExtTag tag1, ExtTag tag2)
+        {
+            return tag1.Equals(tag2);
+        }
+
+        public static bool operator !=(ExtTag tag1, ExtTag tag2)
+        {
+            return !(tag1 == tag2);
+        }
     }
 }

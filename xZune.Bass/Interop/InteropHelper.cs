@@ -100,14 +100,25 @@ namespace xZune.Bass.Interop
         }
 
         /// <summary>
-        ///     Pinned a <see cref="String" /> to get pointer of this, you should call <see cref="GCHandle.Free" /> when all is
-        ///     over.
+        ///     Pinned a <see cref="String" /> to get pointer of this.
         /// </summary>
         /// <param name="str">string you need pinned</param>
         /// <returns>GCHandle of <see cref="String" />, you can call <see cref="GCHandle.AddrOfPinnedObject" /> to get pointer.</returns>
         public static AutoFreeGCHandle StringToPtr(String str)
         {
             return new AutoFreeGCHandle(Encoding.Unicode.GetBytes(str));
+        }
+
+        /// <summary>
+        ///     Pinned a <see cref="String" /> to get pointer of this.
+        /// </summary>
+        /// <param name="str">string you need pinned</param>
+        /// <returns>GCHandle of <see cref="String" />, you can call <see cref="GCHandle.AddrOfPinnedObject" /> to get pointer.</returns>
+        public static AutoFreeGCHandle StringToPtr(String str, int length)
+        {
+            byte[] bytes = new byte[length];
+            Encoding.Unicode.GetBytes(str, 0, str.Length, bytes, 0);
+            return new AutoFreeGCHandle(bytes);
         }
 
         /// <summary>

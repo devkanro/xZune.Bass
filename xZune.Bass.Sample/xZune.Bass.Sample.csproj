@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\xZune.Bass.Tag\xZune.Bass.Tag.csproj">
+      <Project>{245ba496-77d2-4a0c-be7d-ae27bb5ffad8}</Project>
+      <Name>xZune.Bass.Tag</Name>
+    </ProjectReference>
     <ProjectReference Include="..\xZune.Bass\xZune.Bass.csproj">
       <Project>{a94bdd27-2c0d-4bcd-857d-8516743b1ea5}</Project>
       <Name>xZune.Bass</Name>

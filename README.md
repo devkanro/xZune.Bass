@@ -25,21 +25,21 @@ BassManager.Initialize("../../../Bass/", -1, 44100, InitializationConfig.None, n
 // Set the Bass library path , device, sample rate, configures, window handle, and guid of DSound object to initialize Bass.
 ```
 
-**02.Create an audio stream.**
+**03.Create an audio stream.**
 ```CSharp
 var audioStream = new AudioFileStream(@"E:\test.mp3", StreamCreateFileConfig.None); // File stream.
 // var audioStream = new AudioNetworkStream(@"http://127.0.0.1/test.mp3", StreamCreateUrlConfig.None); // Network stream.
 // We also support custom .NET Steam to create an audio stream.
 ```
 
-**03.Play control.**
+**04.Play control.**
 ```CSharp
 audioStream.Play(); // To play audio stream.
 audioStream.Pause(); // To pause audio stream.
 audioStream.Stop(); // To pause audio stream.
 ```
 
-**04.Create an audio sample and play it.**
+**05.Create an audio sample and play it.**
 ```CSharp
 var audioSample = new AudioFileStream(@"E:\test.mp3",0,0,5, SampleLoadConfig.None); // Create a sample form a file.
 // We also support custom .NET Steam to create an audio sample, and you can set sample data to a sample.
@@ -53,16 +53,16 @@ audioSampleChannel.Play();
 // Note: Many events is not available with SampleChannel.
 ```
 
-**05.Play a MOD/MO3 music.**
+**06.Play a MOD/MO3 music.**
 ```CSharp
 // Create a MOD music with a file, and pre-scan it to get length and position of it.
-var modMusic = new ModMusic(@"C:\Users\higan\Downloads\CORE - Adobe CS4kg.XM", 0,0,1,MusicLoadConfig.Prescan);
+var modMusic = new ModMusic(@"C:\test.XM", 0,0,1,MusicLoadConfig.Prescan);
 
 // Play it.
 modMusic.Play();
 ```
 
-**06.Events of channel.**
+**07.Events of channel.**
 ```CSharp
 // We support many events of every channel.
 // StatusChanged, PositionChanged, Ended...
@@ -76,7 +76,7 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 }                                                                                
 ```
 
-**07.Property of channel.**
+**08.Property of channel.**
 ```CSharp
 // We support many properties of every channel.
 // Length, Position, Status, Time...
@@ -85,7 +85,7 @@ private void AudioStreamStatusChanged(object sender, ChannelStatusChangedEventAr
 TimeSpan time = audioStream.Time;                                   
 ```
 
-**08.Effect of channel.**
+**09.Effect of channel.**
 ```CSharp
 // We support some effects of channel.
 // Effect need DirectX 8 support.
@@ -101,7 +101,7 @@ chorusEffect.Parameters = parameters;
 audioStream.RemoveEffect(chorusEffect);
 ```
 
-**09.Free and release a channel.**
+**10.Free and release a channel.**
 ```CSharp
 // Every channel object is inherited form IDispose interface.
 // Use Dispose() method to release all resource of channel.
@@ -110,12 +110,107 @@ audioStream.RemoveEffect(chorusEffect);
 audioStream.Dispose();                               
 ```
 
-**10.Release Bass.**
+**11.Release Bass.**
 ```CSharp
 // Use BassManager to manage Bass.
 
 // Use BassManager.ReleaseAll() method before your APP closed.
 BassManager.ReleaseAll();
+```
+
+## Bass plug-in  
+**01.Load a plug-in.**  
+```CSharp
+// Use PluginManager to manage plug-ins of Bass.
+
+// Use PluginManager.LoadPlugin() method to load a plug-in.
+// You can find plug-ins which we support in BassPlugin enum.
+
+// Load a BassFlac plug-in with default path, we will automatically find bassflac.dll in default directories.
+PluginManager.LoadPlugin(BassPlugin.BassFlac);
+
+// Load a BassFlac plug-in with a directory, we will automatically find bassflac.dll.
+PluginManager.LoadPlugin(BassPlugin.BassFlac, @"c:\bass library\");
+
+// Load a BassFlac plug-in with a file, we will load your provided file.
+PluginManager.LoadPlugin(BassPlugin.BassFlac, @"c:\bass library\bassflac.dll");
+```
+
+**02.Release a plug-in.**  
+```CSharp
+// Use PluginManager to manage plug-ins of Bass.
+
+// Use PluginManager.FreePlugin() method to free a plug-in.
+
+// Free a BassFlac plug-in.
+PluginManager.FreePlugin(BassPlugin.BassFlac);
+
+// Free a BassFlac plug-in with a Plugin object.
+PluginManager.LoadPlugin(plugin);
+```
+
+## xZune.Bass.Tag
+We provide a warpper for [TagsLib](http://www.3delite.hu/Object%20Pascal%20Developer%20Resources/TagsLibrary.html).  
+
+**01.Add the references of xZune.Bass to your project.**  
+```
+xZune.Bass
+xZune.Bass.Tag
+```
+
+**02.Initialize Bass in your code.**  
+```CSharp
+// Use TagsLibManager to manage TagsLib.
+
+// Initialize TagsLib with default path, we will automatically find TagsLib.dll in default directories.
+TagsLibManager.Initialize();
+
+// Initialize TagsLib with a directory, we will automatically find TagsLib.dll.
+PluginManager.LoadPlugin(BassPlugin.BassFlac, @"c:\bass library\");
+
+// Initialize TagsLib with a file, we will load your provided file.
+PluginManager.LoadPlugin(BassPlugin.BassFlac, @"c:\bass library\bassflac.dll");
+```
+
+**03.Create a TagsManager.**  
+```CSharp
+// Use TagsManager to manage tags of audio.
+
+// Create a TagsManager from a file.
+var tagsManager = TagsManager.CreateFormFile(@"C:\test.mp3");
+
+// Create a TagsManager from a Bass Channel.
+var tagsManager = TagsManager.CreateFormBass(audioFileStream);
+```
+
+**04.Use TagsManager.TagDictionary to easily manage tags.**  
+```CSharp
+// Get the title tag.
+String title = tagsManager.TagDictionary["TITLE"];
+
+// Set the title tag.
+tagsManager.TagDictionary["TITLE"] = "New Title";
+
+// Add a title tag.
+tagsManager.TagDictionary.Add("TITLE", "My Title");
+```
+
+**05.Use TagsManager.TagList to manage tags.**  
+```CSharp
+// Get the first of tags.
+ExtTag tag = tagsManager.TagList[0];
+
+// Set the value of tag.
+tag.Value = "New Value";
+
+// Save the change.
+tagsManager.TagList.Change(tag);
+```
+
+**06.Release resource of TagsManager.**  
+```CSharp
+// Release the tagsManager.
+tagsManager.Dispose();
 ```
 
 ## Todo List  
@@ -164,7 +259,7 @@ player.Load(@"c:\test2.xm");
 - [x] BassAlac
 - [x] BassTta
 - [ ] BassAc3 (working in progress)
-- [ ] BassTags
+- [ ] BassTags (working in progress)
 - [ ] BassMidi
 - [ ] BassAdx
 - [ ] BassAix

@@ -138,4 +138,18 @@ namespace xZune.Bass.Tag
 
         public String TagsLibDirectory { get; private set; }
     }
+
+    /// <summary>
+    /// If you use an unavailable <see cref="HandleObject"/>, this exception will be throwed.
+    /// </summary>
+    public class NotAvailableException : TagsLibException
+    {
+        /// <summary>
+        ///     Create a <see cref="NotAvailableException" />.
+        /// </summary>
+        public NotAvailableException() : base("Handle object is no longer available.")
+        {
+
+        }
+    }
 }

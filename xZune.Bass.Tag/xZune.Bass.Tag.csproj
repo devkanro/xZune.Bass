@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exception.cs" />
+    <Compile Include="ExTag.cs" />
     <Compile Include="Interop\Core\AIFFAttributes.cs" />
     <Compile Include="Interop\Core\AudioAttribute.cs" />
     <Compile Include="Interop\Core\AudioAttributes.cs" />
@@ -57,10 +58,10 @@
     <Compile Include="Interop\Core\ExtTagType.cs" />
     <Compile Include="Interop\Core\FlacAudioAttributes.cs" />
     <Compile Include="Interop\Core\Functions.cs" />
-    <Compile Include="Interop\Core\ID3v2TagEx.cs" />
+    <Compile Include="Interop\Core\ID3v2Tag.cs" />
     <Compile Include="Interop\Core\ID3v2TagType.cs" />
     <Compile Include="Interop\Core\MP4AudioAttributes.cs" />
-    <Compile Include="Interop\Core\MP4TagEx.cs" />
+    <Compile Include="Interop\Core\MP4Tag.cs" />
     <Compile Include="Interop\Core\MP4TagType.cs" />
     <Compile Include="Interop\Core\MPEGAudioAttributes.cs" />
     <Compile Include="Interop\Core\MPEGChannelMode.cs" />
@@ -82,11 +83,22 @@
     <Compile Include="Interop\TagsLibAttribute.cs" />
     <Compile Include="Interop\TagsLibFunction.cs" />
     <Compile Include="Interop\TagsLibFunctionAttribute.cs" />
-    <Compile Include="Interop\Win32Api.cs" />
+    <Compile Include="ITagsManager.cs" />
     <Compile Include="Modules\TagsLibCoreModule.cs" />
     <Compile Include="Modules\TagsLibModule.cs" />
+    <Compile Include="SimapleTag.cs" />
+    <Compile Include="SimpleTagList.cs" />
+    <Compile Include="TagDictionary.cs" />
+    <Compile Include="ExTagList.cs" />
     <Compile Include="TagsLibManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\xZune.Bass\xZune.Bass.csproj">
+      <Project>{a94bdd27-2c0d-4bcd-857d-8516743b1ea5}</Project>
+      <Name>xZune.Bass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

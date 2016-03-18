@@ -26,17 +26,17 @@ namespace xZune.Bass.Tag.Interop.Core
     public delegate bool Free(IntPtr tagsHandle);
 
     /// <summary>
-    ///     Loads the tags from the specified 'FileName'. When 'TagType' is 'ttAutomatic'
-    ///     all the supported tag types are loaded (in the order specified by 'TagsLibrary_SetTagLoadPriority'),
-    ///     to load a particular tag type, specify 'TagType' to something other then 'ttAutomatic'.
-    ///     To check if tags are found use the function 'TagsLibrary_Loaded'.
+    ///     Loads the tags from the specified 'FileName'. When 'TagType' is '<see cref="TagType.Automatic"/>'
+    ///     all the supported tag types are loaded (in the order specified by '<see cref="SetTagLoadPriority"/>'),
+    ///     to load a particular tag type, specify 'TagType' to something other then '<see cref="TagType.Automatic"/>'.
+    ///     To check if tags are found use the function '<see cref="IsTagLoaded"/>'.
     ///     'ParseTags' should be always 'True',
     ///     but if you want to load a particular tag type then this flag specifies wheather to parse the tags to be used by
-    ///     'ttAutomatic'.
+    ///     '<see cref="TagType.Automatic"/>'.
     ///     In other words, set 'ParseTags' to 'False' if you will use for example 'ID3v2' in all function calls (so then
-    ///     there's no need to parset the tags).
+    ///     there's no need to parse the tags).
     /// </summary>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_Load")]
     public delegate ErrorCode LoadTags(
         IntPtr tags, [In, MarshalAs(UnmanagedType.LPWStr)] string fileName, TagType tagType, bool parseTags);
@@ -47,7 +47,7 @@ namespace xZune.Bass.Tag.Interop.Core
     /// </summary>
     /// <param name="memoryAddress">pointer to start of data.</param>
     /// <param name="size">size of memory object.</param>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_LoadFromMemory")]
     public delegate ErrorCode LoadTagsFormMemory(
         IntPtr tags, IntPtr memoryAddress, UInt64 size, TagType tagType, bool parseTags);
@@ -56,8 +56,8 @@ namespace xZune.Bass.Tag.Interop.Core
     ///     Load the tags from a BASS channel handle. Usefull for URL (internet) streams.
     ///     But can be used for local (file) streams also.
     /// </summary>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
-    [TagsLibFunction("TagsLibrary_LoadFromMemory")]
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
+    [TagsLibFunction("TagsLibrary_LoadFromBASS")]
     public delegate ErrorCode LoadTagsFormBass(IntPtr tags, IntPtr bassChannel);
 
     /// <summary>
@@ -74,7 +74,7 @@ namespace xZune.Bass.Tag.Interop.Core
     /// <para/>
     ///     To save a particular tag type specify it with <see cref="TagType" /> as eg. <see cref="TagType.ID3v2" />.
     /// </summary>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_Save")]
     public delegate ErrorCode SaveTags(
         IntPtr tags, [In, MarshalAs(UnmanagedType.LPWStr)] string fileName, TagType tagType);
@@ -83,7 +83,7 @@ namespace xZune.Bass.Tag.Interop.Core
     /// Save the tags without conversion ('ParseTag' and tags set with <see cref="TagType.Automatic" /> option will not have effect).
     /// Usefull if you want to work with a particular tag type.
     /// </summary>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_SaveEx")]
     public delegate ErrorCode SaveTagsEx(
         IntPtr tags, [In, MarshalAs(UnmanagedType.LPWStr)] string fileName, TagType tagType);
@@ -100,7 +100,7 @@ namespace xZune.Bass.Tag.Interop.Core
     /// <param name="savedAddress">pointer to the saved "file" object. Is nil (null) on error.</param>
     /// <param name="savedSize">size of the new object. Is '0' on error.</param>
     /// <param name="saveHandle">use this handle with <see cref="FreeSaveHandle"/> to free the saved object.</param>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_SaveToMemory")]
     public delegate ErrorCode SaveTagsToMemory(
         IntPtr tags, IntPtr memoryAddress, UInt64 size, TagType tagType, ref IntPtr savedAddress, ref UInt64 savedSize,
@@ -111,12 +111,12 @@ namespace xZune.Bass.Tag.Interop.Core
     /// </summary>
     /// <param name="memoryAddress">pointer to start of data.</param>
     /// <param name="size">size of memory object.</param>
-    /// <param name="tagType">if <see cref="TagType.Automatic" /> then try to detect the following formats:
-    /// <see cref="AudioFileFormat"/> and use the usual tagging format for the detected specific format</param>
+    /// <param name="tagType">if '<see cref="TagType.Automatic" />' then try to detect the following formats:
+    /// '<see cref="AudioFileFormat"/>' and use the usual tagging format for the detected specific format</param>
     /// <param name="savedAddress">pointer to the saved "file" object. Is nil (null) on error.</param>
     /// <param name="savedSize">size of the new object. Is '0' on error.</param>
     /// <param name="saveHandle">use this handle with <see cref="FreeSaveHandle"/> to free the saved object.</param>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_SaveToMemoryEx")]
     public delegate ErrorCode SaveTagsToMemoryEx(
         IntPtr tags, IntPtr memoryAddress, UInt64 size, TagType tagType, ref IntPtr savedAddress, ref UInt64 savedSize,
@@ -126,15 +126,15 @@ namespace xZune.Bass.Tag.Interop.Core
     /// 	Free the generated (tagged) saved object.
     /// 	It is needed to free the save handle to free memory allocated for the in-memory saving.
     /// </summary>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_FreeSaveHandle")]
     public delegate ErrorCode FreeSaveHandle(ref IntPtr saveHandle);
-
+      
     /// <summary>
     /// Remove all tags from 'FileName',
     /// to delete a particular tags type set it with 'TagType'.
     /// </summary>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_RemoveTag")]
     public delegate ErrorCode RemoveTags([In, MarshalAs(UnmanagedType.LPWStr)] string fileName, TagType tagType);
 
@@ -143,11 +143,11 @@ namespace xZune.Bass.Tag.Interop.Core
     /// </summary>
     /// <param name="memoryAddress">pointer to start of data.</param>
     /// <param name="size">size of memory object.</param>
-    /// <param name="tagType"><see cref="TagType.Automatic"/> is not supported, specify a tag format explicitly.</param>
+    /// <param name="tagType">'<see cref="TagType.Automatic"/>' is not supported, specify a tag format explicitly.</param>
     /// <param name="savedAddress">pointer to the saved "file" object. Is nil (null) on error.</param>
     /// <param name="savedSize">size of the new object. Is '0' on error.</param>
     /// <param name="saveHandle">use this handle with <see cref="FreeSaveHandle"/> to free the saved object.</param>
-    /// <returns>value is an error code of <see cref="ErrorCode" />, '<see cref="ErrorCode.Success" />' means success. </returns>
+    /// <returns>value is an error code of '<see cref="ErrorCode" />', '<see cref="ErrorCode.Success" />' means success. </returns>
     [TagsLibFunction("TagsLibrary_RemoveTagFromMemory")]
     public delegate ErrorCode RemoveTagFromMemory(
         IntPtr memoryAddress, UInt64 size, TagType tagType, ref IntPtr savedAddress,
@@ -161,7 +161,7 @@ namespace xZune.Bass.Tag.Interop.Core
     public delegate IntPtr GetTag(IntPtr tags, [In, MarshalAs(UnmanagedType.LPWStr)] string name, TagType tagType);
 
     /// <summary>
-    /// Test if tags are loaded. If 'TagType' is 'ttAutomatic' then the return value is 'False'
+    /// Test if tags are loaded. If 'TagType' is '<see cref="TagType.Automatic"/>' then the return value is 'False'
     /// </summary>
     /// <returns>value is 'False' if no tag exists in the file at all, 'True' otherwise</returns>
     [TagsLibFunction("TagsLibrary_Loaded")]
@@ -174,35 +174,35 @@ namespace xZune.Bass.Tag.Interop.Core
     /// <remarks>TagType' values need a specific 'ExtTag' pointer to different structures:</remarks>
     [TagsLibFunction("TagsLibrary_GetTagEx")]
     public delegate ErrorCode GetTagEx(
-        IntPtr tags, [In, MarshalAs(UnmanagedType.LPWStr)] string name, TagType tagType, ExtTag extTag);
+        IntPtr tags, [In, MarshalAs(UnmanagedType.LPWStr)] string name, TagType tagType, ref ExtTag extTag);
 
     /// <summary>
     /// Get extended (detailed) information about a ExtTag.
     /// </summary>
     /// <returns>value is 'False' if 'Index' is invalid..</returns>
     [TagsLibFunction("TagsLibrary_GetTagByIndexEx")]
-    public delegate bool GetExTagByIndex(IntPtr tags, int index, TagType tagType, ExtTag extTag);
+    public delegate bool GetExTagByIndex(IntPtr tags, int index, TagType tagType, ref ExtTag extTag);
 
     /// <summary>
     /// Get extended (detailed) information about a SimpleTag.
     /// </summary>
     /// <returns>value is 'False' if 'Index' is invalid..</returns>
     [TagsLibFunction("TagsLibrary_GetTagByIndexEx")]
-    public delegate bool GetSimpleTagByIndex(IntPtr tags, int index, TagType tagType, SimpleTag simpleTag);
+    public delegate bool GetSimpleTagByIndex(IntPtr tags, int index, TagType tagType, ref SimpleTag simpleTag);
 
     /// <summary>
     /// Get extended (detailed) information about a ID3v2TagEx.
     /// </summary>
     /// <returns>value is 'False' if 'Index' is invalid..</returns>
     [TagsLibFunction("TagsLibrary_GetTagByIndexEx")]
-    public delegate bool GetID3V2TagExByIndex(IntPtr tags, int index, TagType tagType, ID3v2TagEx id3V2TagEx);
+    public delegate bool GetID3V2TagExByIndex(IntPtr tags, int index, TagType tagType, ref ID3v2Tag id3V2TagEx);
 
     /// <summary>
     /// Get extended (detailed) information about a MP4TagEx.
     /// </summary>
     /// <returns>value is 'False' if 'Index' is invalid..</returns>
     [TagsLibFunction("TagsLibrary_GetTagByIndexEx")]
-    public delegate bool GetMp4TagExByIndex(IntPtr tags, int index, TagType tagType, MP4TagEx mp4TagEx);
+    public delegate bool GetMp4TagExByIndex(IntPtr tags, int index, TagType tagType, ref MP4Tag mp4TagEx);
 
     /// <summary>
     /// Simply set a tag specified by 'Name' to value specified by 'Value'.
@@ -218,12 +218,39 @@ namespace xZune.Bass.Tag.Interop.Core
     /// <summary>
     /// Set a tag with extended (detailed) attributes. '<see cref="ExtTag.Name"/>' specifies the tag's name, an ID3v2 frame type,
     /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
-    //	ExtTag.ValueSize specifies ExtTag.Value length in bytes.
+    ///	ExtTag.ValueSize specifies ExtTag.Value length in bytes.
     /// </summary>
     /// <returns>value is 'True' on success.</returns>
     [TagsLibFunction("TagsLibrary_SetTagEx")]
-    public delegate bool SetTagEx(IntPtr tags, TagType tagType, IntPtr extTag);
+    public delegate bool SetExTag(IntPtr tags, TagType tagType, ref ExtTag extTag);
 
+    /// <summary>
+    /// Set a tag with extended (detailed) attributes. '<see cref="SimpleTag.Name"/>' specifies the tag's name, an ID3v2 frame type,
+    /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
+    ///	ExtTag.ValueSize specifies ExtTag.Value length in bytes.
+    /// </summary>
+    /// <returns>value is 'True' on success.</returns>
+    [TagsLibFunction("TagsLibrary_SetTagEx")]
+    public delegate bool SetSimpleTag(IntPtr tags, TagType tagType, ref SimpleTag simpleTag);
+
+    /// <summary>
+    /// Set a tag with extended (detailed) attributes. '<see cref="ExtTag.Name"/>' specifies the tag's name, an ID3v2 frame type,
+    /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
+    ///	ExtTag.ValueSize specifies ExtTag.Value length in bytes.
+    /// </summary>
+    /// <returns>value is 'True' on success.</returns>
+    [TagsLibFunction("TagsLibrary_SetTagEx")]
+    public delegate bool SetID3v2Tag(IntPtr tags, TagType tagType, ref ID3v2Tag tag);
+
+    /// <summary>
+    /// Set a tag with extended (detailed) attributes. '<see cref="MP4Tag.Name"/>' specifies the tag's name, an ID3v2 frame type,
+    /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
+    ///	ExtTag.ValueSize specifies ExtTag.Value length in bytes.
+    /// </summary>
+    /// <returns>value is 'True' on success.</returns>
+    [TagsLibFunction("TagsLibrary_SetTagEx")]
+    public delegate bool SetMP4Tag(IntPtr tags, TagType tagType, ref MP4Tag tag);
+    
     /// <summary>
     /// Add a tag specified by 'Name' to value specified by 'Value'.
     /// If there's already a field with the specified name a new one will added, and the previous is preserved.
@@ -243,7 +270,31 @@ namespace xZune.Bass.Tag.Interop.Core
     /// </summary>
     /// <returns>Return value is 'True' on success</returns>
     [TagsLibFunction("TagsLibrary_AddTagEx")]
-    public delegate int AddTagEx(IntPtr tags, TagType tagType, IntPtr extTag);
+    public delegate int AddExTag(IntPtr tags, TagType tagType, ref ExtTag extTag);
+
+    /// <summary>
+    /// Add a tag with extended (detailed) attributes. '<see cref="SimpleTag.Name"/>' specifies the tag's name, an ID3v2 frame type,
+    /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
+    /// </summary>
+    /// <returns>Return value is 'True' on success</returns>
+    [TagsLibFunction("TagsLibrary_AddTagEx")]
+    public delegate int AddSimpleTag(IntPtr tags, TagType tagType, ref SimpleTag simpleTag);
+
+    /// <summary>
+    /// Add a tag with extended (detailed) attributes. '<see cref="ID3v2Tag.Name"/>' specifies the tag's name, an ID3v2 frame type,
+    /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
+    /// </summary>
+    /// <returns>Return value is 'True' on success</returns>
+    [TagsLibFunction("TagsLibrary_AddTagEx")]
+    public delegate int AddID3v2Tag(IntPtr tags, TagType tagType, ref ID3v2Tag tag);
+
+    /// <summary>
+    /// Add a tag with extended (detailed) attributes. '<see cref="MP4Tag.Name"/>' specifies the tag's name, an ID3v2 frame type,
+    /// eg. 'TIT2' (which is title), or an MP4 tag atom name, for example '©ART' (artist).
+    /// </summary>
+    /// <returns>Return value is 'True' on success</returns>
+    [TagsLibFunction("TagsLibrary_AddTagEx")]
+    public delegate int AddMP4Tag(IntPtr tags, TagType tagType, ref MP4Tag tag);
 
     /// <summary>
     /// Retrieve the tag count for the specified 'TagType' tag type.

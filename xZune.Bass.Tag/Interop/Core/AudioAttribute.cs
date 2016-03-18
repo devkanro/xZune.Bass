@@ -5,7 +5,7 @@ namespace xZune.Bass.Tag.Interop.Core
 {
     public enum AudioAttribute
     {
-        Channels = 0,
+        ChannelCount = 0,
         SamplesPerSec = 1,
         BitsPerSample = 2,
         PlayTime = 3,
