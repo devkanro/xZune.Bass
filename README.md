@@ -6,6 +6,10 @@ xZune.Bass is a .Net wrapper of the [Bass](http://www.un4seen.com/bass.html) Lib
 
 [![Join the chat at https://gitter.im/higankanshi/xZune.Bass](https://badges.gitter.im/higankanshi/xZune.Bass.svg)](https://gitter.im/higankanshi/xZune.Bass?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
+## UWP branch  
+
+This is UWP branch of xZune.Bass, you can use Bass library for UWP app.
+
 ## Api Documentation
 
 See the api documentation of [xZune.Bass](http://higan.me/xZune.Bass/api/index.html).
