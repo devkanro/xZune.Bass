@@ -195,7 +195,7 @@ namespace xZune.Bass.Tag.Interop.Core
     /// </summary>
     /// <returns>value is 'False' if 'Index' is invalid..</returns>
     [TagsLibFunction("TagsLibrary_GetTagByIndexEx")]
-    public delegate bool GetID3V2TagExByIndex(IntPtr tags, int index, TagType tagType, ref ID3v2Tag id3V2TagEx);
+    public delegate bool GetID3v2TagExByIndex(IntPtr tags, int index, TagType tagType, ref ID3v2Tag id3V2TagEx);
 
     /// <summary>
     /// Get extended (detailed) information about a MP4TagEx.

@@ -10,6 +10,7 @@ namespace xZune.Bass.Tag.Interop.Core
     [StructLayout(LayoutKind.Sequential)]
     public struct SimpleTag
     {
+
         internal IntPtr _namePtr;
         internal IntPtr _valuePtr;
         internal int _valueSize;
@@ -61,6 +62,17 @@ namespace xZune.Bass.Tag.Interop.Core
         public static bool operator !=(SimpleTag tag1, SimpleTag tag2)
         {
             return !(tag1 == tag2);
+        }
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = _namePtr.GetHashCode();
+                hashCode = (hashCode * 397) ^ _valuePtr.GetHashCode();
+                hashCode = (hashCode * 397) ^ _valueSize;
+                hashCode = (hashCode * 397) ^ _index;
+                return hashCode;
+            }
         }
     }
 }

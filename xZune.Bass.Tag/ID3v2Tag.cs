@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
-// Filename: ExTag.cs
-// Version: 20160318
+// Filename: ID3v2Tag.cs
+// Version: 20160319
 
 using System;
 using System.Text;
@@ -10,39 +10,39 @@ using xZune.Bass.Tag.Interop.Core;
 namespace xZune.Bass.Tag
 {
     /// <summary>
-    /// Accessor for <see cref="Interop.Core.ExtTag"/>.
+    /// Accessor for <see cref="Interop.Core.ID3v2Tag"/>.
     /// </summary>
-    public class ExtTag : IDisposable
+    public class ID3v2Tag : IDisposable
     {
         /// <summary>
-        /// Internal <see cref="Interop.Core.ExtTag"/> structure.
+        /// Internal <see cref="Interop.Core.ID3v2Tag"/> structure.
         /// </summary>
-        public Interop.Core.ExtTag Struct;
-        
+        public Interop.Core.ID3v2Tag Struct;
+
         private AutoFreeGCHandle _nameHandle;
         private AutoFreeGCHandle _valueHandle;
         private AutoFreeGCHandle _languageHandle;
         private AutoFreeGCHandle _descriptionHandle;
 
         /// <summary>
-        /// Create accessor for new <see cref="Interop.Core.ExtTag"/>.
+        /// Create accessor for new <see cref="Interop.Core.ID3v2Tag"/>.
         /// </summary>
-        public ExtTag() : this(new Interop.Core.ExtTag())
+        public ID3v2Tag() : this(new Interop.Core.ID3v2Tag())
         {
 
         }
 
         /// <summary>
-        /// Create accessor for a <see cref="Interop.Core.ExtTag"/>.
+        /// Create accessor for a <see cref="Interop.Core.ID3v2Tag"/>.
         /// </summary>
         /// <param name="tag">Target structure.</param>
-        public ExtTag(Interop.Core.ExtTag tag)
+        public ID3v2Tag(Interop.Core.ID3v2Tag tag)
         {
             Struct = tag;
         }
 
         /// <summary>
-        /// Get or set <see cref="Interop.Core.ExtTag.Name"/> property.
+        /// Get or set <see cref="Interop.Core.ID3v2Tag.Name"/> property.
         /// </summary>
         public String Name
         {
@@ -53,7 +53,7 @@ namespace xZune.Bass.Tag
             set
             {
                 _nameHandle?.Dispose();
-                
+
                 _nameHandle = InteropHelper.StringToPtr(value);
 
                 Struct._namePtr = _nameHandle.Handle;
@@ -61,7 +61,7 @@ namespace xZune.Bass.Tag
         }
 
         /// <summary>
-        /// Get or set <see cref="Interop.Core.ExtTag.Value"/> property.
+        /// Get or set <see cref="Interop.Core.ID3v2Tag.Value"/> property.
         /// </summary>
         public String Value
         {
@@ -72,7 +72,7 @@ namespace xZune.Bass.Tag
             set
             {
                 _valueHandle?.Dispose();
-                
+
                 _valueHandle = InteropHelper.StringToPtr(value);
                 Struct._valueSize = Encoding.Unicode.GetByteCount(value);
 
@@ -81,7 +81,7 @@ namespace xZune.Bass.Tag
         }
 
         /// <summary>
-        /// Get or set <see cref="Interop.Core.ExtTag.Language"/> property.
+        /// Get or set <see cref="Interop.Core.ID3v2Tag.Language"/> property.
         /// </summary>
         public String Language
         {
@@ -100,7 +100,7 @@ namespace xZune.Bass.Tag
         }
 
         /// <summary>
-        /// Get or set <see cref="Interop.Core.ExtTag.Description"/> property.
+        /// Get or set <see cref="Interop.Core.ID3v2Tag.Description"/> property.
         /// </summary>
         public String Description
         {
@@ -119,14 +119,14 @@ namespace xZune.Bass.Tag
         }
 
         /// <summary>
-        /// Get <see cref="Interop.Core.ExtTag.Index"/> property.
+        /// Get <see cref="Interop.Core.ID3v2Tag.Index"/> property.
         /// </summary>
         public int Index => Struct.Index;
 
         /// <summary>
-        /// Get or set <see cref="Interop.Core.ExtTag.Type"/> property.
+        /// Get or set <see cref="Interop.Core.ID3v2Tag.Type"/> property.
         /// </summary>
-        public ExtTagType Type
+        public ID3v2TagType Type
         {
             get
             {
@@ -148,23 +148,23 @@ namespace xZune.Bass.Tag
             ((IDisposable)_languageHandle)?.Dispose();
             ((IDisposable)_descriptionHandle)?.Dispose();
         }
-        
-        public bool Equals(ExtTag obj)
+
+        public bool Equals(ID3v2Tag obj)
         {
             return obj.Struct == this.Struct;
         }
 
         public override bool Equals(object obj)
         {
-            return Equals((ExtTag)obj);
+            return Equals((ID3v2Tag)obj);
         }
 
-        public static bool operator ==(ExtTag tag1, ExtTag tag2)
+        public static bool operator ==(ID3v2Tag tag1, ID3v2Tag tag2)
         {
             return tag1.Equals(tag2);
         }
 
-        public static bool operator !=(ExtTag tag1, ExtTag tag2)
+        public static bool operator !=(ID3v2Tag tag1, ID3v2Tag tag2)
         {
             return !(tag1 == tag2);
         }
@@ -177,7 +177,7 @@ namespace xZune.Bass.Tag
         {
             return $"[{Name}, {Value}]";
         }
-        
+
         public override int GetHashCode()
         {
             return Struct.GetHashCode();

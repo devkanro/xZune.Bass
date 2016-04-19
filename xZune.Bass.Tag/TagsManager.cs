@@ -23,6 +23,7 @@ namespace xZune.Bass.Tag
             OpusVorbisList = new SimpleTagList(this, TagType.OpusVorbis);
             WMATagList = new SimpleTagList(this, TagType.WMA);
             WAVTagList = new SimpleTagList(this, TagType.WAV);
+            ID3v2TagList = new ID3v2TagList(this);
         }
 
         public static TagsManager CreateFormFile(String file, TagType type = TagType.Automatic, bool parseTags = true)
@@ -83,5 +84,6 @@ namespace xZune.Bass.Tag
         public SimpleTagList OpusVorbisList { get; private set; }
         public SimpleTagList WAVTagList { get; private set; }
         public SimpleTagList WMATagList { get; private set; }
+        public ID3v2TagList ID3v2TagList { get; private set; }
     }
 }

@@ -11,6 +11,9 @@ using xZune.Bass.Tag.Modules;
 
 namespace xZune.Bass.Tag
 {
+    /// <summary>
+    /// A manager for TagsLib.
+    /// </summary>
     public static class TagsLibManager
     {
         #region -- Tags library properties --
@@ -31,7 +34,7 @@ namespace xZune.Bass.Tag
         public static String TagsLibPath { get; private set; }
 
         /// <summary>
-        ///     Get is Bass loaded and available.
+        ///     Get is TagsLib loaded and available.
         /// </summary>
         public static bool Available => TagsLibHandle != IntPtr.Zero;
 

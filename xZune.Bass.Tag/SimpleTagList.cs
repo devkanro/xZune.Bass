@@ -10,19 +10,29 @@ using xZune.Bass.Tag.Modules;
 
 namespace xZune.Bass.Tag
 {
+    /// <summary>
+    ///     SimpleTag list accessor for <see cref="TagsManager" />.
+    /// </summary>
     public class SimpleTagList : IReadOnlyList<SimpleTag>
     {
         private TagsManager _target;
         private TagType _type;
 
-        public SimpleTagList(TagsManager tag, TagType type)
+        internal SimpleTagList(TagsManager tag, TagType type)
         {
             _target = tag;
             _type = type;
         }
 
+        /// <summary>
+        ///     Is it read only?
+        /// </summary>
         public bool IsReadOnly => false;
 
+        /// <summary>
+        ///     Get enumerator for <see cref="SimpleTagList" />.
+        /// </summary>
+        /// <returns>Enumerator.</returns>
         public IEnumerator<SimpleTag> GetEnumerator()
         {
             return new SimpleTagListEnumerator(this);
@@ -33,8 +43,16 @@ namespace xZune.Bass.Tag
             return GetEnumerator();
         }
 
+        /// <summary>
+        ///     Get <see cref="SimpleTag" /> count of <see cref="TagsManager" />.
+        /// </summary>
         public int Count => TagsLibCoreModule.GetTagCountFunction.Delegate(_target.Handle, _type);
 
+        /// <summary>
+        ///     Get <see cref="SimpleTag" /> from index.
+        /// </summary>
+        /// <param name="index">Index of tag which you want to get.</param>
+        /// <returns>Tag.</returns>
         public SimpleTag this[int index]
         {
             get
@@ -46,11 +64,18 @@ namespace xZune.Bass.Tag
             }
         }
 
+        /// <summary>
+        ///     Add a new <see cref="SimpleTag" /> to <see cref="TagsManager" />.
+        /// </summary>
+        /// <param name="item">Tag which you want to add.</param>
         public void Add(SimpleTag item)
         {
             TagsLibCoreModule.AddSimpleTagFunction.Delegate(_target.Handle, _type, ref item.Struct);
         }
 
+        /// <summary>
+        ///     Clear all tag from <see cref="TagsManager" />.
+        /// </summary>
         public void Clear()
         {
             for (int i = 0; i < Count; i++)
@@ -59,11 +84,21 @@ namespace xZune.Bass.Tag
             }
         }
 
+        /// <summary>
+        ///     Check if <see cref="TagsManager" /> contains a tag.
+        /// </summary>
+        /// <param name="item">Tag which you want to check.</param>
+        /// <returns></returns>
         public bool Contains(SimpleTag item)
         {
             return this.Any(t => t == item);
         }
 
+        /// <summary>
+        ///     Copy all <see cref="SimpleTag" /> to a array.
+        /// </summary>
+        /// <param name="array">Array which you want to copy to.</param>
+        /// <param name="arrayIndex">The first index of array.</param>
         public void CopyTo(SimpleTag[] array, int arrayIndex)
         {
             foreach (SimpleTag tag in this)
@@ -73,6 +108,11 @@ namespace xZune.Bass.Tag
             }
         }
 
+        /// <summary>
+        ///     Remove a tag from <see cref="TagsManager" />.
+        /// </summary>
+        /// <param name="item">Tag which you want to remove.</param>
+        /// <returns>True for success, false for fail.</returns>
         public bool Remove(SimpleTag item)
         {
             if (!Contains(item))
@@ -81,6 +121,11 @@ namespace xZune.Bass.Tag
             return TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, item.Index, _type);
         }
 
+        /// <summary>
+        ///     Get index of a tag.
+        /// </summary>
+        /// <param name="item">Tag which you want to check.</param>
+        /// <returns>Index of tag.</returns>
         public int IndexOf(SimpleTag item)
         {
             for (int i = 0; i < Count; i++)
@@ -91,17 +136,21 @@ namespace xZune.Bass.Tag
 
             return -1;
         }
-
-        public void Insert(int index, SimpleTag item)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
+        /// <summary>
+        ///     Save all changes of <see cref="SimpleTag" />, it will recover tag which has same name as <see cref="SimpleTag.Name" />.
+        /// </summary>
+        /// <param name="item">Tag which you want to save changes.</param>
+        /// <returns></returns>
         public bool Change(SimpleTag item)
         {
             return TagsLibCoreModule.SetSimpleTagFunction.Delegate(_target.Handle, _type, ref item.Struct);
         }
 
+        /// <summary>
+        ///     Remove tag at index.
+        /// </summary>
+        /// <param name="index">Index of tag which you want to remove.</param>
         public void RemoveAt(int index)
         {
             TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, index, _type);

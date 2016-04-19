@@ -671,6 +671,24 @@ namespace xZune.Bass
                 ChannelModule.ChannelSet3DPositionFunction.Delegate(Handle, ref pos, ref orientation, ref vel));
         }
 
+        public async Task PauseTest()
+        {
+            var temp = Volume;
+            SetVolumeAnimate(0, 500);
+            await Task.Delay(500);
+            Pause();
+            Volume = temp;
+        }
+
+        public async Task PlayTest()
+        {
+            var temp = Volume;
+            Volume = 0;
+            SetVolumeAnimate(temp, 500);
+            Play();
+            await Task.Delay(500);
+        }
+
         protected virtual void AttachEvent()
         {
             _displayCallback?.DeattachToChannel();

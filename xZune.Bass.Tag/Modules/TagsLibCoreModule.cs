@@ -28,7 +28,7 @@ namespace xZune.Bass.Tag.Modules
         internal static TagsLibFunction<GetTagEx> GetTagExFunction;
         internal static TagsLibFunction<GetExTagByIndex> GetExTagByIndexFunction;
         internal static TagsLibFunction<GetSimpleTagByIndex> GetSimpleTagByIndexFunction;
-        internal static TagsLibFunction<GetID3V2TagExByIndex> GetID3V2TagExByIndexFunction;
+        internal static TagsLibFunction<GetID3v2TagExByIndex> GetID3v2TagExByIndexFunction;
         internal static TagsLibFunction<GetMp4TagExByIndex> GetMp4TagExByIndexFunction;
         internal static TagsLibFunction<SetTag> SetTagFunction;
         internal static TagsLibFunction<SetExTag> SetExTagFunction;
@@ -108,7 +108,7 @@ namespace xZune.Bass.Tag.Modules
             GetTagExFunction = new TagsLibFunction<GetTagEx>();
             GetExTagByIndexFunction = new TagsLibFunction<GetExTagByIndex>();
             GetSimpleTagByIndexFunction = new TagsLibFunction<GetSimpleTagByIndex>();
-            GetID3V2TagExByIndexFunction = new TagsLibFunction<GetID3V2TagExByIndex>();
+            GetID3v2TagExByIndexFunction = new TagsLibFunction<GetID3v2TagExByIndex>();
             GetMp4TagExByIndexFunction = new TagsLibFunction<GetMp4TagExByIndex>();
             SetTagFunction = new TagsLibFunction<SetTag>();
             SetExTagFunction = new TagsLibFunction<SetExTag>();
@@ -186,7 +186,7 @@ namespace xZune.Bass.Tag.Modules
             GetTagExFunction = null;
             GetExTagByIndexFunction = null;
             GetSimpleTagByIndexFunction = null;
-            GetID3V2TagExByIndexFunction = null;
+            GetID3v2TagExByIndexFunction = null;
             GetMp4TagExByIndexFunction = null;
             SetTagFunction = null;
             SetExTagFunction = null;

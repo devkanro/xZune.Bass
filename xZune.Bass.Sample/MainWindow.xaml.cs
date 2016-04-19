@@ -31,19 +31,13 @@ namespace xZune.Bass.Sample
 
             PluginManager.FreePlugin(BassPlugin.BassWma);
 
-            fileStream = new AudioFileStream(@"E:\Music\乐园追放.OST\MP3\01 Qunka!.mp3", StreamCreateFileConfig.None);
-
-            tag = TagsManager.CreateFormFile(@"E:\Music\乐园追放.OST\FLAC\01. Vacation 7.92.flac");
-            var t = tag.FLACTagList[0];
-            t.Value = "测试";
-
-            tag.FLACTagList.Change(t);
+            fileStream = new AudioFileStream(@"E:\CloudMusic\Perfume - STAR TRAIN.mp3", StreamCreateFileConfig.None);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            fileStream.Play();
+            fileStream.PlayTest();
         }
 
         private void Afs_StatusChanged(object sender, ChannelStatusChangedEventArgs args)
@@ -53,7 +47,7 @@ namespace xZune.Bass.Sample
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            fileStream.Stop();
+            fileStream.PauseTest();
         }
     }
 }

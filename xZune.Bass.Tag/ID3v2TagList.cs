@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
-// Filename: ExTagList.cs
-// Version: 20160318
+// Filename: ID3v2TagList.cs
+// Version: 20160319
 
 using System.Collections;
 using System.Collections.Generic;
@@ -11,13 +11,13 @@ using xZune.Bass.Tag.Modules;
 namespace xZune.Bass.Tag
 {
     /// <summary>
-    ///     ExTag list accessor for <see cref="TagsManager" />.
+    ///     ID3v2Tag list accessor for <see cref="TagsManager" />.
     /// </summary>
-    public class ExTagList : IReadOnlyList<ExtTag>
+    public class ID3v2TagList : IReadOnlyList<ID3v2Tag>
     {
         private readonly TagsManager _target;
 
-        internal ExTagList(TagsManager tag)
+        internal ID3v2TagList(TagsManager tag)
         {
             _target = tag;
         }
@@ -28,12 +28,12 @@ namespace xZune.Bass.Tag
         public bool IsReadOnly => false;
 
         /// <summary>
-        ///     Get enumerator for <see cref="ExTagList" />.
+        ///     Get enumerator for <see cref="ID3v2TagList" />.
         /// </summary>
         /// <returns>Enumerator.</returns>
-        public IEnumerator<ExtTag> GetEnumerator()
+        public IEnumerator<ID3v2Tag> GetEnumerator()
         {
-            return new ExTagListEnumerator(this);
+            return new ID3v2TagListEnumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -42,33 +42,33 @@ namespace xZune.Bass.Tag
         }
 
         /// <summary>
-        ///     Get <see cref="ExtTag" /> count of <see cref="TagsManager" />.
+        ///     Get <see cref="ID3v2Tag" /> count of <see cref="TagsManager" />.
         /// </summary>
-        public int Count => TagsLibCoreModule.GetTagCountFunction.Delegate(_target.Handle, TagType.Automatic);
+        public int Count => TagsLibCoreModule.GetTagCountFunction.Delegate(_target.Handle, TagType.ID3v2);
 
         /// <summary>
-        ///     Get <see cref="ExtTag" /> from index.
+        ///     Get <see cref="ID3v2Tag" /> from index.
         /// </summary>
         /// <param name="index">Index of tag which you want to get.</param>
         /// <returns>Tag.</returns>
-        public ExtTag this[int index]
+        public ID3v2Tag this[int index]
         {
             get
             {
-                ExtTag result = new ExtTag();
-                TagsLibCoreModule.GetExTagByIndexFunction.Delegate(_target.Handle, index, TagType.Automatic,
+                ID3v2Tag result = new ID3v2Tag();
+                TagsLibCoreModule.GetID3v2TagExByIndexFunction.Delegate(_target.Handle, index, TagType.ID3v2,
                     ref result.Struct);
                 return result;
             }
         }
 
         /// <summary>
-        ///     Add a new <see cref="ExtTag" /> to <see cref="TagsManager" />.
+        ///     Add a new <see cref="ID3v2Tag" /> to <see cref="TagsManager" />.
         /// </summary>
         /// <param name="item">Tag which you want to add.</param>
-        public void Add(ExtTag item)
+        public void Add(ID3v2Tag item)
         {
-            TagsLibCoreModule.AddExTagFunction.Delegate(_target.Handle, TagType.Automatic, ref item.Struct);
+            TagsLibCoreModule.AddID3v2TagFunction.Delegate(_target.Handle, TagType.ID3v2, ref item.Struct);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace xZune.Bass.Tag
         {
             for (int i = 0; i < Count; i++)
             {
-                TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, i, TagType.Automatic);
+                TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, i, TagType.ID3v2);
             }
         }
 
@@ -87,19 +87,19 @@ namespace xZune.Bass.Tag
         /// </summary>
         /// <param name="item">Tag which you want to check.</param>
         /// <returns></returns>
-        public bool Contains(ExtTag item)
+        public bool Contains(ID3v2Tag item)
         {
             return this.Any(t => t == item);
         }
 
         /// <summary>
-        ///     Copy all <see cref="ExtTag" /> to a array.
+        ///     Copy all <see cref="ID3v2Tag" /> to a array.
         /// </summary>
         /// <param name="array">Array which you want to copy to.</param>
         /// <param name="arrayIndex">The first index of array.</param>
-        public void CopyTo(ExtTag[] array, int arrayIndex)
+        public void CopyTo(ID3v2Tag[] array, int arrayIndex)
         {
-            foreach (ExtTag tag in this)
+            foreach (ID3v2Tag tag in this)
             {
                 array[arrayIndex] = tag;
                 arrayIndex++;
@@ -111,12 +111,12 @@ namespace xZune.Bass.Tag
         /// </summary>
         /// <param name="item">Tag which you want to remove.</param>
         /// <returns>True for success, false for fail.</returns>
-        public bool Remove(ExtTag item)
+        public bool Remove(ID3v2Tag item)
         {
             if (!Contains(item))
                 return false;
 
-            return TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, item.Index, TagType.Automatic);
+            return TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, item.Index, TagType.ID3v2);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace xZune.Bass.Tag
         /// </summary>
         /// <param name="item">Tag which you want to check.</param>
         /// <returns>Index of tag.</returns>
-        public int IndexOf(ExtTag item)
+        public int IndexOf(ID3v2Tag item)
         {
             for (int i = 0; i < Count; i++)
             {
@@ -136,13 +136,14 @@ namespace xZune.Bass.Tag
         }
 
         /// <summary>
-        ///     Save all changes of <see cref="ExtTag" />, it will recover tag which has same name as <see cref="ExtTag.Name" />.
+        ///     Save all changes of <see cref="ID3v2Tag" />, it will recover tag which has same name as
+        ///     <see cref="ID3v2Tag.Name" />.
         /// </summary>
         /// <param name="item">Tag which you want to save changes.</param>
         /// <returns></returns>
-        public bool Change(ExtTag item)
+        public bool Change(ID3v2Tag item)
         {
-            return TagsLibCoreModule.SetExTagFunction.Delegate(_target.Handle, TagType.Automatic, ref item.Struct);
+            return TagsLibCoreModule.SetID3v2TagFunction.Delegate(_target.Handle, TagType.ID3v2, ref item.Struct);
         }
 
         /// <summary>
@@ -151,16 +152,16 @@ namespace xZune.Bass.Tag
         /// <param name="index">Index of tag which you want to remove.</param>
         public void RemoveAt(int index)
         {
-            TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, index, TagType.Automatic);
+            TagsLibCoreModule.DeleteTagByIndexFunction.Delegate(_target.Handle, index, TagType.ID3v2);
         }
 
-        private class ExTagListEnumerator : IEnumerator<ExtTag>
+        private class ID3v2TagListEnumerator : IEnumerator<ID3v2Tag>
         {
             private int _index = -1;
 
-            private ExTagList _target;
+            private ID3v2TagList _target;
 
-            public ExTagListEnumerator(ExTagList list)
+            public ID3v2TagListEnumerator(ID3v2TagList list)
             {
                 _target = list;
             }
@@ -184,7 +185,7 @@ namespace xZune.Bass.Tag
                 _index = -1;
             }
 
-            public ExtTag Current => _target[_index];
+            public ID3v2Tag Current => _target[_index];
 
             object IEnumerator.Current => Current;
         }

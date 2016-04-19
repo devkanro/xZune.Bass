@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Exception.cs" />
     <Compile Include="ExTag.cs" />
+    <Compile Include="ID3v2Tag.cs" />
+    <Compile Include="ID3v2TagList.cs" />
     <Compile Include="Interop\Core\AIFFAttributes.cs" />
     <Compile Include="Interop\Core\AudioAttribute.cs" />
     <Compile Include="Interop\Core\AudioAttributes.cs" />
@@ -83,9 +85,9 @@
     <Compile Include="Interop\TagsLibAttribute.cs" />
     <Compile Include="Interop\TagsLibFunction.cs" />
     <Compile Include="Interop\TagsLibFunctionAttribute.cs" />
-    <Compile Include="ITagsManager.cs" />
     <Compile Include="Modules\TagsLibCoreModule.cs" />
     <Compile Include="Modules\TagsLibModule.cs" />
+    <Compile Include="MP4Tag.cs" />
     <Compile Include="SimapleTag.cs" />
     <Compile Include="SimpleTagList.cs" />
     <Compile Include="TagDictionary.cs" />

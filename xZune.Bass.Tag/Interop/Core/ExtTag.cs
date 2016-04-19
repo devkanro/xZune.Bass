@@ -1,6 +1,6 @@
 ﻿// Project: xZune.Bass (https://github.com/higankanshi/xZune.Bass)
 // Filename: ExtTag.cs
-// Version: 20160316
+// Version: 20160319
 
 using System;
 using System.Runtime.InteropServices;
@@ -91,6 +91,21 @@ namespace xZune.Bass.Tag.Interop.Core
         public static bool operator !=(ExtTag tag1, ExtTag tag2)
         {
             return !(tag1 == tag2);
+        }
+        
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = _namePtr.GetHashCode();
+                hashCode = (hashCode * 397) ^ _valuePtr.GetHashCode();
+                hashCode = (hashCode * 397) ^ _valueSize;
+                hashCode = (hashCode * 397) ^ _languagePtr.GetHashCode();
+                hashCode = (hashCode * 397) ^ _descriptionPtr.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)_type;
+                hashCode = (hashCode * 397) ^ _index;
+                return hashCode;
+            }
         }
     }
 }
